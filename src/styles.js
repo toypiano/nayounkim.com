@@ -18,7 +18,7 @@ export const GlobalStyle = createGlobalStyle`
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
     color: hsla(0, 0%, 0%, 0.8);
-    font-family: georgia, serif;
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
     font-weight: normal;
     word-wrap: break-word;
     font-kerning: normal;
@@ -366,6 +366,7 @@ ul {
   margin-bottom: 1.45rem;
   list-style-position: outside;
   list-style-image: none;
+  list-style-type: none;
 }
 ol {
   margin-left: 1.45rem;
@@ -379,6 +380,7 @@ ol {
   list-style-position: outside;
   list-style-image: none;
 }
+
 dl {
   margin-left: 0;
   margin-right: 0;
