@@ -6,8 +6,12 @@ import styled from "styled-components"
 import logo from "../images/nayoun-kim-logo.svg"
 
 const HeaderWrapper = styled.div`
+  position: absolute;
+  z-index: 1000;
+  height: var(--navbar-height);
   width: 100%;
-  padding: 0.5em 1em;
+  max-width: 1200px;
+  padding: 0 1em;
   background: var(--bg);
   display: flex;
   align-items: center;
@@ -26,8 +30,7 @@ const HeaderWrapper = styled.div`
     align-items: center;
     margin: 0;
     li {
-      margin-bottom: 0;
-      margin-left: 1em;
+      margin: 0 1em;
       a {
         text-decoration: none;
       }

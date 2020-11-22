@@ -9,7 +9,7 @@ import React from "react"
 import PropTypes from "prop-types"
 import { useStaticQuery, graphql } from "gatsby"
 
-import { GlobalStyle } from "../styles"
+import { GlobalStyle, StyledLayout } from "../styles"
 
 import Header from "./header"
 
@@ -28,20 +28,14 @@ const Layout = ({ children }) => {
     <>
       <GlobalStyle />
       <Header siteTitle={data.site.siteMetadata.title} />
-      <div
-        style={{
-          margin: `0 auto`,
-          maxWidth: 960,
-          padding: `0 1.0875rem 1.45rem`,
-        }}
-      >
+      <StyledLayout>
         <main>{children}</main>
-        <footer>
-          © {new Date().getFullYear()}, Built with
+        {/* <footer>
+          © {new Date().getFullYear()}, by
           {` `}
-          <a href="https://www.gatsbyjs.org">Gatsby</a>
-        </footer>
-      </div>
+          <a href="#">toypiano</a>
+        </footer> */}
+      </StyledLayout>
     </>
   )
 }

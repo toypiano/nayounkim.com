@@ -1,8 +1,8 @@
 module.exports = {
   siteMetadata: {
-    title: `Nayoun Kim's Blog`,
-    description: `Illustrator Nayoun Kim's Blog`,
-    author: `@gatsbyjs`,
+    title: `Nayoun Kim Illustrator`,
+    description: `Illustrator Nayoun Kim's Website`,
+    author: `Sid Hayoun Lee`,
   },
   plugins: [
     `gatsby-plugin-react-helmet`,
@@ -11,6 +11,13 @@ module.exports = {
       options: {
         name: `images`,
         path: `${__dirname}/src/images`,
+      },
+    },
+    {
+      resolve: "gatsby-source-filesystem",
+      options: {
+        name: "posts",
+        path: `${__dirname}/src/posts`,
       },
     },
     `gatsby-transformer-sharp`,

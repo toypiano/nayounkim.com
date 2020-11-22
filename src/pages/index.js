@@ -2,15 +2,17 @@ import React from "react"
 import { Link } from "gatsby"
 
 import Layout from "../components/layout"
-import Image from "../components/image"
 import SEO from "../components/seo"
+
+import { FullImageContainer } from "../styles"
+import stranger from "../images/stranger.jpg"
 
 const IndexPage = () => (
   <Layout>
     <SEO title="Home" />
-    <h1>Hi people</h1>
-    <p>Welcome to your new Gatsby site.</p>
-    <p>Now go build something great.</p>
+    <FullImageContainer>
+      <img src={stranger} alt="stranger" />
+    </FullImageContainer>
   </Layout>
 )
 
