@@ -4,4 +4,38 @@
  * See: https://www.gatsbyjs.org/docs/node-apis/
  */
 
-// You can delete this file if you're not using it
+// Runs when the site is built and register things like pages.
+
+const { resolve } = require("path")
+const path = require("path")
+
+// functions are passed graphql, actions by Gatsby
+exports.createPages = async ({ graphql, actions }) => {
+  try {
+    const result = await graphql(`
+      query BlogPostSlug {
+        allMarkdownRemark {
+          edges {
+            node {
+              frontmatter {
+                slug
+              }
+            }
+          }
+        }
+      }
+    `)
+
+    result.data.allMarkdownRemark.edges.forEach(({ node }) => {
+      actions.createPage({
+        path: `/blog${node.frontmatter.slug}`,
+        component: path.resolve("./src/components/postLayout.js"),
+        context: {
+          slug: node.frontmatter.slug,
+        },
+      })
+    })
+  } catch (err) {
+    console.log(err)
+  }
+}

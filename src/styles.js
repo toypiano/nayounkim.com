@@ -6,7 +6,7 @@ export const GlobalStyle = createGlobalStyle`
     --bg: var(--white);
     --navbar-height: 80px;
     --text-main: #333;
-    --text-secondary: rgba(0,0,0,0.5);
+    --text-secondary: rgba(0,0,0,0.6);
   }
 
   html {
@@ -38,22 +38,32 @@ export const GlobalStyle = createGlobalStyle`
     background-color: var(--bg);
   }
 
+  h1, h2, h3, p {
+    margin: 0;
+    line-height: 1.6;
+  }
+
   ul {
     list-style: none;
   }
 
   li {
     text-decoration: none;
-    a {
-      color: var(--text-secondary);
-    }
-    &:hover {
-      a {
-      color: var(--text-main);
-      }
+    
     }
   }
 
+  a {
+    color: var(--text-main);
+    text-decoration: none;
+    transition: opacity .2s;
+    &:hover {  
+      opacity: 0.7;
+    }
+    &:visited {
+      color: var(--text-main);
+    }
+  }
   
 `
 
