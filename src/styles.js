@@ -73,7 +73,7 @@ export const StyledLayout = styled("div")`
   padding-top: var(--navbar-height);
   width: 100%;
   max-width: 800px;
-  height: 100vh;
+  min-height: 100vh;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -93,8 +93,11 @@ export const StyledLayout = styled("div")`
 `
 
 export const FullImageContainer = styled("div")`
-  width: 100%;
-  height: auto;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
   display: flex;
   justify-content: center;
   align-items: center;

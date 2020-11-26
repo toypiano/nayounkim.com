@@ -26,10 +26,20 @@ exports.createPages = async ({ graphql, actions }) => {
       }
     `)
 
+    // result looks like this
+    /* 
+    { data: [Object: null prototype] {
+        allMarkdownRemark: [Object: null prototype] { 
+          edges: [Array] 
+        } 
+      } 
+    } 
+    */
+
     result.data.allMarkdownRemark.edges.forEach(({ node }) => {
       actions.createPage({
         path: `/blog${node.frontmatter.slug}`,
-        component: path.resolve("./src/components/postLayout.js"),
+        component: path.resolve("./src/components/post-template.js"),
         context: {
           slug: node.frontmatter.slug,
         },

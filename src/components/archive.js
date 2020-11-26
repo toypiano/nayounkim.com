@@ -2,8 +2,6 @@ import React from "react"
 import styled from "styled-components"
 import { useStaticQuery, graphql, Link } from "gatsby"
 
-import Layout from "../components/layout"
-
 const StyledArchive = styled.aside`
   margin-top: 1em;
   ul {
@@ -26,7 +24,10 @@ const StyledArchive = styled.aside`
 
 const POST_ARCHIVE_QUERY = graphql`
   query BlogPosts {
-    allMarkdownRemark(limit: 5) {
+    allMarkdownRemark(
+      limit: 5
+      sort: { fields: [frontmatter___date], order: DESC }
+    ) {
       edges {
         node {
           frontmatter {
@@ -41,13 +42,13 @@ const POST_ARCHIVE_QUERY = graphql`
 `
 
 const Archive = () => {
-  const data = useStaticQuery(POST_ARCHIVE_QUERY)
+  const { allMarkdownRemark } = useStaticQuery(POST_ARCHIVE_QUERY)
 
   return (
     <StyledArchive>
       <h2>Archive</h2>
       <ul>
-        {data.allMarkdownRemark.edges.map((edge, i) => (
+        {allMarkdownRemark.edges.map((edge, i) => (
           <li key={edge.node.frontmatter.slug}>
             <Link to={`/blog${edge.node.frontmatter.slug}`}>
               <h3>{edge.node.frontmatter.title}</h3>

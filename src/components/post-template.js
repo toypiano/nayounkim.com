@@ -11,7 +11,7 @@ const Container = styled.div`
   margin: auto;
 `
 
-const postLayout = ({ data }) => {
+const PostTemplate = ({ data }) => {
   const { markdownRemark } = data
   return (
     <Layout>
@@ -28,7 +28,7 @@ const postLayout = ({ data }) => {
 }
 
 export const query = graphql`
-  query BlogPostQuery($slug: String) {
+  query BlogPostQuery($slug: String!) {
     markdownRemark(frontmatter: { slug: { eq: $slug } }) {
       html
       frontmatter {
@@ -40,4 +40,4 @@ export const query = graphql`
   }
 `
 
-export default postLayout
+export default PostTemplate

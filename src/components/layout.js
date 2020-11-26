@@ -29,12 +29,12 @@ const Layout = ({ children }) => {
       <GlobalStyle />
       <Header siteTitle={data.site.siteMetadata.title} />
       <StyledLayout>
-        <main>{children}</main>
-        {/* <footer>
+        {children}
+        <footer>
           © {new Date().getFullYear()}, by
           {` `}
           <a href="#">toypiano</a>
-        </footer> */}
+        </footer>
       </StyledLayout>
     </>
   )
