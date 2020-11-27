@@ -10,6 +10,8 @@ const StyledNavLinks = styled('ul')`
   li {
     margin: 0 1em;
     a {
+      font-size: 0.9rem;
+      text-transform: uppercase;
       text-decoration: none;
     }
   }
@@ -26,6 +28,12 @@ const NavLinks = () => {
       </li>
       <li>
         <Link to="/blog">Blog</Link>
+      </li>
+      <li>
+        <Link to="/blog">Contact</Link>
+      </li>
+      <li>
+        <Link to="/blog">Shop</Link>
       </li>
     </StyledNavLinks>
   )

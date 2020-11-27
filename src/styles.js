@@ -1,10 +1,10 @@
-import styled, { createGlobalStyle } from "styled-components"
+import styled, { createGlobalStyle } from 'styled-components'
 
 export const GlobalStyle = createGlobalStyle`
   :root {
     --white: white;
     --bg: var(--white);
-    --navbar-height: 80px;
+    --navbar-height: 150px;
     --text-main: #333;
     --text-secondary: rgba(0,0,0,0.6);
   }
@@ -27,7 +27,7 @@ export const GlobalStyle = createGlobalStyle`
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
     color: hsla(0, 0%, 0%, 0.8);
-    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+    font-family: Quasimoda, sans-serif;
     font-weight: normal;
     word-wrap: break-word;
     font-kerning: normal;
@@ -67,7 +67,7 @@ export const GlobalStyle = createGlobalStyle`
   
 `
 
-export const StyledLayout = styled("div")`
+export const StyledLayout = styled('div')`
   position: relative;
   margin: 0 auto;
   padding-top: var(--navbar-height);
@@ -92,7 +92,7 @@ export const StyledLayout = styled("div")`
   }
 `
 
-export const FullImageContainer = styled("div")`
+export const FullImageContainer = styled('div')`
   position: fixed;
   top: 0;
   left: 0;
