@@ -4,9 +4,12 @@ export const GlobalStyle = createGlobalStyle`
   :root {
     --white: white;
     --bg: var(--white);
-    --navbar-height: 150px;
     --text-main: #333;
     --text-secondary: rgba(0,0,0,0.6);
+
+    --navbar-height: 12rem;
+
+    --z-header: 1000;
   }
 
   html {
@@ -27,7 +30,7 @@ export const GlobalStyle = createGlobalStyle`
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
     color: hsla(0, 0%, 0%, 0.8);
-    font-family: Quasimoda, sans-serif;
+    font-family: 'Quasimoda', sans-serif;
     font-weight: normal;
     word-wrap: break-word;
     font-kerning: normal;
@@ -45,6 +48,7 @@ export const GlobalStyle = createGlobalStyle`
 
   ul {
     list-style: none;
+    padding: 0;
   }
 
   li {
@@ -65,49 +69,4 @@ export const GlobalStyle = createGlobalStyle`
     }
   }
   
-`
-
-export const StyledLayout = styled('div')`
-  position: relative;
-  margin: 0 auto;
-  padding-top: var(--navbar-height);
-  width: 100%;
-  max-width: 800px;
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  main {
-    position: relative;
-    max-width: 100%;
-    height: calc(100% - 2em);
-    max-height: 100vh;
-  }
-
-  footer {
-    width: 100%;
-    text-align: right;
-    font-size: 0.7rem;
-    padding: 0.5em 2em;
-  }
-`
-
-export const FullImageContainer = styled('div')`
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100vw;
-  height: 100vh;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-
-  img {
-    width: 100%;
-    height: 100%;
-    object-fit: contain;
-  }
-  @media (min-width: 750px) {
-    height: 100%;
-  }
 `

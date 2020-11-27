@@ -3,12 +3,13 @@ import { Link } from 'gatsby'
 import styled from 'styled-components'
 
 const StyledNavLinks = styled('ul')`
-  height: 100%;
+  max-width: 30rem;
+  margin: 0 auto 1em;
   display: flex;
   align-items: center;
-  margin: 0;
+  justify-content: space-around;
   li {
-    margin: 0 1em;
+    margin: 0 2.5em;
     a {
       font-size: 0.9rem;
       text-transform: uppercase;

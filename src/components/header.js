@@ -8,14 +8,17 @@ import NavLinks from './nav-links'
 
 const StyledHeader = styled.header`
   position: fixed;
+  height: var(--navbar-height);
   top: 0;
   left: 0;
   z-index: var(--z-header);
   width: 100%;
+  background: white;
   /* max-width: 1200px; */
   
   .logo {
-
+    width: 13rem;
+    margin: 3em auto 1em;
   }
   }
 `

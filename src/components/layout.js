@@ -1,18 +1,36 @@
-/**
- * Layout component that queries for data
- * with Gatsby's useStaticQuery component
- *
- * See: https://www.gatsbyjs.org/docs/use-static-query/
- */
-
 import React from 'react'
 import PropTypes from 'prop-types'
+import styled from 'styled-components'
 import { useStaticQuery, graphql } from 'gatsby'
 import { Helmet } from 'react-helmet'
 
-import { GlobalStyle, StyledLayout } from '../styles'
-
+import { GlobalStyle } from '../styles'
 import Header from './header'
+
+export const StyledLayout = styled('div')`
+  position: relative;
+  margin: 0 auto;
+  padding-top: var(--navbar-height);
+  width: 100%;
+  max-width: 800px;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  main {
+    position: relative;
+    max-width: 100%;
+    height: calc(100% - 2em);
+    max-height: 100vh;
+  }
+
+  footer {
+    width: 100%;
+    text-align: right;
+    font-size: 0.7rem;
+    padding: 0.5em 2em;
+  }
+`
 
 const Layout = ({ children }) => {
   const data = useStaticQuery(graphql`
