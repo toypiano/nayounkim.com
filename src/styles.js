@@ -1,11 +1,13 @@
-import styled, { createGlobalStyle } from 'styled-components'
+import { createGlobalStyle } from 'styled-components'
 
 export const GlobalStyle = createGlobalStyle`
   :root {
     --white: white;
+    --accent: #fb4732;
     --bg: var(--white);
     --text-main: #333;
     --text-secondary: rgba(0,0,0,0.6);
+
 
     --navbar-height: 12rem;
 
@@ -26,6 +28,7 @@ export const GlobalStyle = createGlobalStyle`
     position: relative;
     width: 100vw;
     max-width: 1200px;
+    min-height: 100vw;
     margin: auto;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
@@ -60,12 +63,9 @@ export const GlobalStyle = createGlobalStyle`
   a {
     color: var(--text-main);
     text-decoration: none;
-    transition: opacity .2s;
+    transition: color .2s;
     &:hover {  
-      opacity: 0.7;
-    }
-    &:visited {
-      color: var(--text-main);
+      color: var(--accent);
     }
   }
   

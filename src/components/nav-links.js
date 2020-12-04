@@ -9,11 +9,28 @@ const StyledNavLinks = styled('ul')`
   align-items: center;
   justify-content: space-around;
   li {
+    position: relative;
     margin: 0 2.5em;
+    width: 100;
+
     a {
       font-size: 0.9rem;
       text-transform: uppercase;
       text-decoration: none;
+    }
+
+    &::after {
+      content: '';
+      display: block;
+      position: relative;
+      height: 1px;
+      width: 0%;
+      background: var(--text-main);
+    }
+    /* hover state bust be on parent element! */
+    &:hover::after {
+      transition: width 120ms ease-in-out;
+      width: 100%;
     }
   }
 `

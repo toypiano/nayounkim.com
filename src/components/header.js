@@ -15,11 +15,18 @@ const StyledHeader = styled.header`
   width: 100%;
   background: white;
   /* max-width: 1200px; */
-  
+
   .logo {
-    width: 13rem;
-    margin: 3em auto 1em;
-  }
+    width: 20rem;
+    text-align: center;
+    white-space: nowrap;
+    /* margin: 3em auto 1em; */
+    margin: 1em auto 0;
+    h1 {
+      font-family: 'cantoni-pro', serif;
+      font-size: 5rem;
+      color: var(--text-main);
+    }
   }
 `
 
@@ -33,7 +40,8 @@ const Header = ({ siteTitle }) => (
           textDecoration: `none`,
         }}
       >
-        <img src={logo} alt="logo" />
+        {/* <img src={logo} alt="logo" /> */}
+        <h1>Nayoun Kim</h1>
       </Link>
     </div>
     <NavLinks />

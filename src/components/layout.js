@@ -7,29 +7,16 @@ import { Helmet } from 'react-helmet'
 import { GlobalStyle } from '../styles'
 import Header from './header'
 
-export const StyledLayout = styled('div')`
+export const StyledLayout = styled.main`
   position: relative;
   margin: 0 auto;
   padding-top: var(--navbar-height);
   width: 100%;
   max-width: 800px;
-  min-height: 100vh;
-  display: flex;
+  height: 100%;
+  /* display: flex;
   flex-direction: column;
-  align-items: center;
-  main {
-    position: relative;
-    max-width: 100%;
-    height: calc(100% - 2em);
-    max-height: 100vh;
-  }
-
-  footer {
-    width: 100%;
-    text-align: right;
-    font-size: 0.7rem;
-    padding: 0.5em 2em;
-  }
+  align-items: center; */
 `
 
 const Layout = ({ children }) => {
@@ -50,14 +37,12 @@ const Layout = ({ children }) => {
       </Helmet>
       <GlobalStyle />
       <Header siteTitle={data.site.siteMetadata.title} />
-      <StyledLayout>
-        {children}
-        <footer>
-          © {new Date().getFullYear()}, by
-          {` `}
-          <a href="#">toypiano</a>
-        </footer>
-      </StyledLayout>
+      <StyledLayout>{children}</StyledLayout>
+      <footer style={{ display: 'none' }}>
+        © {new Date().getFullYear()}, by
+        {` `}
+        <a href="https://github.com/toypiano">toypiano</a>
+      </footer>
     </>
   )
 }
