@@ -3,14 +3,14 @@ import { Link } from 'gatsby'
 import styled from 'styled-components'
 
 const StyledNavLinks = styled('ul')`
-  max-width: 30rem;
+  width: 35rem;
   margin: 0 auto 1em;
   display: flex;
   align-items: center;
   justify-content: space-around;
   li {
     position: relative;
-    margin: 0 2.5em;
+
     width: 100;
 
     a {

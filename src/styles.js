@@ -9,7 +9,7 @@ export const GlobalStyle = createGlobalStyle`
     --text-secondary: rgba(0,0,0,0.6);
 
 
-    --navbar-height: 12rem;
+    --header-height: 15rem;
 
     --z-header: 1000;
   }

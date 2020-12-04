@@ -10,7 +10,7 @@ import Header from './header'
 export const StyledLayout = styled.main`
   position: relative;
   margin: 0 auto;
-  padding-top: var(--navbar-height);
+  padding-top: var(--header-height);
   width: 100%;
   max-width: 800px;
   height: 100%;

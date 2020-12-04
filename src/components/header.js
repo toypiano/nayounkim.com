@@ -17,13 +17,13 @@ const StyledHeader = styled.header`
   /* max-width: 1200px; */
 
   .logo {
-    width: 20rem;
+    width: max-content;
     text-align: center;
     white-space: nowrap;
     /* margin: 3em auto 1em; */
     margin: 1em auto 0;
+    letter-spacing: 6px;
     h1 {
-      font-family: 'cantoni-pro', serif;
       font-size: 5rem;
       color: var(--text-main);
     }
