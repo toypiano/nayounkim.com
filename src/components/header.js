@@ -3,34 +3,39 @@ import PropTypes from 'prop-types'
 import React from 'react'
 import styled from 'styled-components'
 
-import logo from '../images/nayoun-kim-logo.svg'
 import NavLinks from './nav-links'
 
 const StyledHeader = styled.header`
-  position: fixed;
   height: var(--navbar-height);
-  top: 0;
-  left: 0;
   z-index: var(--z-header);
   width: 100%;
+  max-width: 1600px;
+  margin: 2em 0 5em;
+  padding: 0 2em;
   background: white;
+  display: flex;
+  align-items: flex-end;
   /* max-width: 1200px; */
 
   .logo {
-    width: max-content;
-    text-align: center;
-    white-space: nowrap;
+    width: 100%;
+
     /* margin: 3em auto 1em; */
     margin: 1em auto 0;
-    letter-spacing: 6px;
     h1 {
-      font-size: 5rem;
+      position: relative;
+      left: 3px;
+      letter-spacing: 6px;
+      font-family: acumin-pro-wide, sans-serif;
+      font-size: 4.25rem;
       color: var(--text-main);
+      line-height: 1;
+      text-align: left;
     }
   }
 `
 
-const Header = ({ siteTitle }) => (
+const Header = () => (
   <StyledHeader>
     <div className="logo">
       <Link

@@ -5,7 +5,7 @@ import styled from 'styled-components'
 const StyledNavLinks = styled('ul')`
   width: 35rem;
   margin: 0 auto 1em;
-  display: flex;
+  display: none;
   align-items: center;
   justify-content: space-around;
   li {
@@ -32,6 +32,10 @@ const StyledNavLinks = styled('ul')`
       transition: width 120ms ease-in-out;
       width: 100%;
     }
+  }
+
+  @media (min-width: 800px) {
+    display: flex;
   }
 `
 

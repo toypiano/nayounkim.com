@@ -10,9 +10,7 @@ import Header from './header'
 export const StyledLayout = styled.main`
   position: relative;
   margin: 0 auto;
-  padding-top: var(--header-height);
-  width: 100%;
-  max-width: 800px;
+  width: 100vw;
   height: 100%;
   /* display: flex;
   flex-direction: column;

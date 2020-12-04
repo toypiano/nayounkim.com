@@ -10,7 +10,6 @@ export const GlobalStyle = createGlobalStyle`
 
 
     --header-height: 15rem;
-
     --z-header: 1000;
   }
 
@@ -26,10 +25,8 @@ export const GlobalStyle = createGlobalStyle`
   }
   body {
     position: relative;
-    width: 100vw;
-    max-width: 1200px;
     min-height: 100vw;
-    margin: auto;
+    margin: 0;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
     color: hsla(0, 0%, 0%, 0.8);
@@ -70,3 +67,10 @@ export const GlobalStyle = createGlobalStyle`
   }
   
 `
+
+export const mq = {
+  landscape: 500,
+  tablet: 700,
+  desktop: 1100,
+  wide: 1600,
+}
