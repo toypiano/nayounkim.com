@@ -7,10 +7,18 @@ export const GlobalStyle = createGlobalStyle`
     --bg: var(--white);
     --text-main: #333;
     --text-secondary: rgba(0,0,0,0.6);
-
+    
+    --fw-black: 900;
+    --fw-regular: 400;
+    --fw-light: 300;
 
     --header-height: 15rem;
     --z-header: 1000;
+
+    --gutter-landscape: 1em;
+    --gutter-tablet: 2em;
+    --gutter-desktop: 3em;
+    --gutter-wide: 4em;
   }
 
   html {
@@ -30,7 +38,7 @@ export const GlobalStyle = createGlobalStyle`
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
     color: hsla(0, 0%, 0%, 0.8);
-    font-family: 'Quasimoda', sans-serif;
+    font-family: 'Inter', sans-serif;
     font-weight: normal;
     word-wrap: break-word;
     font-kerning: normal;
@@ -71,6 +79,6 @@ export const GlobalStyle = createGlobalStyle`
 export const mq = {
   landscape: 500,
   tablet: 700,
-  desktop: 1100,
+  desktop: 1130,
   wide: 1600,
 }

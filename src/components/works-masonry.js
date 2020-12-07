@@ -14,8 +14,6 @@ const breakpointColumnsObj = {
   [mq.landscape - 1]: 1,
 }
 
-// TODO: Add responsive layout. remove margin on mobile view
-
 const StyledMasonry = styled(Masonry)`
   --gutter: 4em;
   width: auto;
@@ -27,11 +25,13 @@ const StyledMasonry = styled(Masonry)`
     & > div {
       background: grey;
     }
+    &:first-of-type {
+      margin-left: 0;
+    }
   }
 
   @media (min-width: ${mq.landscape}px) {
-    --gutter: 1em;
-    margin-right: var(--gutter); /* gutter size offset */
+    --gutter: var(--gutter-landscape);
 
     .main-masonry-grid_column {
       margin-left: var(--gutter); /* gutter size offset */
@@ -41,8 +41,7 @@ const StyledMasonry = styled(Masonry)`
     }
   }
   @media (min-width: ${mq.tablet}px) {
-    --gutter: 2em;
-    margin-right: var(--gutter); /* gutter size offset */
+    --gutter: var(--gutter-tablet);
 
     .main-masonry-grid_column {
       margin-left: var(--gutter); /* gutter size offset */
@@ -52,8 +51,7 @@ const StyledMasonry = styled(Masonry)`
     }
   }
   @media (min-width: ${mq.desktop}px) {
-    --gutter: 3em;
-    margin-right: var(--gutter); /* gutter size offset */
+    --gutter: var(--gutter-desktop);
 
     .main-masonry-grid_column {
       margin-left: var(--gutter); /* gutter size offset */
@@ -63,8 +61,7 @@ const StyledMasonry = styled(Masonry)`
     }
   }
   @media (min-width: ${mq.wide}px) {
-    --gutter: 4em;
-    margin-right: var(--gutter); /* gutter size offset */
+    --gutter: var(--gutter-wide);
 
     .main-masonry-grid_column {
       margin-left: var(--gutter); /* gutter size offset */

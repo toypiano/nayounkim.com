@@ -6,6 +6,7 @@ import { Helmet } from 'react-helmet'
 
 import { GlobalStyle } from '../styles'
 import Header from './header'
+import { mq } from '../styles'
 
 export const StyledLayout = styled.main`
   position: relative;
@@ -15,6 +16,19 @@ export const StyledLayout = styled.main`
   /* display: flex;
   flex-direction: column;
   align-items: center; */
+
+  @media (min-width: ${mq.landscape}px) {
+    padding: 0 var(--gutter-landscape);
+  }
+  @media (min-width: ${mq.tablet}px) {
+    padding: 0 var(--gutter-tablet);
+  }
+  @media (min-width: ${mq.desktop}px) {
+    padding: 0 var(--gutter-desktop);
+  }
+  @media (min-width: ${mq.wide}px) {
+    padding: 0 var(--gutter-wide);
+  }
 `
 
 const Layout = ({ children }) => {
@@ -31,11 +45,17 @@ const Layout = ({ children }) => {
   return (
     <>
       <Helmet>
-        <link rel="stylesheet" href="https://use.typekit.net/zmx0zdq.css" />
+        <link rel="preconnect" href="https://fonts.gstatic.com" />
+        <link
+          href="https://fonts.googleapis.com/css2?family=Inter:wght@100;300;400;900&display=swap"
+          rel="stylesheet"
+        />
       </Helmet>
       <GlobalStyle />
-      <Header siteTitle={data.site.siteMetadata.title} />
-      <StyledLayout>{children}</StyledLayout>
+      <StyledLayout>
+        <Header siteTitle={data.site.siteMetadata.title} />
+        {children}
+      </StyledLayout>
       <footer style={{ display: 'none' }}>
         © {new Date().getFullYear()}, by
         {` `}

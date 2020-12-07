@@ -2,9 +2,11 @@ import React from 'react'
 import { Link } from 'gatsby'
 import styled from 'styled-components'
 
+import { mq } from '../styles'
+
 const StyledNavLinks = styled('ul')`
-  width: 35rem;
-  margin: 0 auto 1em;
+  width: 28rem;
+  margin: 0 0 0 3em;
   display: none;
   align-items: center;
   justify-content: space-around;
@@ -34,7 +36,7 @@ const StyledNavLinks = styled('ul')`
     }
   }
 
-  @media (min-width: 800px) {
+  @media (min-width: ${mq.desktop}px) {
     display: flex;
   }
 `
