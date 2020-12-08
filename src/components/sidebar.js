@@ -12,8 +12,8 @@ const StyledSidebar = styled(a.div)`
   top: 0;
   bottom: 0;
   right: 0;
-  width: 60%;
-  max-width: 100%;
+  width: 66%;
+  max-width: 25rem;
   height: 100vh;
   padding: 2em 0;
   background: white;

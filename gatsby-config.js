@@ -55,5 +55,12 @@ module.exports = {
         id: 'sidebar-root',
       },
     },
+    {
+      resolve: 'gatsby-plugin-portal',
+      options: {
+        key: 'backdrop-root',
+        id: 'backdrop-root',
+      },
+    },
   ],
 }

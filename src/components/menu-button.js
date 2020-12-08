@@ -14,7 +14,7 @@ const StyledMenuButton = styled('button')`
   margin-left: 1em;
 
   --size: 40px;
-  width: var(--size);
+  width: calc(var(--size) * 1.1);
   height: var(--size);
   padding: 5px;
   display: flex;
@@ -23,9 +23,8 @@ const StyledMenuButton = styled('button')`
 
   span {
     width: 100%;
-    height: 5px;
+    height: 6px;
     background: var(--text-main);
-    opacity: 0.8;
   }
 
   @media (min-width: 475px) {
@@ -38,6 +37,7 @@ const StyledMenuButton = styled('button')`
   }
 `
 
+// TODO: replace css button with Nayoun's custom drawing.
 const MenuButton = ({ isOpen, handleClick }) => {
   return (
     <StyledMenuButton isOpen={isOpen} onClick={handleClick}>

@@ -6,6 +6,12 @@ import styled, { css } from 'styled-components'
 import { mq } from '../styles'
 
 const linkCss = css`
+  width: 50%;
+  max-width: 40rem;
+  margin-left: 01em;
+  display: none;
+  flex-direction: row;
+  align-items: center;
   li {
     a {
       font-size: 0.9rem;
@@ -27,6 +33,12 @@ const linkCss = css`
   }
 `
 const sidebarLinkCss = css`
+  width: 100%;
+  margin-left: 0;
+  display: 'flex';
+  flex-direction: column;
+  align-items: 'flex-start';
+
   li {
     padding: 1em;
     a {
@@ -45,11 +57,6 @@ const sidebarLinkCss = css`
 `
 
 const StyledNavLinks = styled('ul')`
-  width: 100%;
-  margin-left: ${props => (props.sidebar ? 0 : '1em')};
-  display: ${props => (props.sidebar ? 'flex' : 'none')};
-  flex-direction: column;
-  align-items: ${props => (props.sidebar ? 'flex-start' : 'center')};
   justify-content: space-between;
 
   li {
@@ -59,7 +66,7 @@ const StyledNavLinks = styled('ul')`
     a {
       text-transform: uppercase;
       text-decoration: none;
-      &[aria-current='page'] {
+      &.active {
         color: var(--accent);
       }
     }
@@ -92,7 +99,9 @@ const NavLinks = ({ sidebar = false, closeMenu }) => {
     <StyledNavLinks sidebar={sidebar}>
       {links.map(link => (
         <li key={link.text} onClick={handleLinkItemClick}>
-          <Link to={link.to}>{link.text}</Link>
+          <Link to={link.to} activeClassName="active">
+            {link.text}
+          </Link>
         </li>
       ))}
     </StyledNavLinks>

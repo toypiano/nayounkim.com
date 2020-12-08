@@ -1,4 +1,5 @@
 import React from 'react'
+import ReactDOM from 'react-dom'
 import PropTypes from 'prop-types'
 import styled from 'styled-components'
 
@@ -12,12 +13,16 @@ const StyledBackdrop = styled('div')`
   z-index: var(--z-backdrop);
 `
 
-const Backdrop = ({ show }) => {
-  return <StyledBackdrop show={show}></StyledBackdrop>
+const Backdrop = ({ show, close }) => {
+  const content = <StyledBackdrop show={show} onClick={close}></StyledBackdrop>
+  return show
+    ? ReactDOM.createPortal(content, document.getElementById('backdrop-root'))
+    : null
 }
 
 Backdrop.propTypes = {
   show: PropTypes.bool.isRequired,
+  close: PropTypes.func,
 }
 
 export default Backdrop

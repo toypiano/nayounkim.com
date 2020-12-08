@@ -56,6 +56,8 @@ const StyledHeader = styled.header`
   }
 `
 
+// TODO: fix sidebar not animating on the way out when navigating into different page.
+
 const Header = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false)
 
@@ -80,7 +82,7 @@ const Header = () => {
         <MenuButton isOpen={isMenuOpen} handleClick={openMenu} />
         <NavLinks />
       </StyledHeader>
-      <Backdrop show={isMenuOpen} />
+      <Backdrop show={isMenuOpen} close={closeMenu} />
       <Sidebar isOpen={isMenuOpen} closeMenu={closeMenu} />
     </>
   )
