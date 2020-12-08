@@ -3,22 +3,29 @@ import { createGlobalStyle } from 'styled-components'
 export const GlobalStyle = createGlobalStyle`
   :root {
     --white: white;
+    --primary: #5adbf0;
     --accent: #fb4732;
     --bg: var(--white);
     --text-main: #333;
     --text-secondary: rgba(0,0,0,0.6);
+    --cl-icon: var(--text-main);
+    --cl-icon-alpha: 1;
+    --cl-gray: #eee;
     
     --fw-black: 900;
     --fw-regular: 400;
     --fw-light: 300;
 
     --header-height: 15rem;
-    --z-header: 1000;
 
     --gutter-landscape: 1em;
     --gutter-tablet: 2em;
     --gutter-desktop: 3em;
     --gutter-wide: 4em;
+
+    --z-header: 1000;
+    --z-backdrop: 1200;
+    --z-sidebar: 1500;
   }
 
   html {
@@ -57,12 +64,17 @@ export const GlobalStyle = createGlobalStyle`
   ul {
     list-style: none;
     padding: 0;
+    margin: 0;
   }
 
   li {
     text-decoration: none;
     
     }
+  }
+
+  a, button {
+    cursor: pointer;
   }
 
   a {
@@ -73,6 +85,24 @@ export const GlobalStyle = createGlobalStyle`
       color: var(--accent);
     }
   }
+
+  button {
+    border: none;
+    outline: none;
+    background: transparent;
+    font: inherit;
+    padding: 0;
+  }
+
+  .sr-only:not(:focus):not(:active) {
+      overflow: hidden;
+      white-space: nowrap;
+      position: absolute;
+      clip: rect(0 0 0 0);
+      clip-path: inset(50%);
+      height: 1px;
+      width: 1px;
+    }
   
 `
 
