@@ -73,7 +73,7 @@ const StyledNavLinks = styled('ul')`
   }
 `
 
-const NavLinks = ({ sidebar = false }) => {
+const NavLinks = ({ sidebar = false, closeMenu }) => {
   const links = [
     { to: '/', text: 'Home' },
     { to: '/about', text: 'About' },
@@ -81,10 +81,17 @@ const NavLinks = ({ sidebar = false }) => {
     { to: '/#', text: 'Contact' },
     { to: '/#', text: 'Shop' },
   ]
+
+  const handleLinkItemClick = () => {
+    if (sidebar && closeMenu) {
+      closeMenu()
+    }
+  }
+
   return (
     <StyledNavLinks sidebar={sidebar}>
       {links.map(link => (
-        <li key={link.text}>
+        <li key={link.text} onClick={handleLinkItemClick}>
           <Link to={link.to}>{link.text}</Link>
         </li>
       ))}
@@ -94,6 +101,7 @@ const NavLinks = ({ sidebar = false }) => {
 
 NavLinks.propTypes = {
   sidebar: PropTypes.bool,
+  closeMenu: PropTypes.func,
 }
 
 export default NavLinks

@@ -1,4 +1,5 @@
 import React from 'react'
+import ReactDOM from 'react-dom'
 import PropTypes from 'prop-types'
 import { useTransition, a } from 'react-spring'
 import styled from 'styled-components'
@@ -54,7 +55,7 @@ const Sidebar = ({ isOpen, closeMenu }) => {
     },
   })
 
-  return (
+  const content = (
     <>
       {transition((styles, isOpen) =>
         isOpen ? (
@@ -62,17 +63,20 @@ const Sidebar = ({ isOpen, closeMenu }) => {
             <button onClick={closeMenu}>
               <span>&#10005;</span>
             </button>
-            <NavLinks sidebar />
+            <NavLinks sidebar closeMenu={closeMenu} />
             <LanguageSelect />
           </StyledSidebar>
         ) : null
       )}
     </>
   )
+
+  return ReactDOM.createPortal(content, document.getElementById('sidebar-root'))
 }
 
 Sidebar.propTypes = {
   isOpen: PropTypes.bool.isRequired,
   closeMenu: PropTypes.func.isRequired,
 }
+
 export default Sidebar
