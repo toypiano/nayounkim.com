@@ -39,23 +39,21 @@ const StyledHeader = styled.header`
   }
 
   @media (min-width: ${mq.landscape}px) {
-    margin: 2em 0;
+    padding: 3em 0.5em;
     .logo {
       margin: 0;
     }
   }
   @media (min-width: ${mq.tablet}px) {
-    margin: 3em 0;
+    padding: 4em 0.5em;
   }
   @media (min-width: ${mq.desktop}px) {
-    margin: 3em 0;
+    padding: 5em 0.5em;
   }
   @media (min-width: ${mq.wide}px) {
-    margin: 6em 0 3em;
+    padding: 6em 0.5em;
   }
 `
-
-// TODO: fix sidebar not animating on the way out when navigating into different page.
 
 const Header = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false)

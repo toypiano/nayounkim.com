@@ -95,7 +95,7 @@ const NavLinks = ({ sidebar = false, closeMenu }) => {
       closeMenu()
     }
   }
-  // TODO: try using AniLink and see if it improves perf
+  // TODO: try using AniLink and see if it improves perf (Sidebar animation seems to be interfering with page transition)
 
   return (
     <StyledNavLinks sidebar={sidebar}>
