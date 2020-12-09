@@ -1,7 +1,6 @@
-import React from "react"
-import styled from "styled-components"
-
-import Layout from "../components/layout"
+import React from 'react'
+import styled from 'styled-components'
+import TransitionFade from '../components/transition-fade'
 
 const Container = styled.main`
   width: 90%;
@@ -10,7 +9,7 @@ const Container = styled.main`
 
 const about = () => {
   return (
-    <Layout>
+    <TransitionFade>
       <Container>
         <h1>About Nayoun Kim</h1>
         <p>
@@ -27,7 +26,7 @@ const about = () => {
           asperiores sunt quibusdam eos doloribus nemo.
         </p>
       </Container>
-    </Layout>
+    </TransitionFade>
   )
 }
 

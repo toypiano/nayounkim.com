@@ -72,7 +72,7 @@ const StyledMasonry = styled(Masonry)`
   }
 `
 
-const WorksMasonry = () => {
+const WorksMasonry = ({ mount }) => {
   const data = useStaticQuery(query)
 
   return (

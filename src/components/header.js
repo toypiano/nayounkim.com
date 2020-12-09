@@ -14,11 +14,10 @@ import Backdrop from './backdrop'
 const StyledHeader = styled.header`
   position: relative;
   height: var(--navbar-height);
-  z-index: var(--z-header);
+
   width: 100%;
   max-width: ${mq.wide}px;
-  margin: 1em 0;
-  padding: 0 0.5em;
+  padding: 1em 0.5em;
 
   background: white;
   display: flex;

@@ -8,7 +8,7 @@ import { GlobalStyle } from '../styles'
 import Header from './header'
 import { mq } from '../styles'
 
-export const StyledLayout = styled.main`
+export const StyledLayout = styled.div`
   position: relative;
   margin: 0 auto;
   width: 100vw;
@@ -54,13 +54,13 @@ const Layout = ({ children }) => {
       <GlobalStyle />
       <StyledLayout>
         <Header siteTitle={data.site.siteMetadata.title} />
-        {children}
+        <main>{children}</main>
+        <footer style={{ display: 'none' }}>
+          © {new Date().getFullYear()}, by
+          {` `}
+          <a href="https://github.com/toypiano">toypiano</a>
+        </footer>
       </StyledLayout>
-      <footer style={{ display: 'none' }}>
-        © {new Date().getFullYear()}, by
-        {` `}
-        <a href="https://github.com/toypiano">toypiano</a>
-      </footer>
     </>
   )
 }

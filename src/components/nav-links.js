@@ -1,6 +1,7 @@
 import React from 'react'
 import PropTypes from 'prop-types'
-import { Link } from 'gatsby'
+import TransitionLink from 'gatsby-plugin-transition-link'
+
 import styled, { css } from 'styled-components'
 
 import { mq } from '../styles'
@@ -94,14 +95,20 @@ const NavLinks = ({ sidebar = false, closeMenu }) => {
       closeMenu()
     }
   }
+  // TODO: try using AniLink and see if it improves perf
 
   return (
     <StyledNavLinks sidebar={sidebar}>
       {links.map(link => (
         <li key={link.text} onClick={handleLinkItemClick}>
-          <Link to={link.to} activeClassName="active">
+          <TransitionLink
+            to={link.to}
+            activeClassName="active"
+            exit={{ length: 0.5 }}
+            entry={{ length: 0.5 }}
+          >
             {link.text}
-          </Link>
+          </TransitionLink>
         </li>
       ))}
     </StyledNavLinks>

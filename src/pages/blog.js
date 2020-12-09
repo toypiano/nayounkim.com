@@ -1,20 +1,20 @@
-import React from "react"
-import styled from "styled-components"
+import React from 'react'
+import styled from 'styled-components'
 
-import Layout from "../components/layout"
-import Archive from "../components/archive"
-import Listing from "../components/listing"
+import Archive from '../components/archive'
+import Listing from '../components/listing'
+import TransitionFade from '../components/transition-fade'
 
 const StyledBlog = styled.aside``
 
 const Blog = () => {
   return (
-    <Layout>
+    <TransitionFade>
       <StyledBlog>
         <Listing />
         <Archive />
       </StyledBlog>
-    </Layout>
+    </TransitionFade>
   )
 }
 

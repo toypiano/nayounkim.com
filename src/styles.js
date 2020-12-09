@@ -40,6 +40,7 @@ export const GlobalStyle = createGlobalStyle`
   }
   body {
     position: relative;
+
     min-height: 100vw;
     margin: 0;
     -webkit-font-smoothing: antialiased;

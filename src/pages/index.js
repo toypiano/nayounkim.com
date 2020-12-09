@@ -1,15 +1,14 @@
 import React from 'react'
-import Layout from '../components/layout'
 import SEO from '../components/seo'
-
+import TransitionFade from '../components/transition-fade'
 import WorksMasonry from '../components/works-masonry'
 
 const IndexPage = () => {
   return (
-    <Layout>
+    <TransitionFade>
       <SEO title="Home" />
       <WorksMasonry />
-    </Layout>
+    </TransitionFade>
   )
 }
 
