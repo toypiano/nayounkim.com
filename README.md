@@ -1,6 +1,6 @@
-# Gatsby Blog
+# nayounkim.com
 
-A code-along repo for Pro Gatsby Course(2) by LevelUpTuts.
+A repo for illustrator Nayoun Kim's website
 
 ## Notes
 
