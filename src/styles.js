@@ -7,16 +7,19 @@ export const GlobalStyle = createGlobalStyle`
     --accent: #fb4732;
     --bg: var(--white);
     --text-main: #333;
-    --text-secondary: rgba(0,0,0,0.6);
+    --text-secondary: #555;
     --cl-icon: var(--text-main);
     --cl-icon-alpha: 1;
     --cl-gray: #eee;
     
     --fw-black: 900;
     --fw-regular: 400;
+    --fw-bold: 600;
     --fw-light: 300;
 
+    
     --header-height: 15rem;
+    --footer-max-width: 44rem;
 
     --gutter-landscape: 1em;
     --gutter-tablet: 2em;
@@ -56,9 +59,13 @@ export const GlobalStyle = createGlobalStyle`
     background-color: var(--bg);
   }
 
-  h1, h2, h3, p {
+  h1, h2, h3,h4, h5, h6, p {
     margin: 0;
     line-height: 1.6;
+  }
+
+  h6 {
+    font-weight: var(--fw-bold);
   }
 
   ul {

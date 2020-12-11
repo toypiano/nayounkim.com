@@ -6,6 +6,7 @@ import { Helmet } from 'react-helmet'
 
 import { GlobalStyle } from '../styles'
 import Header from './header'
+import Footer from './footer'
 import { mq } from '../styles'
 
 export const StyledLayout = styled.div`
@@ -47,7 +48,7 @@ const Layout = ({ children }) => {
       <Helmet>
         <link rel="preconnect" href="https://fonts.gstatic.com" />
         <link
-          href="https://fonts.googleapis.com/css2?family=Inter:wght@100;300;400;900&display=swap"
+          href="https://fonts.googleapis.com/css2?family=Inter:wght@100;300;400;600;900&display=swap"
           rel="stylesheet"
         />
       </Helmet>
@@ -55,11 +56,7 @@ const Layout = ({ children }) => {
       <StyledLayout>
         <Header siteTitle={data.site.siteMetadata.title} />
         <main>{children}</main>
-        <footer style={{ display: 'none' }}>
-          © {new Date().getFullYear()}, by
-          {` `}
-          <a href="https://github.com/toypiano">toypiano</a>
-        </footer>
+        <Footer />
       </StyledLayout>
     </>
   )
