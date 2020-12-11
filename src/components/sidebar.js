@@ -44,10 +44,12 @@ const Sidebar = ({ isOpen, closeMenu }) => {
     from: {
       x: '50%',
       opacity: 1,
+      rotate: 0,
     },
     enter: {
       x: '0%',
       opacity: 1,
+      rotate: 720,
     },
     leave: {
       x: '50%',
@@ -57,12 +59,12 @@ const Sidebar = ({ isOpen, closeMenu }) => {
 
   const content = (
     <>
-      {transition((styles, isOpen) =>
+      {transition(({ rotate, ...styles }, isOpen) =>
         isOpen ? (
           <StyledSidebar style={styles}>
-            <button onClick={closeMenu}>
+            <a.button onClick={closeMenu} style={{ rotate }}>
               <span>&#10005;</span>
-            </button>
+            </a.button>
             <NavLinks sidebar closeMenu={closeMenu} />
             <LanguageSelect />
           </StyledSidebar>
