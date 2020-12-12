@@ -8,6 +8,7 @@ import { GlobalStyle } from '../styles'
 import Header from './header'
 import Footer from './footer'
 import { mq } from '../styles'
+import BackToTopButton from './back-to-top-button'
 
 export const StyledLayout = styled.div`
   position: relative;
@@ -60,6 +61,7 @@ const Layout = ({ children }) => {
         <Header siteTitle={data.site.siteMetadata.title} />
         <main>{children}</main>
         <Footer />
+        <BackToTopButton />
       </StyledLayout>
     </>
   )

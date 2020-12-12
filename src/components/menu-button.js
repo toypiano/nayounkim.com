@@ -17,12 +17,13 @@ const StyledMenuButton = styled('button')`
   padding: 5px;
   display: flex;
   flex-direction: column;
-  justify-content: space-between;
+  justify-content: space-around;
 
   span {
     width: 100%;
-    height: 6px;
+    height: 4px;
     background: var(--text-main);
+    border-radius: 3px;
   }
 
   @media (min-width: 475px) {

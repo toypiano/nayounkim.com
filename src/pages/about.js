@@ -11,7 +11,7 @@ const about = () => {
   return (
     <TransitionFade>
       <Container>
-        <h1>About Nayoun Kim</h1>
+        <h2>About Nayoun Kim</h2>
         <p>
           Lorem, ipsum dolor sit amet consectetur adipisicing elit. Qui earum
           quo saepe libero! Tempore sunt veniam eius nam voluptatum, illo neque

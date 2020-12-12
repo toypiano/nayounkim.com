@@ -27,14 +27,16 @@ const StyledHeader = styled.header`
 
   .logo {
     right: 4px;
-    h1 {
-      /* letter-spacing: 2px; */
-      font-weight: 900;
-      font-size: 4.25rem;
-      overflow-wrap: normal;
-      color: var(--text-main);
-      line-height: 1;
-      text-align: left;
+    a {
+      h1 {
+        /* letter-spacing: 2px; */
+        font-weight: 900;
+        font-size: 4.25rem;
+        overflow-wrap: normal;
+        color: var(--text-main);
+        line-height: 1;
+        text-align: left;
+      }
     }
   }
 
