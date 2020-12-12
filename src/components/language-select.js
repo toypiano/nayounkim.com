@@ -1,28 +1,46 @@
-import React, { useState, useRef } from 'react'
+import React, { useState } from 'react'
 import PropTypes from 'prop-types'
 import styled from 'styled-components'
 
 const StyledLanguageSelect = styled('div')`
   position: absolute;
-  padding: 0.75em 1em;
+  --pt: 0.5rem;
+  --pl: 1rem;
+  padding: var(--pt) var(--pl);
   background: var(--cl-gray);
   bottom: 0;
   width: 100%;
+
   select {
-    /* display: none; */
-  }
-  .lang-display {
+    --select-font-size: 1.2rem;
+    position: absolute;
+    top: var(--pt);
+    left: var(--pl);
+    font-size: var(--select-font-size);
+    width: 5rem;
+    // options will still open when clicked
+    opacity: 0;
+    option {
+      font-size: 1rem;
+    }
     &:hover {
       cursor: pointer;
     }
+  }
+  .lang-display {
+    pointer-events: none;
     .lang-flag {
+      pointer-events: inherit;
       position: relative;
       top: 3px;
       font-size: 1.8rem;
       margin-right: 0.25em;
+      vertical-align: top;
     }
     .lang-text {
-      font-size: 1.2rem;
+      pointer-events: inherit;
+      font-size: var(--select-font-size);
+      line-height: 1.8;
     }
   }
 `
@@ -40,24 +58,19 @@ const LANGUAGES = {
 
 const LanguageSelect = () => {
   const [language, setLanguage] = useState('eng')
-  const selectRef = useRef()
 
   const handleChange = e => {
     e.preventDefault()
     setLanguage(e.target.value)
   }
 
-  const focusSelect = () => {
-    selectRef.current.focus()
-  }
-
   return (
     <StyledLanguageSelect>
-      <select ref={selectRef} name="lang" id="lang" onChange={handleChange}>
+      <select name="lang" id="lang" onChange={handleChange}>
         <option value="eng">ENG</option>
         <option value="kor">KOR</option>
       </select>
-      <div className="lang-display" onClick={focusSelect}>
+      <div className="lang-display">
         <span className="lang-flag">{LANGUAGES[language].flag}</span>
         <span className="lang-text">{LANGUAGES[language].text}</span>
       </div>

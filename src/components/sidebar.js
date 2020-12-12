@@ -35,9 +35,6 @@ const StyledSidebar = styled(a.div)`
   }
 `
 
-// TODO: add path animation to close button (\ then / => X)
-// TODO: Hide select box on focus
-
 const Sidebar = ({ isOpen, closeMenu }) => {
   const transition = useTransition(isOpen, {
     key: isOpen,
