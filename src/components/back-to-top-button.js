@@ -1,13 +1,15 @@
 import React from 'react'
-import PropTypes from 'prop-types'
 import styled from 'styled-components'
 import BackToTop from '../images/back-to-top.svg'
+import { useTransition, a, config } from 'react-spring'
 
-const StyledBackToTopButton = styled('div')`
+import { useScrollAppear } from '../hooks/useScroll'
+
+const StyledBackToTopButton = styled(a.div)`
   position: fixed;
-  --size: 3.5rem;
-  bottom: 3rem;
-  right: calc((100% - 340px) / 2);
+  --size: 4rem;
+  bottom: 2rem;
+  right: 1rem;
   width: var(--size);
   height: var(--size);
 
@@ -23,22 +25,43 @@ const StyledBackToTopButton = styled('div')`
       border-radius: 50%;
     }
   }
+  &:hover {
+    cursor: pointer;
+  }
 `
 
-// TODO: fade button 3s after scrolling
 const BackToTopButton = () => {
+  const scrolled = useScrollAppear()
+
+  const transition = useTransition(scrolled, {
+    from: {
+      opacity: 0,
+    },
+    enter: {
+      opacity: 1,
+    },
+    leave: {
+      opacity: 0,
+    },
+    config: config.slow,
+  })
+
   const scrollToTop = () => {
     window.scrollTo(0, 0)
   }
   return (
-    <StyledBackToTopButton onClick={scrollToTop}>
-      <div className="icon-wrapper">
-        <BackToTop />
-      </div>
-    </StyledBackToTopButton>
+    <>
+      {transition(({ opacity }, scrolled) =>
+        scrolled ? (
+          <StyledBackToTopButton onClick={scrollToTop} style={{ opacity }}>
+            <div className="icon-wrapper">
+              <BackToTop />
+            </div>
+          </StyledBackToTopButton>
+        ) : null
+      )}
+    </>
   )
 }
-
-BackToTopButton.propTypes = {}
 
 export default BackToTopButton
