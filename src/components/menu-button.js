@@ -6,22 +6,21 @@ import { mq } from '../styles'
 
 const StyledMenuButton = styled('button')`
   position: absolute;
-  right: 0;
-  bottom: 1em;
-  margin-right: 0.5em; // abs-positioned child is contained in parent's padding box
-  margin-left: 1em;
+  left: 1em;
+  top: 50%;
+  transform: translateY(-50%);
 
-  --size: 40px;
+  --size: 30px;
   width: calc(var(--size) * 1.1);
   height: var(--size);
   padding: 5px;
   display: flex;
   flex-direction: column;
-  justify-content: space-around;
+  justify-content: space-between;
 
   span {
     width: 100%;
-    height: 4px;
+    height: 3px;
     background: var(--text-main);
     border-radius: 3px;
   }

@@ -11,7 +11,7 @@ const StyledSidebar = styled(a.div)`
   position: fixed;
   top: 0;
   bottom: 0;
-  right: 0;
+  left: 0;
   width: 66%;
   max-width: 25rem;
   height: 100vh;
@@ -39,7 +39,7 @@ const Sidebar = ({ isOpen, closeMenu }) => {
   const transition = useTransition(isOpen, {
     key: isOpen,
     from: {
-      x: '50%',
+      x: '-50%',
       opacity: 1,
       rotate: 0,
     },
@@ -49,7 +49,7 @@ const Sidebar = ({ isOpen, closeMenu }) => {
       rotate: 720,
     },
     leave: {
-      x: '50%',
+      x: '-50%',
       opacity: 0,
     },
   })

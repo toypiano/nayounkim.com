@@ -3,10 +3,10 @@ import { createGlobalStyle } from 'styled-components'
 export const GlobalStyle = createGlobalStyle`
   :root {
     --white: white;
-    --primary: rgb(85, 133, 145);
-    --accent: #fb4732;
+    --primary: #F3D31C;
+    --accent: #D0534D;
     --bg: var(--white);
-    --text-main: #333;
+    --text-main: #4e4e4e;
     --text-secondary: #555;
     --cl-icon: var(--text-main);
     --cl-icon-alpha: 1;

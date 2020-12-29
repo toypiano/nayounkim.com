@@ -7,6 +7,7 @@ const Container = styled.main`
   margin: auto;
 `
 
+// TODO: Add Style and Layout, Get some photos
 const about = () => {
   return (
     <TransitionFade>

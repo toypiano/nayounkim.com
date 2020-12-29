@@ -5,6 +5,7 @@ import Masonry from 'react-masonry-css'
 import styled from 'styled-components'
 
 import { mq } from '../styles'
+import ImageContainer from './image-container'
 
 const breakpointColumnsObj = {
   default: 4,
@@ -82,11 +83,7 @@ const WorksMasonry = ({ mount }) => {
       columnClassName="main-masonry-grid_column"
     >
       {data.allFile.edges.map(image => (
-        <Img
-          key={image.node.base}
-          fluid={image.node.childImageSharp.fluid}
-          alt={image.node.base.split('.')[0]} // use filename as alt text after splitting it from the extension
-        />
+        <ImageContainer key={image.node.base} image={image} />
       ))}
     </StyledMasonry>
   )

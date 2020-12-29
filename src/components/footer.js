@@ -68,7 +68,8 @@ const StyledFooter = styled('footer')`
         grid-row: 2 / 3;
         justify-self: end;
         align-self: start;
-        padding-right: 2em;
+        position: relative;
+        right: 2em;
       }
       .social {
         grid-column: 2 / 3;
@@ -80,7 +81,8 @@ const StyledFooter = styled('footer')`
         grid-row: 1 / 2;
         justify-self: end;
         align-self: end;
-        padding-right: 2em;
+        position: relative;
+        right: 2em;
       }
     }
   }

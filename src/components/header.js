@@ -2,6 +2,7 @@ import PropTypes from 'prop-types'
 import React from 'react'
 import { Link } from 'gatsby'
 import styled from 'styled-components'
+import logo from '../assets/images/nayounkim-logo.png'
 
 import NavLinks from './nav-links'
 import MenuButton from './menu-button'
@@ -18,27 +19,18 @@ const StyledHeader = styled.header`
   width: 100%;
   max-width: ${mq.wide}px;
   padding: 1em 0.5em;
-
   background: white;
-  display: flex;
-  justify-content: space-between;
-  align-items: flex-end;
-  /* max-width: 1200px; */
-
   .logo {
-    right: 4px;
-    a {
-      h1 {
-        /* letter-spacing: 2px; */
-        font-weight: 900;
-        font-size: 4.25rem;
-        overflow-wrap: normal;
-        color: var(--text-main);
-        line-height: 1;
-        text-align: left;
-      }
+    width: 55%;
+    margin: 0 auto;
+    img {
+      display: block;
+      width: 100%;
+      height: 100%;
     }
   }
+
+  /* max-width: 1200px; */
 
   @media (min-width: ${mq.landscape}px) {
     padding: 3em 0.5em;
@@ -67,15 +59,9 @@ const Header = () => {
     <>
       <StyledHeader>
         <div className="logo">
-          <Link
-            to="/"
-            style={{
-              color: `white`,
-              textDecoration: `none`,
-            }}
-          >
-            {/* <img src={logo} alt="logo" /> */}
-            <h1>Nayoun Kim</h1>
+          <Link to="/">
+            <img src={logo} alt="logo" />
+            {/* <h1>Nayoun Kim</h1> */}
           </Link>
         </div>
         <MenuButton isOpen={isMenuOpen} handleClick={openMenu} />
