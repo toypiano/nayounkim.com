@@ -85,7 +85,7 @@ const NavLinks = ({ sidebar = false, closeMenu }) => {
   const links = [
     { to: '/', text: 'Home' },
     { to: '/about', text: 'About' },
-    { to: '/blog', text: 'Blog' },
+    { to: '/portfolio', text: 'Portfolio' },
     { to: '/#', text: 'Contact' },
     { to: '/#', text: 'Shop' },
   ]
