@@ -14,19 +14,24 @@ import Backdrop from './backdrop'
 
 const StyledHeader = styled.header`
   position: relative;
-  height: var(--navbar-height);
-
+  height: var(--header-height);
   width: 100%;
   max-width: ${mq.wide}px;
   padding: 1em 0.5em;
   background: white;
   .logo {
-    width: 55%;
-    margin: 0 auto;
-    img {
-      display: block;
-      width: 100%;
-      height: 100%;
+    width: 50%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    margin-left: auto;
+    margin-right: auto;
+    a {
+      img {
+        display: block;
+        width: 100%;
+        height: 100%;
+      }
     }
   }
 

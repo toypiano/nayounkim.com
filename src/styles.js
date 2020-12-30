@@ -3,11 +3,15 @@ import { createGlobalStyle } from 'styled-components'
 export const GlobalStyle = createGlobalStyle`
   :root {
     --white: white;
-    --primary: #F3D31C;
-    --accent: #D0534D;
+    --primary: hsla(51,90%,53%,1.0);
+    --accent: hsla(3, 58%, 56%, 1.0);
     --bg: var(--white);
     --text-main: #4e4e4e;
     --text-secondary: #555;
+    --text-muted: #e5e5e5;
+    --text-inverse: #ffffff;
+    --text-placeholder: hsla(0,0%,31%,.5);
+    --img-bg-blend: hsla(209, 29%, 38%, 0.3);
     --cl-icon: var(--text-main);
     --cl-icon-alpha: 1;
     --cl-gray: #eee;
@@ -18,7 +22,7 @@ export const GlobalStyle = createGlobalStyle`
     --fw-light: 300;
 
     
-    --header-height: 15rem;
+    --header-height: 8rem;
     --footer-max-width: 44rem;
 
     --gutter-landscape: 1em;
@@ -35,7 +39,6 @@ export const GlobalStyle = createGlobalStyle`
   html {
     -ms-text-size-adjust: 100%;
     -webkit-text-size-adjust: 100%;
-    font: 112.5%/1.45em georgia, serif, sans-serif;
     box-sizing: border-box;
     scroll-behavior: smooth;
   }
@@ -50,7 +53,7 @@ export const GlobalStyle = createGlobalStyle`
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
     color: hsla(0, 0%, 0%, 0.8);
-    font-family: 'Inter', sans-serif;
+    font-family: 'Open Sans', sans-serif;
     font-weight: normal;
     word-wrap: break-word;
     font-kerning: normal;
@@ -64,10 +67,26 @@ export const GlobalStyle = createGlobalStyle`
   h1, h2, h3,h4, h5, h6, p {
     margin: 0;
     line-height: 1.6;
+    margin-bottom: 1.5em;
+  }
+
+  h1, h2, h3 {
+    font-family: Raleway;
+    font-weight: 400;
+    line-height: 1.3;
+  }
+
+  h2 {
+    font-size: 2rem;
   }
 
   h6 {
     font-weight: var(--fw-bold);
+  }
+
+  p {
+    font-size: 1rem;
+    line-height: 2;
   }
 
   ul {
@@ -113,6 +132,9 @@ export const GlobalStyle = createGlobalStyle`
       width: 1px;
     }
   
+  .container {
+    padding: 2.3em 1.5em;
+  }
 `
 
 export const mq = {
