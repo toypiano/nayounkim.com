@@ -1,4 +1,5 @@
 import React from 'react'
+import PropTypes from 'prop-types'
 import styled from 'styled-components'
 import { graphql } from 'gatsby'
 import Img from 'gatsby-image'
@@ -149,7 +150,7 @@ const StyledAboutPage = styled.div`
 `
 
 // TODO: Add Style and Layout, Get some photos
-const about = ({ data }) => {
+const AboutPage = ({ data }) => {
   return (
     <TransitionFade>
       <StyledAboutPage>
@@ -217,6 +218,21 @@ const about = ({ data }) => {
   )
 }
 
+AboutPage.propTypes = {
+  data: PropTypes.shape({
+    nayoun: PropTypes.shape({
+      childImageSharp: PropTypes.shape({
+        fluid: PropTypes.string.isRequired,
+      }),
+    }),
+    dream: PropTypes.shape({
+      childImageSharp: PropTypes.shape({
+        fluid: PropTypes.string.isRequired,
+      }),
+    }),
+  }),
+}
+
 export const query = graphql`
   query AboutImageQuery {
     nayoun: file(relativePath: { eq: "nayoun-about.png" }) {
@@ -238,4 +254,4 @@ export const query = graphql`
   }
 `
 
-export default about
+export default AboutPage
