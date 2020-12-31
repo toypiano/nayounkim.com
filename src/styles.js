@@ -10,6 +10,7 @@ export const mq = {
 export const GlobalStyle = createGlobalStyle`
   :root {
     --white: white;
+    --black: black;
     --primary: hsla(51,90%,53%,1.0);
     --accent: hsla(3, 58%, 56%, 1.0);
     --bg: var(--white);
@@ -30,6 +31,7 @@ export const GlobalStyle = createGlobalStyle`
 
     
     --header-height: 7rem;
+    --header-height-tablet: 8.5rem;
     --header-height-desktop: 10rem;
     --footer-max-width: 44rem;
 

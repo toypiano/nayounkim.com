@@ -24,9 +24,7 @@ const StyledHeader = styled.header`
   align-items: center;
   .logo {
     width: 50%;
-    max-width: 16rem;
-    padding-top: 2em;
-
+    max-width: 14rem;
     margin-left: auto;
     margin-right: auto;
     a {
@@ -43,13 +41,17 @@ const StyledHeader = styled.header`
   @media (min-width: ${mq.landscape}px) {
   }
   @media (min-width: ${mq.tablet}px) {
+    height: var(--header-height-tablet);
   }
   @media (min-width: ${mq.desktop}px) {
     flex-direction: column;
     justify-content: space-between;
     height: var(--header-height-desktop);
-
     margin-bottom: 1em;
+    .logo {
+      max-width: 16rem;
+      padding-top: 2em;
+    }
   }
 `
 

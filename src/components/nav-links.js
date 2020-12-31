@@ -86,7 +86,7 @@ const NavLinks = ({ sidebar = false, closeMenu }) => {
     { to: '/', text: 'Home' },
     { to: '/about', text: 'About' },
     { to: '/portfolio', text: 'Portfolio' },
-    { to: '/#', text: 'Contact' },
+    { to: '/contact', text: 'Contact' },
     { to: '/#', text: 'Shop' },
   ]
 
@@ -104,8 +104,8 @@ const NavLinks = ({ sidebar = false, closeMenu }) => {
           <TransitionLink
             to={link.to}
             activeClassName="active"
-            exit={{ length: 0.5 }}
             entry={{ length: 0.5 }}
+            exit={{ length: 0.5 }}
           >
             {link.text}
           </TransitionLink>
