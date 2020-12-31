@@ -1,5 +1,12 @@
 import { createGlobalStyle } from 'styled-components'
 
+export const mq = {
+  landscape: 500,
+  tablet: 700,
+  desktop: 1130,
+  wide: 1600,
+}
+
 export const GlobalStyle = createGlobalStyle`
   :root {
     --white: white;
@@ -22,7 +29,8 @@ export const GlobalStyle = createGlobalStyle`
     --fw-light: 300;
 
     
-    --header-height: 8rem;
+    --header-height: 7rem;
+    --header-height-desktop: 10rem;
     --footer-max-width: 44rem;
 
     --gutter-landscape: 1em;
@@ -34,6 +42,7 @@ export const GlobalStyle = createGlobalStyle`
     --z-backdrop: 1200;
     --z-sidebar: 1500;
     --z-back-to-top-button: 800;
+
   }
 
   html {
@@ -41,6 +50,7 @@ export const GlobalStyle = createGlobalStyle`
     -webkit-text-size-adjust: 100%;
     box-sizing: border-box;
     scroll-behavior: smooth;
+        
   }
 
   *, *::before, *::after {
@@ -62,12 +72,17 @@ export const GlobalStyle = createGlobalStyle`
     -webkit-font-feature-settings: "kern", "liga", "clig", "calt";
     font-feature-settings: "kern", "liga", "clig", "calt";
     background-color: var(--bg);
+
+    
   }
 
   h1, h2, h3,h4, h5, h6, p {
     margin: 0;
     line-height: 1.6;
     margin-bottom: 1.5em;
+    &:last-of-type {
+      margin-bottom: 0;
+    }
   }
 
   h1, h2, h3 {
@@ -96,10 +111,9 @@ export const GlobalStyle = createGlobalStyle`
   }
 
   li {
-    text-decoration: none;
-    
-    }
+    text-decoration: none;    
   }
+  
 
   a, button {
     cursor: pointer;
@@ -133,13 +147,32 @@ export const GlobalStyle = createGlobalStyle`
     }
   
   .container {
-    padding: 2.3em 1.5em;
+    padding: max(2.3em, min(10vw,3em)) max(1.5em, min(7vw, 3em));
+    max-width: ${mq.tablet}px;
+    margin: auto;
+
+    @media (min-width: ${mq.desktop}px) {
+      padding: 0;
+      width: 100%;
+      max-width: 1271px;
+    }
+  }
+
+  .desktop-only {
+    display: none;
+  }
+
+  @media (min-width: ${mq.desktop}px) {
+     html {
+       font-size: 18px;
+     } 
+
+     h2 {
+       font-size: 2.25rem;      
+     }  
+
+     .desktop-only {
+       display: block;
+     }
   }
 `
-
-export const mq = {
-  landscape: 500,
-  tablet: 700,
-  desktop: 1130,
-  wide: 1600,
-}

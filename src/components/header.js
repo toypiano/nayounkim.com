@@ -17,13 +17,16 @@ const StyledHeader = styled.header`
   height: var(--header-height);
   width: 100%;
   max-width: ${mq.wide}px;
+  margin: auto;
   padding: 1em 0.5em;
   background: white;
+  display: flex;
+  align-items: center;
   .logo {
     width: 50%;
-    height: 100%;
-    display: flex;
-    align-items: center;
+    max-width: 16rem;
+    padding-top: 2em;
+
     margin-left: auto;
     margin-right: auto;
     a {
@@ -38,19 +41,15 @@ const StyledHeader = styled.header`
   /* max-width: 1200px; */
 
   @media (min-width: ${mq.landscape}px) {
-    padding: 3em 0.5em;
-    .logo {
-      margin: 0;
-    }
   }
   @media (min-width: ${mq.tablet}px) {
-    padding: 4em 0.5em;
   }
   @media (min-width: ${mq.desktop}px) {
-    padding: 5em 0.5em;
-  }
-  @media (min-width: ${mq.wide}px) {
-    padding: 6em 0.5em;
+    flex-direction: column;
+    justify-content: space-between;
+    height: var(--header-height-desktop);
+
+    margin-bottom: 1em;
   }
 `
 

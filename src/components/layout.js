@@ -60,6 +60,10 @@ const Layout = ({ children }) => {
           href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@300;400;600;700&family=Raleway&display=swap"
           rel="stylesheet"
         />
+        <link
+          href="https://fonts.googleapis.com/css2?family=Nanum+Myeongjo:wght@400;700&display=swap"
+          rel="stylesheet"
+        ></link>
       </Helmet>
       <GlobalStyle />
       <StyledLayout>

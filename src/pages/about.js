@@ -4,32 +4,41 @@ import { graphql } from 'gatsby'
 import Img from 'gatsby-image'
 import TransitionFade from '../components/transition-fade'
 import Button from '../components/button'
+import { mq } from '../styles'
 
-const StyledAboutPage = styled.div`    
-    
-    .gatsby-image-wrapper {
-      width: 100%;
-      height: 75vw;
-      background: var(--img-bg-blend);
-      img {
-        background-blend-mode: overlay, normal;
-        width: 100%;
-        height: 100%;
-        object-fit: cover;
-        position: relative;
-        
-      }      
-    }
+const StyledAboutPage = styled.div`           
     .intro {
+      padding-top: 0;
+      max-width: ${mq.tablet}px;
+      margin: auto;
+      .intro-kor-name {
+        display: none;
+      }
+      .gatsby-image-wrapper {
+        width: 100%;
+        max-width: ${mq.tablet}px;
+        margin: 0 auto;
+        height: 75vw;
+        max-height: 576px;
+        background: var(--img-bg-blend);
+
+        img {
+          background-blend-mode: overlay, normal;
+          width: 100%;
+          height: 100%;
+          object-fit: cover;
+          position: relative;
+          
+        }      
+      }
       background-color: var(--primary);
       color: black;
       .intro-header{
         display: flex;
         justify-content: center;  
         h2 {
-          margin-bottom: 1em;
-          
-        }
+          margin-bottom: 0.5em;          
+        }    
       }
     }
     .body {
@@ -40,10 +49,101 @@ const StyledAboutPage = styled.div`
     }
     .contact-btn {
       width: 100%;
-      height: 10rem;
+      padding: 4rem 0;
       display: flex;
       justify-content: center;
       align-items: center;
+    }
+
+    @media (min-width: ${mq.desktop}px) {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      grid-template-rows: 413px 1em 1fr;
+      gap: 2em;
+      max-width: 1271px;
+      margin: 0 auto;
+      padding-bottom: 6em;
+      
+
+      .intro {
+        width: 100%;
+        max-width: initial;
+        height: 413px;
+        padding: 2em;
+
+        grid-column: 1 / -1;
+        grid-row: 1 / 2;
+
+        display: grid;
+        grid-template-columns: 1fr minmax(450px, 523px) 300px;
+        gap: 1em;
+
+        position: relative;
+        bottom: 1em;
+
+        .intro-kor-name {
+          display: none;
+          @media (min-width: 1300px) {
+            display: block;
+          }
+          grid-column: 1 / 2;
+          grid-row: 1 / 2;
+          font-family: 'Nanum Myeongjo', serif;
+          .sm {
+            position: absolute;
+            left: 1rem;
+            bottom: 1rem;
+            font-size: 72px;
+            z-index: 1;
+          }
+          .lg {
+            font-size: 200px;
+            font-weight: bold;
+            position: absolute;
+            left: 0;
+            bottom: 0; 
+            color: var(--white);
+            opacity: 0.35;
+            z-index: 0;
+          }
+
+        }
+        .gatsby-image-wrapper {
+          grid-column: 3 / 4;
+          grid-row: 1 / 2;
+          max-width: 262px;
+          height: 378px;
+          position: relative;
+          top: 4em;
+        }
+
+        .container {
+          grid-column: 2 / 3;
+          grid-row: 1 / 2;
+          position: relative; // bring on top of kor-name by enabling stacking context
+        }
+      }
+
+      .body {
+        grid-column: 2 / 3;
+        grid-row: 3 / 4;
+
+        .contact-btn {
+          justify-content: flex-start;
+          padding-bottom: 0;
+        }
+      }
+
+      .about-dream {
+        grid-column: 1 / 2;
+        grid-row: 3 / 4;
+        height: 100%;
+        width: 100%;
+        img {
+          width: 100%;
+          height: 100%;
+        }
+      }
     }
   }
 `
@@ -53,21 +153,34 @@ const about = ({ data }) => {
   return (
     <TransitionFade>
       <StyledAboutPage>
-        <Img
-          fluid={data.file.childImageSharp.fluid}
-          imgStyle={{ objectPosition: 'center 10%' }}
-        />
-        <div className="intro container">
-          <div className="intro-header">
-            <h2>
-              Hi, my name is Nayoun Kim, an illustrator based in Toronto | Seoul
-            </h2>
+        <div className="intro">
+          <Img
+            fluid={data.nayoun.childImageSharp.fluid}
+            imgStyle={{ objectPosition: 'center 10%' }}
+          />
+          <div className="intro-kor-name">
+            <span className="sm">김나연</span>
+            <span className="lg">나연</span>
           </div>
-          <p>
-            I like telling stories through symbols and characters. They are very
-            useful tools for capturing spontaneous thoughts and hidden feelings.
-          </p>
+          <div className="container">
+            <div className="intro-header">
+              <h2>
+                Hi, my name is Nayoun Kim, an illustrator based in Toronto |
+                Seoul
+              </h2>
+            </div>
+            <p>
+              I like telling stories through symbols and characters. They are
+              very useful tools for capturing spontaneous thoughts and hidden
+              feelings.
+            </p>
+          </div>
         </div>
+        <Img
+          fluid={data.dream.childImageSharp.fluid}
+          className="desktop-only about-dream"
+          alt="Dream"
+        />
         <div className="body container">
           <p>
             For as long as I can remember, I’ve been always drawing something
@@ -95,9 +208,9 @@ const about = ({ data }) => {
             to start a fun conversation with the viewers and invite them to see
             what you have to offer.
           </p>
-        </div>
-        <div className="contact-btn">
-          <Button to="/contact">Contact</Button>
+          <div className="contact-btn">
+            <Button to="/contact">Contact</Button>
+          </div>
         </div>
       </StyledAboutPage>
     </TransitionFade>
@@ -106,11 +219,18 @@ const about = ({ data }) => {
 
 export const query = graphql`
   query AboutImageQuery {
-    file(relativePath: { eq: "nayoun-about.png" }) {
+    nayoun: file(relativePath: { eq: "nayoun-about.png" }) {
       childImageSharp {
         # Specify the image processing specifications right in the query.
         # Makes it trivial to update as your page's design changes.
         fluid(maxWidth: 500) {
+          ...GatsbyImageSharpFluid
+        }
+      }
+    }
+    dream: file(relativePath: { eq: "dream.jpg" }) {
+      childImageSharp {
+        fluid(maxWidth: 1000) {
           ...GatsbyImageSharpFluid
         }
       }

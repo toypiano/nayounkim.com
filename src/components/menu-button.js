@@ -26,9 +26,9 @@ const StyledMenuButton = styled('button')`
   }
 
   @media (min-width: 475px) {
-    position: relative;
+    /* position: relative;
     margin-right: 0; // rel-pos child is contained in parent's content-box
-    bottom: 5px;
+    bottom: 5px; */
   }
 
   @media (min-width: ${mq.desktop}px) {
