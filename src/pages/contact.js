@@ -6,14 +6,15 @@ import Input from '../components/input'
 import Button from '../components/button'
 
 const StyledContactPage = styled('div')`
+  height: 100%;
   background: var(--primary);
-  display: flex;
+  /* display: flex;
   flex-direction: column;
   align-items: center;
-  justify-content: space-between;
+  justify-content: flex-start; */
   .inner {
     max-width: 450px;
-    margin: auto;
+    margin: 0 auto;
     .contact-header {
       text-align: center;
       margin-bottom: 1em;
@@ -48,6 +49,8 @@ const inputs = [
   { name: 'message', required: true, type: 'textarea' },
 ]
 
+//TODO: scroll top on page load & redirect
+// TODO: fix StyledContactPage changing height when entering & exiting
 const ContactPage = () => {
   return (
     <TransitionFade>

@@ -69,7 +69,7 @@ const StyledAboutPage = styled.div`
       .intro {
         width: 100%;
         max-width: initial;
-        height: 413px;
+        height: 443px;
         padding: 2em;
 
         grid-column: 1 / -1;
@@ -80,7 +80,15 @@ const StyledAboutPage = styled.div`
         gap: 1em;
 
         position: relative;
-        bottom: 1em;
+        /* bottom: 1em; */
+        .intro-body {
+          /* override global container padding */
+          padding: 0; 
+          display: flex;
+          flex-direction: column;
+          justify-content: center;
+          align-items: center;
+        }
 
         .intro-kor-name {
           display: none;
@@ -126,6 +134,7 @@ const StyledAboutPage = styled.div`
       }
 
       .body {
+        padding: 1em 0;
         grid-column: 2 / 3;
         grid-row: 3 / 4;
 
@@ -163,7 +172,7 @@ const AboutPage = ({ data }) => {
             <span className="sm">김나연</span>
             <span className="lg">나연</span>
           </div>
-          <div className="container">
+          <div className="intro-body container">
             <div className="intro-header">
               <h2>
                 Hi, my name is Nayoun Kim, an illustrator based in Toronto |

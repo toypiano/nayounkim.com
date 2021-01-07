@@ -32,6 +32,7 @@ Input.propTypes = {
 
 const textareaCss = css`
   min-height: 8em;
+  resize: vertical;
 `
 
 export default styled(Input)`

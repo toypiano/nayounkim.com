@@ -29,7 +29,7 @@ const StyledBackToTopButton = styled(a.div)`
     cursor: pointer;
   }
 `
-
+// TODO: tune on & off duration
 const BackToTopButton = () => {
   const scrolled = useScrollAppear()
 

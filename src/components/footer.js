@@ -7,29 +7,40 @@ import { mq } from '../styles'
 
 const StyledFooter = styled('footer')`
   padding: 1em;
+  color: var(--black);
 
   .divider {
-    border-bottom: 1px solid rgba(0, 0, 0, 0.7);
+    border-bottom: 1px solid var(--text-placeholder);
   }
   .content {
-    padding-top: 1em;
-    display: grid;
-
+    padding: 1em;
+    display: flex;
+    flex-direction: column;
     margin: auto;
     width: 100%;
-    max-width: 14rem;
+    max-width: 17rem;
+    text-align: center;
+
     .page-link {
-      padding-left: 1em;
-      h6 {
-        font-size: 1.2rem;
+      padding: 0.5em;
+      li {
+        &:not(:last-of-type) {
+          margin-bottom: 0.5em;
+        }
+        a {
+          font-size: 1.2rem;
+          font-weight: 600;
+        }
       }
     }
 
     // TODO: add pulsing animation
     .social {
       width: 100%;
+      max-width: 220px;
       display: flex;
-      padding: 1em 0;
+      margin: 1.25em 0.75em;
+
       align-items: center;
       justify-content: space-between;
       span {
@@ -38,52 +49,35 @@ const StyledFooter = styled('footer')`
     }
 
     .credit {
-      text-align: center;
-      font-size: 0.9rem;
+      padding: 0.5em;
       font-weight: var(--fw-light);
       align-self: center;
+      .nayoun {
+        margin-bottom: 0.75em;
+        text-transform: uppercase;
+        .copyright {
+          font-size: 1.1rem;
+          position: relative;
+          top: 1px;
+        }
+        p {
+          font-size: 0.9rem;
+        }
+      }
+      .toypiano > p {
+        font-size: 0.8rem;
+      }
     }
   }
 
   @media (min-width: ${mq.tablet}px) {
     .content {
-      grid-gap: 1em;
       padding: 2em 0;
-      max-width: var(--footer-max-width);
+      display: grid;
       grid-template-columns: repeat(3, 1fr);
-      grid-template-rows: auto;
-      .page-link {
-        font-size: 1rem;
-      }
-      .privacy {
-        grid-column: 1 / 2;
-        grid-row: 1 / 2;
-      }
-      .conditions {
-        grid-column: 1 / 2;
-        grid-row: 2 / 3;
-      }
-      .contact {
-        grid-column: 3 / 4;
-        grid-row: 2 / 3;
-        justify-self: end;
-        align-self: start;
-        position: relative;
-        right: 2em;
-      }
-      .social {
-        grid-column: 2 / 3;
-        grid-row: 1 / 3;
-        justify-content: space-around;
-      }
-      .credit {
-        grid-column: 3 / 4;
-        grid-row: 1 / 2;
-        justify-self: end;
-        align-self: end;
-        position: relative;
-        right: 2em;
-      }
+      max-width: ${mq.desktop}px;
+      text-align: left;
+      place-items: center;
     }
   }
 `
@@ -93,21 +87,17 @@ const Footer = () => {
     <StyledFooter>
       <div className="divider"></div>
       <div className="content">
-        <div className="page-link privacy">
-          <h6>
+        <ul className="page-link">
+          <li className="privacy">
             <Link to="/privacy">Privacy Policy</Link>
-          </h6>
-        </div>
-        <div className="page-link conditions">
-          <h6>
+          </li>
+          <li className="conditions">
             <Link to="/conditions">Terms &amp; Conditions</Link>
-          </h6>
-        </div>
-        <div className="page-link contact">
-          <h6>
+          </li>
+          <li className="contact">
             <Link to="/contact">Contact</Link>
-          </h6>
-        </div>
+          </li>
+        </ul>
         <ul className="social">
           <li>
             <Link to="#" className="social--instagram">
@@ -132,10 +122,19 @@ const Footer = () => {
           </li>
         </ul>
         <div className="credit">
-          <p>
-            &copy;Nayoun Kim{' '}
-            <span className="credit__year">{new Date().getFullYear()}</span>
-          </p>
+          <div className="nayoun">
+            <p>
+              <span className="copyright">&copy;</span>Copyright{' '}
+              <span className="credit__year">{new Date().getFullYear()}</span>{' '}
+              Nayoun Kim
+            </p>
+          </div>
+          <div className="toypiano">
+            <p>
+              Website designed &amp; created by{' '}
+              <a href="mailto:sidhlee@gmail.com">Toypiano</a>
+            </p>
+          </div>
         </div>
       </div>
     </StyledFooter>

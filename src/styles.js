@@ -123,7 +123,7 @@ export const GlobalStyle = createGlobalStyle`
   }
 
   a {
-    color: var(--text-main);
+    color: var(--black);
     text-decoration: none;
     transition: color .2s;
     &:hover {  
@@ -150,12 +150,12 @@ export const GlobalStyle = createGlobalStyle`
     }
   
   .container {
-    padding: max(2.3em, min(10vw,3em)) max(1.5em, min(7vw, 3em));
+    padding: max(2.3em, min(10vw,5em)) max(1.5em, min(7vw, 3em));
     max-width: ${mq.tablet}px;
-    margin: auto;
+    margin: 0 auto;
 
     @media (min-width: ${mq.desktop}px) {
-      padding: 0;
+      padding: max(2.3em, min(10vw,5em)) max(1.5em, min(7vw, 3em));
       width: 100%;
       max-width: 1271px;
     }
@@ -177,5 +177,10 @@ export const GlobalStyle = createGlobalStyle`
      .desktop-only {
        display: block;
      }
+  }
+
+  /* inherit parent's height on gatsby-plugin-transition-link */
+  .tl-edges, .tl-wrapper {
+  height: 100%;
   }
 `

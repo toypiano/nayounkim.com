@@ -3,7 +3,6 @@ import { TransitionState } from 'gatsby-plugin-transition-link'
 import { useTransition, a } from 'react-spring'
 
 import PropTypes from 'prop-types'
-import styled from 'styled-components'
 
 const Transition = ({ mount, children }) => {
   const transition = useTransition(mount, {
