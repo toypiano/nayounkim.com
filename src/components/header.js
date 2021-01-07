@@ -50,7 +50,7 @@ const StyledHeader = styled.header`
     margin-bottom: 1em;
     .logo {
       max-width: 16rem;
-      padding-top: 2em;
+      padding-top: 3.5em;
     }
   }
 `
