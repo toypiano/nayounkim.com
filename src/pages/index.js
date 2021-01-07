@@ -10,7 +10,7 @@ import TransitionFade from '../components/transition-fade'
 const StyledIndexPage = styled.div`
   height: 100%;
   display: grid;
-  place-items: start center;
+  place-items: center;
 
   .main-image {
     width: 100%;
