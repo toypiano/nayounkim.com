@@ -1,6 +1,6 @@
 import React from 'react'
 import PropTypes from 'prop-types'
-import styled from 'styled-components'
+import styled, { css } from 'styled-components'
 import { useStaticQuery, graphql } from 'gatsby'
 import { Helmet } from 'react-helmet'
 
@@ -20,7 +20,8 @@ export const StyledLayout = styled.div`
   display: grid;
   grid-template-rows: max-content 1fr min-content;
 
-  @media (min-width: ${mq.landscape}px) {
+  /* Global layout padding is more headache than what it's worth..*/
+  /* @media (min-width: ${mq.landscape}px) {
     padding: 0 var(--gutter-landscape);
   }
   @media (min-width: ${mq.tablet}px) {
@@ -31,7 +32,7 @@ export const StyledLayout = styled.div`
   }
   @media (min-width: ${mq.wide}px) {
     padding: 0 var(--gutter-wide);
-  }
+  } */
 `
 
 const Layout = ({ children }) => {
@@ -65,7 +66,7 @@ const Layout = ({ children }) => {
       <GlobalStyle />
       <StyledLayout>
         <Header siteTitle={data.site.siteMetadata.title} />
-        <main>{children}</main>
+        <main className="layout-main">{children}</main>
         <Footer />
         <BackToTopButton />
       </StyledLayout>

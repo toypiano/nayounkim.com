@@ -11,7 +11,7 @@ export const GlobalStyle = createGlobalStyle`
   :root {
     --white: white;
     --black: black;
-    --primary: hsla(51,90%,53%,1.0);
+    --primary: hsla(51,90%,53%,1.0); 
     --accent: hsla(3, 58%, 56%, 1.0);
     --bg: var(--white);
     --text-main: #4e4e4e;
@@ -30,7 +30,7 @@ export const GlobalStyle = createGlobalStyle`
     --fw-light: 300;
 
     
-    --header-height: 7rem;
+    --header-height: 6rem;
     --header-height-tablet: 8.5rem;
     --header-height-desktop: 10rem;
     --header-height-wide: 12rem;
@@ -182,6 +182,6 @@ export const GlobalStyle = createGlobalStyle`
 
   /* inherit parent's height on gatsby-plugin-transition-link */
   .tl-edges, .tl-wrapper {
-  height: 100%;
+    position: static;
   }
 `

@@ -1,43 +1,58 @@
 import React from 'react'
-
+import PropTypes from 'prop-types'
+import { graphql } from 'gatsby'
 import styled from 'styled-components'
 import TransitionFade from '../components/transition-fade'
 import Input from '../components/input'
 import Button from '../components/button'
+import Img from 'gatsby-image'
+import { mq } from '../styles'
 
 const StyledContactPage = styled('div')`
-  height: 100%;
-  background: var(--primary);
-  /* display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: flex-start; */
-  .inner {
-    max-width: 450px;
+  .container {
+    background: var(--primary);
+    width: 100%;
+    height: 100%;
     margin: 0 auto;
-    .contact-header {
-      text-align: center;
-      margin-bottom: 1em;
-      h2 {
-        margin-bottom: 0.5em;
-        font-size: 2.5rem;
+    .contact {
+      max-width: 400px;
+      margin: 0 auto;
+      .contact-header {
+        text-align: center;
+        margin-bottom: 1em;
+        h2 {
+          margin-bottom: 0.5em;
+          font-size: 2.5rem;
+        }
+        p {
+          color: var(--black);
+        }
       }
-      p {
-        color: var(--black);
+
+      .contact-form {
+        width: 100%;
+        display: flex;
+        flex-direction: column;
+
+        .submit-btn {
+          padding-top: 3em;
+          display: flex;
+          justify-content: center;
+          align-items: center;
+        }
       }
     }
-
-    .contact-form {
-      width: 100%;
-      display: flex;
-      flex-direction: column;
-
-      .submit-btn {
-        padding-top: 3em;
-        display: flex;
-        justify-content: center;
-        align-items: center;
-      }
+  }
+  .contact-img {
+    display: none;
+  }
+  @media (min-width: ${mq.desktop}px) {
+    width: ${mq.desktop}px;
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    .contact-img {
+      display: block;
     }
   }
 `
@@ -51,30 +66,57 @@ const inputs = [
 
 //TODO: scroll top on page load & redirect
 // TODO: fix StyledContactPage changing height when entering & exiting
-const ContactPage = () => {
+const ContactPage = ({ data }) => {
   return (
     <TransitionFade>
-      <StyledContactPage className="container">
-        <div className="inner">
-          <div className="contact-header">
-            <h2>Contact</h2>
-            <p>
-              For commisions, collaborations and other exciting projects, please
-              contact me here or email me at: hello@nayounkim.com
-            </p>
-          </div>
-          <div className="contact-form">
-            {inputs.map(input => (
-              <Input key={input.name} {...input} />
-            ))}
-            <div className="submit-btn">
-              <Button>Send</Button>
+      <StyledContactPage>
+        <div className="container">
+          <div className="contact">
+            <div className="contact-header">
+              <h2>Contact</h2>
+              <p>
+                For commisions, collaborations and other exciting projects,
+                please contact me here or email me at: hello@nayounkim.com
+              </p>
+            </div>
+            <div className="contact-form">
+              {inputs.map(input => (
+                <Input key={input.name} {...input} />
+              ))}
+              <div className="submit-btn">
+                <Button>Send</Button>
+              </div>
             </div>
           </div>
+        </div>
+        <div className="contact-img">
+          <Img fluid={data.contactImage.childImageSharp.fluid} />
         </div>
       </StyledContactPage>
     </TransitionFade>
   )
 }
+
+ContactPage.propTypes = {
+  data: PropTypes.shape({
+    contactImage: PropTypes.shape({
+      childImageSharp: PropTypes.shape({
+        fluid: PropTypes.object.isRequired,
+      }),
+    }),
+  }),
+}
+
+export const query = graphql`
+  query contactImageQuery {
+    contactImage: file(relativePath: { eq: "contact-mural.png" }) {
+      childImageSharp {
+        fluid(maxWidth: 800) {
+          ...GatsbyImageSharpFluid
+        }
+      }
+    }
+  }
+`
 
 export default ContactPage

@@ -6,6 +6,7 @@ import Img from 'gatsby-image'
 import TransitionFade from '../components/transition-fade'
 import Button from '../components/button'
 import { mq } from '../styles'
+import FluidPadding from '../components/fluid-padding'
 
 const StyledAboutPage = styled.div`           
     .intro {
@@ -63,9 +64,8 @@ const StyledAboutPage = styled.div`
       gap: 2em;
       max-width: 1271px;
       margin: 0 auto;
-      padding-bottom: 6em;
+      padding: 0 var(--gutter-desktop) 6em;
       
-
       .intro {
         width: 100%;
         max-width: initial;
@@ -191,6 +191,7 @@ const AboutPage = ({ data }) => {
           className="desktop-only about-dream"
           alt="Dream"
         />
+
         <div className="body container">
           <p>
             For as long as I can remember, I’ve been always drawing something

@@ -35,6 +35,22 @@ const StyledHeader = styled.header`
       }
     }
   }
+  // add cross-fade effect to the bottom edge of the header
+  /* &::after {
+    content: '';
+    position: absolute;
+    width: 100%;
+    height: 2em;
+    top: 100%;
+    left: 0;
+    z-index: 100;
+    pointer-events: none;
+    background-image: linear-gradient(
+      180deg,
+      rgba(255, 255, 255, 1),
+      rgba(255, 255, 255, 0)
+    );
+  } */
 
   /* max-width: 1200px; */
 

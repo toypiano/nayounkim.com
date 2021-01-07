@@ -33,7 +33,7 @@ const StyledMasonry = styled(Masonry)`
 
   @media (min-width: ${mq.landscape}px) {
     --gutter: var(--gutter-landscape);
-
+    padding: 0 var(--gutter);
     .main-masonry-grid_column {
       margin-left: var(--gutter); /* gutter size offset */
     }
@@ -43,7 +43,7 @@ const StyledMasonry = styled(Masonry)`
   }
   @media (min-width: ${mq.tablet}px) {
     --gutter: var(--gutter-tablet);
-
+    padding: 0 var(--gutter);
     .main-masonry-grid_column {
       margin-left: var(--gutter); /* gutter size offset */
     }
@@ -53,7 +53,7 @@ const StyledMasonry = styled(Masonry)`
   }
   @media (min-width: ${mq.desktop}px) {
     --gutter: var(--gutter-desktop);
-
+    padding: 0 var(--gutter);
     .main-masonry-grid_column {
       margin-left: var(--gutter); /* gutter size offset */
     }
@@ -63,7 +63,7 @@ const StyledMasonry = styled(Masonry)`
   }
   @media (min-width: ${mq.wide}px) {
     --gutter: var(--gutter-wide);
-
+    padding: 0 var(--gutter);
     .main-masonry-grid_column {
       margin-left: var(--gutter); /* gutter size offset */
     }
