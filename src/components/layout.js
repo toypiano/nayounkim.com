@@ -19,9 +19,6 @@ export const StyledLayout = styled.div`
   min-height: 100vh;
   display: grid;
   grid-template-rows: max-content 1fr min-content;
-  /* display: flex;
-  flex-direction: column;
-  align-items: center; */
 
   @media (min-width: ${mq.landscape}px) {
     padding: 0 var(--gutter-landscape);

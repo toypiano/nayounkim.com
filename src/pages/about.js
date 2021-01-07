@@ -222,12 +222,12 @@ AboutPage.propTypes = {
   data: PropTypes.shape({
     nayoun: PropTypes.shape({
       childImageSharp: PropTypes.shape({
-        fluid: PropTypes.string.isRequired,
+        fluid: PropTypes.object.isRequired,
       }),
     }),
     dream: PropTypes.shape({
       childImageSharp: PropTypes.shape({
-        fluid: PropTypes.string.isRequired,
+        fluid: PropTypes.object.isRequired,
       }),
     }),
   }),

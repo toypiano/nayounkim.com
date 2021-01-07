@@ -58,6 +58,7 @@ export const GlobalStyle = createGlobalStyle`
   *, *::before, *::after {
     box-sizing: inherit;
   }
+
   body {
     position: relative;
     min-height: 100vh;

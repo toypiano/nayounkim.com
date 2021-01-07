@@ -5,14 +5,6 @@ import { useTransition, a } from 'react-spring'
 import PropTypes from 'prop-types'
 import styled from 'styled-components'
 
-const StyledTransitionState = styled(TransitionState)`
-  position: absolute;
-  width: 100%;
-  height: 100%;
-  top: 0;
-  left: 0;
-`
-
 const Transition = ({ mount, children }) => {
   const transition = useTransition(mount, {
     from: { opacity: 0 },
@@ -23,7 +15,9 @@ const Transition = ({ mount, children }) => {
   return (
     <>
       {transition((styles, mount) =>
-        mount ? <a.div style={styles}>{children}</a.div> : null
+        mount ? (
+          <a.div style={{ ...styles, height: '100%' }}>{children}</a.div>
+        ) : null
       )}
     </>
   )
@@ -36,11 +30,11 @@ Transition.propTypes = {
 
 const TransitionFade = ({ children }) => {
   return (
-    <StyledTransitionState>
+    <TransitionState style={{ height: '100%' }}>
       {({ mount }) => {
         return <Transition mount={mount}>{children}</Transition>
       }}
-    </StyledTransitionState>
+    </TransitionState>
   )
 }
 

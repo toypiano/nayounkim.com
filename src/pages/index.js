@@ -4,7 +4,7 @@ import styled from 'styled-components'
 import TransitionFade from '../components/transition-fade'
 
 const StyledIndexPage = styled.div`
-  height: 300px;
+  height: 100%;
   display: grid;
   place-items: center;
 
