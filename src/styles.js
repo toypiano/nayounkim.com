@@ -32,7 +32,8 @@ export const GlobalStyle = createGlobalStyle`
     
     --header-height: 7rem;
     --header-height-tablet: 8.5rem;
-    --header-height-desktop: 12rem;
+    --header-height-desktop: 10rem;
+    --header-height-wide: 12rem;
     --footer-max-width: 44rem;
 
     --gutter-landscape: 1em;
