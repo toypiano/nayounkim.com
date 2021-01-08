@@ -72,7 +72,7 @@ const inputs = [
   { name: 'message', required: true, type: 'textarea' },
 ]
 
-//TODO: scroll top on page load & redirect
+// TODO: send email on submit
 
 const ContactPage = ({ data }) => {
   return (

@@ -87,7 +87,7 @@ const NavLinks = ({ sidebar = false, closeMenu }) => {
     { to: '/about', text: 'About' },
     { to: '/portfolio', text: 'Portfolio' },
     { to: '/contact', text: 'Contact' },
-    { to: '/shop', text: 'Shop' },
+    { to: '/comingsoon', text: 'Shop' },
   ]
 
   const handleLinkItemClick = () => {

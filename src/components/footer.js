@@ -89,10 +89,10 @@ const Footer = () => {
       <div className="content">
         <ul className="page-link">
           <li className="privacy">
-            <Link to="/privacy">Privacy Policy</Link>
+            <Link to="#">Privacy Policy</Link>
           </li>
           <li className="conditions">
-            <Link to="/conditions">Terms &amp; Conditions</Link>
+            <Link to="#">Terms &amp; Conditions</Link>
           </li>
           <li className="contact">
             <Link to="/contact">Contact</Link>
@@ -107,18 +107,26 @@ const Footer = () => {
             </Link>
           </li>
           <li>
-            <Link to="#" className="social--society6">
+            <a
+              href="https://society6.com/nayounkim"
+              className="social--society6"
+              target="blank"
+            >
               <span>
                 <SiSociety6 />
               </span>
-            </Link>
+            </a>
           </li>
           <li>
-            <Link to="#" className="social--facebook">
+            <a
+              href="https://www.facebook.com/nayoun.kim"
+              target="blank"
+              className="social--facebook"
+            >
               <span>
                 <SiFacebook />
               </span>
-            </Link>
+            </a>
           </li>
         </ul>
         <div className="credit">

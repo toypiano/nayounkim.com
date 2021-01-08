@@ -5,6 +5,10 @@ import styled from 'styled-components'
 
 const StyledImageContainer = styled('div')``
 
+// TODO: 1 . show backdrop on over & display title & likes
+// 2. connect to mongodb, store likes & view data
+// 3. open image modal on click
+
 const ImageContainer = ({ image }) => {
   return (
     <StyledImageContainer>

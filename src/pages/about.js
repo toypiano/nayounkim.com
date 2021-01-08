@@ -6,7 +6,6 @@ import Img from 'gatsby-image'
 import TransitionFade from '../components/transition-fade'
 import Button from '../components/button'
 import { mq } from '../styles'
-import FluidPadding from '../components/fluid-padding'
 
 const StyledAboutPage = styled.div`           
     .intro {
@@ -22,7 +21,6 @@ const StyledAboutPage = styled.div`
         margin: 0 auto;
         height: 75vw;
         max-height: 576px;
-        background: var(--img-bg-blend);
 
         img {
           background-blend-mode: overlay, normal;
@@ -158,7 +156,6 @@ const StyledAboutPage = styled.div`
   }
 `
 
-// TODO: Add Style and Layout, Get some photos
 const AboutPage = ({ data }) => {
   return (
     <TransitionFade>
@@ -254,7 +251,7 @@ export const query = graphql`
         }
       }
     }
-    dream: file(relativePath: { eq: "dream.jpg" }) {
+    dream: file(relativePath: { eq: "works/solo3.jpg" }) {
       childImageSharp {
         fluid(maxWidth: 1000) {
           ...GatsbyImageSharpFluid

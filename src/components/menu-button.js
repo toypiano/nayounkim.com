@@ -36,7 +36,6 @@ const StyledMenuButton = styled('button')`
   }
 `
 
-// TODO: replace css button with Nayoun's custom drawing.
 const MenuButton = ({ isOpen, handleClick }) => {
   return (
     <StyledMenuButton isOpen={isOpen} onClick={handleClick}>

@@ -12,7 +12,11 @@ export const GlobalStyle = createGlobalStyle`
     --white: white;
     --black: black;
     --primary: hsla(51,90%,53%,1.0); 
+    --primary: #f0cbc2; 
     --accent: hsla(3, 58%, 56%, 1.0);
+    --accent: #24714f;
+    --accent: #439f9a;
+    --accent: #5aa688;
     --bg: var(--white);
     --text-main: #4e4e4e;
     --text-secondary: #555;
