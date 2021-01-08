@@ -180,7 +180,7 @@ export const GlobalStyle = createGlobalStyle`
      }
   }
 
-  /* inherit parent's height on gatsby-plugin-transition-link */
+  /* In order to set the child element absolute to the <main> */
   .tl-edges, .tl-wrapper {
     position: static;
   }

@@ -12,7 +12,7 @@ const StyledContactPage = styled('div')`
   .container {
     background: var(--primary);
     width: 100%;
-    height: 100%;
+    /* height: 100%; */
     margin: 0 auto;
     .contact {
       max-width: 400px;
@@ -45,14 +45,22 @@ const StyledContactPage = styled('div')`
   }
   .contact-img {
     display: none;
+    height: 100%;
   }
   @media (min-width: ${mq.desktop}px) {
-    width: ${mq.desktop}px;
+    width: 100%;
+    max-width: ${mq.wide}px;
+    height: 886px;
+    overflow-y: hidden;
     margin: 0 auto;
     display: grid;
     grid-template-columns: 1fr 1fr;
     .contact-img {
       display: block;
+      .gatsby-image-wrapper {
+        width: 100%;
+        height: 100%;
+      }
     }
   }
 `
@@ -65,7 +73,7 @@ const inputs = [
 ]
 
 //TODO: scroll top on page load & redirect
-// TODO: fix StyledContactPage changing height when entering & exiting
+
 const ContactPage = ({ data }) => {
   return (
     <TransitionFade>
@@ -90,7 +98,10 @@ const ContactPage = ({ data }) => {
           </div>
         </div>
         <div className="contact-img">
-          <Img fluid={data.contactImage.childImageSharp.fluid} />
+          <Img
+            fluid={data.contactImage.childImageSharp.fluid}
+            imgStyle={{ objectFit: 'cover' }}
+          />
         </div>
       </StyledContactPage>
     </TransitionFade>

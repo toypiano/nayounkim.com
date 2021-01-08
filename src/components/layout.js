@@ -33,6 +33,9 @@ export const StyledLayout = styled.div`
   @media (min-width: ${mq.wide}px) {
     padding: 0 var(--gutter-wide);
   } */
+  .layout-main {
+    position: relative;
+  }
 `
 
 const Layout = ({ children }) => {
