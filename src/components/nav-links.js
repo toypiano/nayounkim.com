@@ -15,7 +15,7 @@ const linkCss = css`
   align-items: center;
   li {
     a {
-      font-size: 0.9rem;
+      font-size: 1rem;
       transition: color 0.2s;
       &:hover {
         color: var(--accent);

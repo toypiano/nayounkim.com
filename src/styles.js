@@ -58,7 +58,19 @@ export const GlobalStyle = createGlobalStyle`
     -webkit-text-size-adjust: 100%;
     box-sizing: border-box;
     scroll-behavior: smooth;
-        
+    font-size: 100%;
+
+    
+    @media (min-width: ${mq.landscape}px) {
+      font-size: 110%;  
+    }
+    @media (min-width: ${mq.tablet}px) {
+      font-size: 115%;  
+    }
+    @media (min-width: ${mq.desktop}px) {
+      font-size: 125%;
+    }
+       
   }
 
   *, *::before, *::after {
@@ -169,13 +181,13 @@ export const GlobalStyle = createGlobalStyle`
   }
 
   @media (min-width: ${mq.desktop}px) {
-     html {
+     /* html {
        font-size: 18px;
      } 
 
      h2 {
        font-size: 2.25rem;      
-     }  
+     }   */
 
      .desktop-only {
        display: block;
