@@ -15,7 +15,8 @@ export const GlobalStyle = createGlobalStyle`
     --primary: #f0cbc2; 
     --accent: hsla(3, 58%, 56%, 1.0);
     --accent: #24714f;
-    --accent: #439f9a;
+    --accent-light: #68bf9d;
+    --accent-dark: #4b9075;
     --accent: #5aa688;
     --bg: var(--white);
     --text-main: #4e4e4e;
@@ -130,10 +131,7 @@ export const GlobalStyle = createGlobalStyle`
   a {
     color: var(--black);
     text-decoration: none;
-    transition: color .2s;
-    &:hover {  
-      color: var(--accent);
-    }
+    
   }
 
   button {

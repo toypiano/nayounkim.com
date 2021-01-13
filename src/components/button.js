@@ -34,4 +34,12 @@ export default styled(Button)`
   border: none;
   background: var(--accent);
   filter: drop-shadow(0px 4px 8px rgba(0, 0, 0, 0.25));
+
+  transition: all 0.3s;
+  &:hover {
+    background-color: var(--accent-dark);
+  }
+  &:active {
+    background-color: var(--accent);
+  }
 `

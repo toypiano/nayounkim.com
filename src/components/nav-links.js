@@ -16,6 +16,10 @@ const linkCss = css`
   li {
     a {
       font-size: 0.9rem;
+      transition: color 0.2s;
+      &:hover {
+        color: var(--accent);
+      }
       &::after {
         content: '';
         position: absolute;
