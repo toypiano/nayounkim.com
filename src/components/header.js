@@ -24,9 +24,12 @@ const StyledHeader = styled.header`
   align-items: center;
   .logo {
     width: 50%;
-    max-width: 14rem;
+    height: 100%;
+    max-width: 224px;
     margin-left: auto;
     margin-right: auto;
+    display: flex;
+    align-items: center;
     a {
       img {
         display: block;
@@ -65,17 +68,12 @@ const StyledHeader = styled.header`
     height: var(--header-height-desktop);
     margin-bottom: 1em;
     .logo {
-      max-width: 16rem;
-      padding-top: 2em;
+      max-width: 256px;
     }
   }
   @media (min-width: ${mq.wide}px) {
     height: var(--header-height-wide);
     margin-bottom: 1em;
-    .logo {
-      max-width: 16rem;
-      padding-top: 3.5em;
-    }
   }
 `
 

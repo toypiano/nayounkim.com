@@ -35,11 +35,11 @@ export const GlobalStyle = createGlobalStyle`
     --fw-light: 300;
 
     
-    --header-height: 6rem;
-    --header-height-tablet: 8.5rem;
-    --header-height-desktop: 10rem;
-    --header-height-wide: 12rem;
-    --footer-max-width: 44rem;
+    --header-height: 96px;
+    --header-height-tablet: 136px;
+    --header-height-desktop: 160px;
+    --header-height-wide: 192px;
+    --footer-max-width: 704px;
 
     --gutter-landscape: 1em;
     --gutter-tablet: 2em;
