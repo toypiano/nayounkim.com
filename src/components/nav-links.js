@@ -16,35 +16,51 @@ const linkCss = css`
   li {
     a {
       font-size: 0.9rem;
+      &::after {
+        content: '';
+        position: absolute;
+        bottom: -2px;
+        right: -0.5em;
+        display: block;
+        opacity: 0;
+        transition: opacity 250ms ease-in-out;
+      }
+
+      &.active {
+        &::after {
+          content: '';
+          display: block;
+          height: 4px;
+          width: 4px;
+          opacity: 1;
+          background: var(--text-main);
+        }
+      }
     }
 
-    &::after {
-      content: '';
-      display: block;
-      position: relative;
-      height: 1px;
-      width: 0%;
-      background: var(--text-main);
-    }
     /* hover state bust be on parent element! */
     &:hover::after {
-      transition: width 120ms ease-in-out;
-      width: 100%;
+      transition: color 120ms ease-in-out;
+      color: var(--accent);
     }
   }
 `
 const sidebarLinkCss = css`
   width: 100%;
-  margin-left: 0;
+  margin: 1em 1em;
   display: 'flex';
   flex-direction: column;
   align-items: 'flex-start';
 
   li {
-    padding: 1em;
+    padding: 1.5em 0 1em;
     a {
-      font-size: 1.2rem;
+      font-size: 2rem;
       font-weight: var(--fw-light);
+      &.active {
+        transition: color 120ms ease-in-out;
+        color: var(--accent);
+      }
     }
     &::after {
       content: '';
@@ -52,7 +68,7 @@ const sidebarLinkCss = css`
       bottom: 0;
       display: block;
       width: 10em;
-      border-top: 0.5px solid rgba(0, 0, 0, 0.03);
+      border-top: 0.5px solid rgba(0, 0, 0, 0.1);
     }
   }
 `
@@ -65,11 +81,8 @@ const StyledNavLinks = styled('ul')`
     width: 100;
 
     a {
-      text-transform: uppercase;
+      text-transform: lowercase;
       text-decoration: none;
-      &.active {
-        color: var(--accent);
-      }
     }
   }
 
