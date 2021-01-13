@@ -51,28 +51,30 @@ const linkCss = css`
 `
 const sidebarLinkCss = css`
   width: 100%;
-  margin: 1em 1em;
-  display: 'flex';
-  flex-direction: column;
-  align-items: 'flex-start';
+  height: 100%;
+  max-height: 500px;
+  padding: 1.5em;
 
   li {
-    padding: 1.5em 0 1em;
+    padding: 1.25rem 0;
     a {
-      font-size: 2rem;
-      font-weight: var(--fw-light);
+      /* font-family: Raleway, serif; */
+      /* font-size: 2.5rem;
+      font-weight: var(--fw-light); */
+      font: var(--font-sidebar-link);
+      text-transform: capitalize;
       &.active {
         transition: color 120ms ease-in-out;
         color: var(--accent);
       }
     }
-    &::after {
+    &:not(:last-of-type)::after {
       content: '';
       position: absolute;
       bottom: 0;
       display: block;
-      width: 10em;
-      border-top: 0.5px solid rgba(0, 0, 0, 0.1);
+      width: 66%;
+      border-top: 0.5px solid rgba(0, 0, 0, 0.05);
     }
   }
 `

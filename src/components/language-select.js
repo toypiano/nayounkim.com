@@ -12,11 +12,10 @@ const StyledLanguageSelect = styled('div')`
   width: 100%;
 
   select {
-    --select-font-size: 1.2rem;
     position: absolute;
     top: var(--pt);
     left: var(--pl);
-    font-size: var(--select-font-size);
+    font-size: var(--fz-sidebar-link);
     width: 5rem;
     // options will still open when clicked
     opacity: 0;
@@ -31,16 +30,16 @@ const StyledLanguageSelect = styled('div')`
     pointer-events: none;
     .lang-flag {
       pointer-events: inherit;
-      position: relative;
-      top: 3px;
-      font-size: 1.8rem;
+      font-size: var(--fz-sidebar-link);
       margin-right: 0.25em;
-      vertical-align: top;
+      vertical-align: middle;
     }
     .lang-text {
       pointer-events: inherit;
-      font-size: var(--select-font-size);
       line-height: 1.8;
+      font-size: var(--fz-sidebar-link);
+      font-family: Raleway, serif;
+      vertical-align: middle;
     }
   }
 `

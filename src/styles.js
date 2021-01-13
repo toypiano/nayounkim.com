@@ -9,6 +9,7 @@ export const mq = {
 
 export const GlobalStyle = createGlobalStyle`
   :root {
+    /* Colors */
     --white: white;
     --black: black;
     --primary: hsla(51,90%,53%,1.0); 
@@ -29,12 +30,19 @@ export const GlobalStyle = createGlobalStyle`
     --cl-icon-alpha: 1;
     --cl-gray: #eee;
     
+    /* Typography */
     --fw-black: 900;
     --fw-regular: 400;
     --fw-bold: 600;
     --fw-light: 300;
 
+    --ff-se: 'Raleway', serif;
+    --ff-ss: 'Open Sans', sans-serif;
+
+    --fz-sidebar-link: max(1.5rem, min(5vw, 3rem));
+    --font-sidebar-link: var(--fw-light) var(--fz-sidebar-link) var(--ff-se); 
     
+    /* Dimensions */
     --header-height: 96px;
     --header-height-tablet: 136px;
     --header-height-desktop: 160px;
@@ -46,6 +54,7 @@ export const GlobalStyle = createGlobalStyle`
     --gutter-desktop: 3em;
     --gutter-wide: 4em;
 
+    /* Z-indexes */
     --z-header: 1000;
     --z-backdrop: 1200;
     --z-sidebar: 1500;
@@ -58,8 +67,9 @@ export const GlobalStyle = createGlobalStyle`
     -webkit-text-size-adjust: 100%;
     box-sizing: border-box;
     scroll-behavior: smooth;
+    
+    /* Fluid font size */
     font-size: 100%;
-
     
     @media (min-width: ${mq.landscape}px) {
       font-size: 110%;  
@@ -84,7 +94,7 @@ export const GlobalStyle = createGlobalStyle`
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
     color: hsla(0, 0%, 0%, 0.8);
-    font-family: 'Open Sans', sans-serif;
+    font-family: var(--ff-ss);
     font-weight: normal;
     word-wrap: break-word;
     font-kerning: normal;

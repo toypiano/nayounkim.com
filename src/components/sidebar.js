@@ -20,7 +20,7 @@ const StyledSidebar = styled(a.div)`
   z-index: var(--z-sidebar);
 
   button {
-    margin-left: 1em;
+    margin-left: 2em;
     padding: 0.5em;
     color: var(--accent);
     width: 2em;
