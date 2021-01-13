@@ -45,7 +45,7 @@ export const GlobalStyle = createGlobalStyle`
     /* Dimensions */
     --header-height: 96px;
     --header-height-tablet: 136px;
-    --header-height-desktop: 160px;
+    --header-height-desktop: 170px;
     --header-height-wide: 192px;
     --footer-max-width: 704px;
 

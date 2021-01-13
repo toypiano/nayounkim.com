@@ -16,7 +16,7 @@ const StyledHeader = styled.header`
   position: relative;
   height: var(--header-height);
   width: 100%;
-  max-width: ${mq.wide}px;
+  max-width: 700px;
   margin: auto;
   padding: 1em 0.5em;
   background: white;
@@ -63,10 +63,11 @@ const StyledHeader = styled.header`
     height: var(--header-height-tablet);
   }
   @media (min-width: ${mq.desktop}px) {
+    max-width: ${mq.desktop}px;
     flex-direction: column;
     justify-content: space-between;
     height: var(--header-height-desktop);
-    margin-bottom: 1em;
+    margin-bottom: 0.5em;
     .logo {
       max-width: 256px;
     }

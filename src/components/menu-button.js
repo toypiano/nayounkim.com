@@ -10,7 +10,7 @@ const StyledMenuButton = styled('button')`
   top: 50%;
   transform: translateY(-50%);
 
-  --size: 30px;
+  --size: max(30px, min(7vw, 38px));
   width: calc(var(--size) * 1.1);
   height: var(--size);
   padding: 5px;
