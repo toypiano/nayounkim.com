@@ -1,5 +1,4 @@
 import React from 'react'
-import ReactDOM from 'react-dom'
 import PropTypes from 'prop-types'
 import { useTransition, a } from 'react-spring'
 import styled from 'styled-components'
@@ -15,7 +14,7 @@ const StyledSidebar = styled(a.div)`
   left: 0;
   width: 66%;
   max-width: 25rem;
-  height: 100vh;
+  height: 100%; // 100vh will not take account mobile browser UIs (eg. bottom bar)
   padding: 2em 0;
   background: white;
   z-index: var(--z-sidebar);
