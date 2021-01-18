@@ -6,6 +6,7 @@ import styled from 'styled-components'
 
 import LanguageSelect from './language-select'
 import NavLinks from './nav-links'
+import Portal from './portal'
 
 const StyledSidebar = styled(a.div)`
   position: fixed;
@@ -70,7 +71,7 @@ const Sidebar = ({ isOpen, closeMenu }) => {
     </>
   )
 
-  return ReactDOM.createPortal(content, document.getElementById('sidebar-root'))
+  return <Portal id={'sidebar-root'}>{content}</Portal>
 }
 
 Sidebar.propTypes = {

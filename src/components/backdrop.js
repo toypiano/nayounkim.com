@@ -1,7 +1,7 @@
 import React from 'react'
-import ReactDOM from 'react-dom'
 import PropTypes from 'prop-types'
 import styled from 'styled-components'
+import Portal from './portal'
 
 const StyledBackdrop = styled('div')`
   position: ${props => (props.show ? 'fixed' : 'none')};
@@ -13,12 +13,12 @@ const StyledBackdrop = styled('div')`
   z-index: var(--z-backdrop);
 `
 
-const Backdrop = ({ show, close }) => {
-  const content = <StyledBackdrop show={show} onClick={close}></StyledBackdrop>
-  return show
-    ? ReactDOM.createPortal(content, document.getElementById('backdrop-root'))
-    : null
-}
+const Backdrop = ({ show, close }) =>
+  show && (
+    <Portal id={'backdrop-root'}>
+      <StyledBackdrop show={show} onClick={close} />
+    </Portal>
+  )
 
 Backdrop.propTypes = {
   show: PropTypes.bool.isRequired,

@@ -47,6 +47,8 @@ const StyledContactPage = styled('div')`
     display: none;
     height: 100%;
   }
+
+  /* TODO: find better way than using overflow: hidden */
   @media (min-width: ${mq.desktop}px) {
     width: 100%;
     max-width: ${mq.wide}px;

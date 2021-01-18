@@ -6,8 +6,15 @@
 
 // Runs when the site is built and register things like pages.
 
-const { resolve } = require("path")
-const path = require("path")
+const { resolve } = require('path')
+const path = require('path')
+const { createFilePath } = require('gatsby-source-filesystem')
+
+exports.onCreateNode = ({ node, getNode }) => {
+  if (node.internal.type === 'MarkdownRemark') {
+    console.log(node.internal.type)
+  }
+}
 
 // functions are passed graphql, actions by Gatsby
 exports.createPages = async ({ graphql, actions }) => {
@@ -39,7 +46,7 @@ exports.createPages = async ({ graphql, actions }) => {
     result.data.allMarkdownRemark.edges.forEach(({ node }) => {
       actions.createPage({
         path: `/blog${node.frontmatter.slug}`,
-        component: path.resolve("./src/components/post-template.js"),
+        component: path.resolve('./src/components/post-template.js'),
         context: {
           slug: node.frontmatter.slug,
         },
