@@ -39,7 +39,7 @@ export const GlobalStyle = createGlobalStyle`
     --ff-se: 'Raleway', serif;
     --ff-ss: 'Open Sans', sans-serif;
 
-    --fz-sidebar-link: max(1.5rem, min(5vw, 3rem));
+    --fz-sidebar-link: max(1.75rem, min(5vw, 3rem));
     --font-sidebar-link: var(--fw-light) var(--fz-sidebar-link) var(--ff-se); 
     
     /* Dimensions */

@@ -20,17 +20,18 @@ const StyledSidebar = styled(a.div)`
   z-index: var(--z-sidebar);
 
   button {
+    --size: 40px;
     margin-left: 2em;
-    padding: 0.5em;
+    padding: 8px;
     color: var(--accent);
-    width: 2em;
-    height: 2em;
+    width: var(--size);
+    height: var(--size);
     display: flex;
     justify-content: center;
     align-items: center;
     span {
       font-weight: bold;
-      font-size: 1.25rem;
+      font-size: 25px;
     }
   }
 `
