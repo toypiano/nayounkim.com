@@ -4,7 +4,7 @@ import styled from 'styled-components'
 import { graphql } from 'gatsby'
 
 const StyledMyFiles = styled.div`
-  padding: 2em;
+  padding: 1em;
   h1 {
     margin-bottom: 1em;
   }
@@ -31,9 +31,9 @@ export default function MyFiles({ data }) {
         <thead>
           <tr>
             <th>relativePath</th>
-            <th>prettySize</th>
-            <th>extension</th>
-            <th>birthTime</th>
+            <th>size</th>
+            <th>ext</th>
+            <th>created</th>
           </tr>
         </thead>
         <tbody>
@@ -54,7 +54,7 @@ export default function MyFiles({ data }) {
 MyFiles.propTypes = {
   data: PropTypes.shape({
     allFile: PropTypes.shape({
-      edges: [
+      edges: PropTypes.arrayOf(
         PropTypes.shape({
           node: PropTypes.shape({
             relativePath: PropTypes.string.isRequired,
@@ -62,8 +62,8 @@ MyFiles.propTypes = {
             extension: PropTypes.string.isRequired,
             birthTime: PropTypes.string.isRequired,
           }),
-        }),
-      ],
+        })
+      ),
     }),
   }),
 }
