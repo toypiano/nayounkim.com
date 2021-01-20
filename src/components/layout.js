@@ -1,20 +1,21 @@
-import React from 'react'
+import React, { useState, createContext } from 'react'
 import PropTypes from 'prop-types'
-import styled, { css } from 'styled-components'
+import styled from 'styled-components'
 import { useStaticQuery, graphql } from 'gatsby'
 import { Helmet } from 'react-helmet'
-
 import { GlobalStyle } from '../styles'
 import Header from './header'
 import Footer from './footer'
 import { mq } from '../styles'
 import BackToTopButton from './back-to-top-button'
+import { LayoutStateProvider, useLayoutState } from '../store'
 
 export const StyledLayout = styled.div`
-  position: relative;
+  position: absolute; // to inherit height from body
+  overflow-y: ${props => (props.scrollLock ? 'hidden' : 'auto')};
   margin: 0 auto;
   /* width: 100vw; */ // Don't use 100vw inside 100% container
-  width: 100%;
+  width: 100%; // of body (viewport height)
   height: 100%;
   min-height: 100vh;
   display: grid;
@@ -49,6 +50,16 @@ const Layout = ({ children }) => {
     }
   `)
 
+  const [scrollLock, setScrollLock] = useState(false)
+  // const ScrollLockContext = createContext({
+  //   scrollLock,
+  //   lockScroll: () => {},
+  //   unlockScroll: () => {},
+  // })
+
+  // const lockScroll = () => setScrollLock(true)
+  // const unlockScroll = () => setScrollLock(false)
+
   return (
     <>
       <Helmet>
@@ -70,12 +81,14 @@ const Layout = ({ children }) => {
         ></link>
       </Helmet>
       <GlobalStyle />
-      <StyledLayout>
-        <Header siteTitle={data.site.siteMetadata.title} />
-        <main className="layout-main">{children}</main>
-        <Footer />
-        <BackToTopButton />
-      </StyledLayout>
+      <LayoutStateProvider>
+        <StyledLayoutConsumer>
+          <Header siteTitle={data.site.siteMetadata.title} />
+          <main className="layout-main">{children}</main>
+          <Footer />
+          <BackToTopButton />
+        </StyledLayoutConsumer>
+      </LayoutStateProvider>
     </>
   )
 }
@@ -85,3 +98,12 @@ Layout.propTypes = {
 }
 
 export default Layout
+
+/**
+ * Use layout context and pass into StyledLayout
+ * @param {*} param0
+ */
+function StyledLayoutConsumer({ children }) {
+  const { scrollLock } = useLayoutState()
+  return <StyledLayout scrollLock={scrollLock}>{children}</StyledLayout>
+}

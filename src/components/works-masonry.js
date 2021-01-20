@@ -1,11 +1,9 @@
 import React from 'react'
-import Img from 'gatsby-image'
-import { useStaticQuery, graphql } from 'gatsby'
+import PropTypes, { shape } from 'prop-types'
 import Masonry from 'react-masonry-css'
 import styled from 'styled-components'
-
+import Work from './work'
 import { mq } from '../styles'
-import ImageContainer from './image-container'
 
 const breakpointColumnsObj = {
   default: 4,
@@ -19,7 +17,7 @@ const StyledMasonry = styled(Masonry)`
   --gutter: 4em;
   width: auto;
   display: flex;
-
+  height: 100%;
   .main-masonry-grid_column {
     background-clip: padding-box;
 
@@ -73,50 +71,47 @@ const StyledMasonry = styled(Masonry)`
   }
 `
 
-const WorksMasonry = ({ mount }) => {
-  const data = useStaticQuery(query)
-
+const WorksMasonry = ({ works, openOverlay, setCurrentIndex }) => {
   return (
     <StyledMasonry
       breakpointCols={breakpointColumnsObj}
       className="main-masonry-grid"
       columnClassName="main-masonry-grid_column"
     >
-      {data.allFile.edges.map(image => (
-        <ImageContainer key={image.node.base} image={image} />
+      {works.map((work, i) => (
+        <Work
+          key={work.node.frontmatter.slug}
+          work={work}
+          openOverlay={openOverlay}
+          setCurrentIndex={() => setCurrentIndex(i)}
+        />
       ))}
     </StyledMasonry>
   )
 }
 
-export default WorksMasonry
-
 // Add multiple images from a directory
 // https://www.gatsbyjs.com/docs/recipes/working-with-images#optimizing-and-querying-local-images-with-gatsby-image
 // Directions > 2 > c. several images from a directory ...
-export const query = graphql`
-  {
-    allFile(
-      filter: {
-        extension: { regex: "/jpg/" }
-        dir: {}
-        relativeDirectory: { eq: "works" }
-      }
-    ) {
-      edges {
-        node {
-          base
-          childImageSharp {
-            fluid {
-              aspectRatio
-              base64
-              sizes
-              src
-              srcSet
-            }
-          }
-        }
-      }
-    }
-  }
-`
+
+WorksMasonry.propTypes = {
+  setCurrentIndex: PropTypes.func.isRequired,
+  openOverlay: PropTypes.func.isRequired,
+  works: PropTypes.arrayOf(
+    shape({
+      node: shape({
+        frontmatter: shape({
+          slug: PropTypes.string.isRequired,
+          title: PropTypes.string.isRequired,
+          featuredImage: shape({
+            childImageSharp: shape({
+              fluid: PropTypes.object.isRequired,
+            }),
+          }),
+        }),
+      }),
+    })
+  ),
+}
+
+export default WorksMasonry

@@ -59,6 +59,7 @@ export const GlobalStyle = createGlobalStyle`
     --z-backdrop: 1200;
     --z-sidebar: 1500;
     --z-back-to-top-button: 800;
+    --z-gallery-overlay: 2000;
 
   }
 

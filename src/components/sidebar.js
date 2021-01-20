@@ -1,13 +1,14 @@
 import React from 'react'
 import PropTypes from 'prop-types'
-import { useTransition, a } from 'react-spring'
+import { useTransition, animated } from 'react-spring'
 import styled from 'styled-components'
 
 import LanguageSelect from './language-select'
 import NavLinks from './nav-links'
 import Portal from './portal'
+import CloseButton from './close-button'
 
-const StyledSidebar = styled(a.div)`
+const StyledSidebar = styled(animated.div)`
   position: fixed;
   top: 0;
   bottom: 0;
@@ -54,15 +55,15 @@ const Sidebar = ({ isOpen, closeMenu }) => {
       opacity: 0,
     },
   })
+  const AnimatedCloseButton = animated(CloseButton)
 
   const content = (
     <>
       {transition(({ rotate, ...styles }, isOpen) =>
         isOpen ? (
           <StyledSidebar style={styles}>
-            <a.button onClick={closeMenu} style={{ rotate }}>
-              <span>&#10005;</span>
-            </a.button>
+            {/* You must pass down style prop into the CloseButton for animation to work*/}
+            <AnimatedCloseButton onClick={closeMenu} style={{ rotate }} />
             <NavLinks sidebar closeMenu={closeMenu} />
             <LanguageSelect />
           </StyledSidebar>
