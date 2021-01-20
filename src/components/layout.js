@@ -1,4 +1,4 @@
-import React, { useState, createContext } from 'react'
+import React from 'react'
 import PropTypes from 'prop-types'
 import styled from 'styled-components'
 import { useStaticQuery, graphql } from 'gatsby'
@@ -12,7 +12,10 @@ import { LayoutStateProvider, useLayoutState } from '../store'
 
 export const StyledLayout = styled.div`
   position: absolute; // to inherit height from body
-  overflow-y: ${props => (props.scrollLock ? 'hidden' : 'auto')};
+  /* overflow: 'auto' will prevent scroll event from propagating!
+    https://github.com/gatsbyjs/gatsby/issues/7885#issuecomment-510664369
+   */
+  overflow-y: ${props => (props.scrollLock ? 'hidden' : 'initial')};
   margin: 0 auto;
   /* width: 100vw; */ // Don't use 100vw inside 100% container
   width: 100%; // of body (viewport height)
@@ -50,16 +53,6 @@ const Layout = ({ children }) => {
     }
   `)
 
-  const [scrollLock, setScrollLock] = useState(false)
-  // const ScrollLockContext = createContext({
-  //   scrollLock,
-  //   lockScroll: () => {},
-  //   unlockScroll: () => {},
-  // })
-
-  // const lockScroll = () => setScrollLock(true)
-  // const unlockScroll = () => setScrollLock(false)
-
   return (
     <>
       <Helmet>
@@ -86,9 +79,9 @@ const Layout = ({ children }) => {
           <Header siteTitle={data.site.siteMetadata.title} />
           <main className="layout-main">{children}</main>
           <Footer />
-          <BackToTopButton />
         </StyledLayoutConsumer>
       </LayoutStateProvider>
+      <BackToTopButton />
     </>
   )
 }

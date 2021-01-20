@@ -7,6 +7,7 @@ import { useScrollAppear } from '../hooks/useScroll'
 
 const StyledBackToTopButton = styled(a.div)`
   position: fixed;
+  z-index: 1000;
   --size: 4rem;
   bottom: 2rem;
   right: 1rem;
