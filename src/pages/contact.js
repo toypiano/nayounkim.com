@@ -48,19 +48,26 @@ const StyledContactPage = styled('div')`
     height: 100%;
   }
 
-  /* TODO: find better way than using overflow: hidden */
   @media (min-width: ${mq.desktop}px) {
     width: 100%;
+    position: relative; // to contain abs-positioned image wrapper
     max-width: ${mq.wide}px;
-    height: 886px;
-    overflow-y: hidden;
     margin: 0 auto;
     display: grid;
     grid-template-columns: 1fr 1fr;
+
     .contact-img {
-      display: block;
+      display: block; // show image on desktop mode
+      grid-column: 2 / 3; // You MUST specify grid column to be able to contain abs-positioned element within the grid
+      // image was pushing the container down to become longer than needed by form height
+      // probably because Gatsby Image set the image to keep its aspect ratio when container height is not specified
+      // so we're removing image from the normal flow to take up as much height as the container has to fit the form element
+      position: absolute;
+      top: 0;
+      right: 0;
+      bottom: 0;
+      left: 0;
       .gatsby-image-wrapper {
-        width: 100%;
         height: 100%;
       }
     }
