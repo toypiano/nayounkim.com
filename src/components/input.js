@@ -12,6 +12,7 @@ const Input = (
         className={className}
         placeholder={placeholder}
         required={required}
+        name={name}
         aria-required={required}
         aria-label={placeholder}
       />
@@ -20,6 +21,7 @@ const Input = (
         className={className}
         placeholder={placeholder}
         required={required}
+        name={name}
         aria-required={required}
         aria-label={placeholder}
       />
