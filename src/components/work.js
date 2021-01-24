@@ -13,7 +13,7 @@ const StyledWork = styled.div`
     z-index: 10;
     bottom: -100%;
     color: var(--text-inverse);
-    padding: 1em 0.75em;
+    padding: 0.5em 0.75em;
     transition: bottom 200ms ease-in-out;
   }
   .overlay-bg {
