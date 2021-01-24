@@ -93,17 +93,23 @@ const ContactPage = ({ data }) => {
               <h2>Contact</h2>
               <p>
                 For commisions, collaborations and other exciting projects,
-                please contact me here or email me at: hello@nayounkim.com
+                please contact me here or email me at:{' '}
+                <a href="mailto:hello@nayounkim.com">hello@nayounkim.com</a>
               </p>
             </div>
-            <div className="contact-form">
+            <form
+              className="contact-form"
+              name="contact"
+              method="POST"
+              data-netlify="true"
+            >
               {inputs.map(input => (
                 <Input key={input.name} {...input} />
               ))}
               <div className="submit-btn">
                 <Button>Send</Button>
               </div>
-            </div>
+            </form>
           </div>
         </div>
         <div className="contact-img">

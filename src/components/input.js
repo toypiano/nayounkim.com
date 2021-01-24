@@ -12,12 +12,16 @@ const Input = (
         className={className}
         placeholder={placeholder}
         required={required}
+        aria-required={required}
+        aria-label={placeholder}
       />
     ) : (
       <input
         className={className}
         placeholder={placeholder}
         required={required}
+        aria-required={required}
+        aria-label={placeholder}
       />
     )
   return input
