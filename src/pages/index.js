@@ -4,6 +4,7 @@ import styled from 'styled-components'
 import { graphql } from 'gatsby'
 import Img from 'gatsby-image'
 import { mq } from '../styles'
+import mainGif from '../assets/images/main.gif'
 
 import TransitionFade from '../components/transition-fade'
 
@@ -15,7 +16,8 @@ const StyledIndexPage = styled.div`
   .main-image {
     width: 100%;
     height: calc(100vh - var(--header-height));
-    .gatsby-image-wrapper {
+    .gatsby-image-wrapper,
+    .image-wrapper {
       height: 100%;
       img {
         max-height: 100%;
@@ -35,11 +37,14 @@ const IndexPage = ({ data }) => {
     <TransitionFade>
       <StyledIndexPage>
         <div className="main-image">
-          <Img
+          {/* <Img
             fluid={data.mainImage.childImageSharp.fluid}
             // cannot set objectFit via styled-components
             imgStyle={{ objectFit: 'cover', objectPosition: '29% center' }}
-          />
+          /> */}
+          <div className="image-wrapper">
+            <img src={mainGif} alt="A guy with a long hair winking at you" />
+          </div>
         </div>
       </StyledIndexPage>
     </TransitionFade>
