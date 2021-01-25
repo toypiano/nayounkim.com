@@ -26,6 +26,7 @@
     "react-icons": "^4.1.0",
     "react-masonry-css": "^1.0.14",
     "react-spring": "npm:@react-spring/web@9.0.0-rc.4",
+    "react-use-gesture": "^9.0.0",
     "styled-components": "^5.1.1"
   },
   "devDependencies": {

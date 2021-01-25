@@ -20,11 +20,11 @@ const StyledMasonry = styled(Masonry)`
   height: 100%;
   .main-masonry-grid_column {
     background-clip: padding-box;
-    // TODO:
+
     & > div {
       background: grey;
       margin-bottom: 10px;
-      box-shadow: 0 8px 6px -8px rgba(0, 0, 0, 0.2);
+      box-shadow: var(--box-shadow);
     }
     &:first-of-type {
       margin-left: 0;

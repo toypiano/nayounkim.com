@@ -61,6 +61,9 @@ export const GlobalStyle = createGlobalStyle`
     --z-back-to-top-button: 800;
     --z-gallery-overlay: 2000;
 
+    /* Etc */
+    --box-shadow: 0 8px 6px -8px rgba(0, 0, 0, 0.2);
+
   }
 
   html {

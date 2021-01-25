@@ -55,7 +55,14 @@ const GalleryOverlay = ({ show, work, closeOverlay }) => {
         className="overlay-img"
         fluid={work.node.frontmatter.featuredImage.childImageSharp.fluid}
         alt={work.node.frontmatter.title}
-        imgStyle={{ objectFit: 'contain', height: '100%' }}
+        imgStyle={{
+          objectFit: 'contain',
+          height: '100%',
+          paddingBottom: '10px',
+          // could not use box-shadow because contained image has wider box (i.e. shadow will be wider than the image)
+          // https://fvsch.com/object-fit-decoratio
+          filter: 'drop-shadow(0px 3px 5px rgba(0,0,0,0.2))',
+        }}
       />
       <div className="overlay-caption">
         <figcaption>{work.node.frontmatter.title}</figcaption>
