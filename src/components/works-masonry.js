@@ -20,9 +20,11 @@ const StyledMasonry = styled(Masonry)`
   height: 100%;
   .main-masonry-grid_column {
     background-clip: padding-box;
-    // TODO: add gap between images on mobile (10px)
+    // TODO:
     & > div {
       background: grey;
+      margin-bottom: 10px;
+      box-shadow: 0 8px 6px -8px rgba(0, 0, 0, 0.2);
     }
     &:first-of-type {
       margin-left: 0;
