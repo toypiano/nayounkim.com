@@ -28,7 +28,7 @@ const StyledGalleryOverlay = styled.div`
   /* gatsby-image-wrapper container is always styled with position:relative; & overflow:hidden */
   /* and contained image is absolute positioned against the container */
   .overlay-img {
-    width: 90%;
+    width: 100%;
     max-width: 800px;
     margin: 2em auto;
     max-height: 80%;
@@ -58,10 +58,10 @@ const GalleryOverlay = ({ show, work, closeOverlay }) => {
         imgStyle={{
           objectFit: 'contain',
           height: '100%',
-          paddingBottom: '10px',
+          padding: '16px',
           // could not use box-shadow because contained image has wider box (i.e. shadow will be wider than the image)
           // https://fvsch.com/object-fit-decoratio
-          filter: 'drop-shadow(0px 3px 5px rgba(0,0,0,0.2))',
+          filter: 'drop-shadow(0px 1px 5px rgba(0,0,0,0.2))',
         }}
       />
       <div className="overlay-caption">
