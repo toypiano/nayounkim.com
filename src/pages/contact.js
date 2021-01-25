@@ -82,6 +82,8 @@ const inputs = [
 ]
 
 // TODO: send email on submit
+// TODO: create a success page at /pages/success
+// https://docs.netlify.com/forms/setup/?_ga=2.31060159.1455634184.1611450709-2100244496.1610393043#success-messages
 
 const ContactPage = ({ data }) => {
   return (
@@ -102,12 +104,15 @@ const ContactPage = ({ data }) => {
               name="contact"
               method="POST"
               data-netlify="true"
+              data-netlify-honeypot="bot-field"
             >
+              <input type="hidden" name="bot-field" />
+              <input type="hidden" name="form-name" value="contact" />
               {inputs.map(input => (
                 <Input key={input.name} {...input} />
               ))}
               <div className="submit-btn">
-                <Button>Send</Button>
+                <Button type="submit">Send</Button>
               </div>
             </form>
           </div>

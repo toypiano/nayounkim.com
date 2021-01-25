@@ -3,13 +3,18 @@ import PropTypes from 'prop-types'
 import { Link } from 'gatsby'
 import styled from 'styled-components'
 
-const Button = ({ children, to, className }) => {
+const Button = ({ children, to, className, type }) => {
   const button = to ? (
     <Link to={to} className={className}>
       {children}
     </Link>
   ) : (
-    <button className={className}>{children}</button>
+    <button
+      className={className}
+      type={type === 'submit' ? 'submit' : 'button'}
+    >
+      {children}
+    </button>
   )
 
   return button
@@ -19,6 +24,7 @@ Button.propTypes = {
   children: PropTypes.node.isRequired,
   to: PropTypes.string,
   className: PropTypes.string,
+  type: PropTypes.string,
 }
 
 export default styled(Button)`

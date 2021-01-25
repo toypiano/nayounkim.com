@@ -34,14 +34,13 @@ const StyledGalleryOverlay = styled.div`
     max-height: 80%;
   }
   .overlay-caption {
+    padding: 0 2em;
     text-align: center;
     font-size: 0.75;
     font-style: italic;
     font-family: var(--ff-se);
   }
 `
-// TODO:
-// TODO: account for mobile browser UI (bottom bar)
 // TODO: add prev / next button
 // TODO: show overlay when touched for long than "tab"
 const GalleryOverlay = ({ show, work, closeOverlay }) => {
@@ -52,7 +51,6 @@ const GalleryOverlay = ({ show, work, closeOverlay }) => {
         onClick={closeOverlay}
         style={{ color: 'black' }}
       />
-
       <Img
         className="overlay-img"
         fluid={work.node.frontmatter.featuredImage.childImageSharp.fluid}
