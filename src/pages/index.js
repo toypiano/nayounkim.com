@@ -1,47 +1,43 @@
 import React from 'react'
-import PropTypes from 'prop-types'
 import styled from 'styled-components'
-import { graphql } from 'gatsby'
-import Img from 'gatsby-image'
 import { mq } from '../styles'
 import mainGif from '../assets/images/main.gif'
-
 import TransitionFade from '../components/transition-fade'
 
+// TODO: reduce gif size to 810px * 810px
 const StyledIndexPage = styled.div`
   height: 100%;
-  display: grid;
-  place-items: center;
 
   .main-image {
-    width: 100%;
+    // fill entire display height
     height: calc(100vh - var(--header-height));
+    margin: 0 auto;
     .gatsby-image-wrapper,
     .image-wrapper {
+      position: relative;
       height: 100%;
+      overflow: hidden;
       img {
-        max-height: 100%;
-        width: auto;
+        display: block;
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        object-position: 28% center;
       }
     }
     @media (min-width: ${mq.desktop}px) {
-      --size: calc(30vh + 30vw);
+      --size: 810px;
       width: var(--size);
       height: var(--size);
     }
   }
 `
 
-const IndexPage = ({ data }) => {
+const IndexPage = () => {
   return (
     <TransitionFade>
       <StyledIndexPage>
         <div className="main-image">
-          {/* <Img
-            fluid={data.mainImage.childImageSharp.fluid}
-            // cannot set objectFit via styled-components
-            imgStyle={{ objectFit: 'cover', objectPosition: '29% center' }}
-          /> */}
           <div className="image-wrapper">
             <img src={mainGif} alt="A guy with a long hair winking at you" />
           </div>
@@ -49,28 +45,6 @@ const IndexPage = ({ data }) => {
       </StyledIndexPage>
     </TransitionFade>
   )
-}
-
-export const query = graphql`
-  query MainImageQuery {
-    mainImage: file(relativePath: { eq: "works/a guy with long hair.jpg" }) {
-      childImageSharp {
-        fluid(maxWidth: 1600) {
-          ...GatsbyImageSharpFluid
-        }
-      }
-    }
-  }
-`
-
-IndexPage.propTypes = {
-  data: PropTypes.shape({
-    mainImage: PropTypes.shape({
-      childImageSharp: PropTypes.shape({
-        fluid: PropTypes.object.isRequired,
-      }),
-    }),
-  }),
 }
 
 export default IndexPage
