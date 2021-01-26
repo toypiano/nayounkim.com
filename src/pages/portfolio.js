@@ -78,7 +78,6 @@ const PortfolioPage = ({ data, location }) => {
   }
 
   const setCurrentIndex = index => {
-    console.log({ index })
     dispatch({ type: 'SET_CURRENT_INDEX', payload: index })
   }
 

@@ -98,7 +98,7 @@ const GalleryOverlay = ({
   next,
   prev,
 }) => {
-  const [springs, setSprings] = useSprings(works.length, () => ({}))
+  const [springs, setSprings] = useSprings(works.length, () => ({ config: {} }))
   // no animation on mount
   useEffect(() => {
     setSprings(i => {
@@ -121,24 +121,22 @@ const GalleryOverlay = ({
     navigate(`/portfolio/#${works[currentIndex].node.frontmatter.slug}`)
   }, [currentIndex])
 
-  const bind = useDrag(
-    ({ active, movement: [mx], direction: [xDir], distance, cancel }) => {
-      if (active && distance > window?.innerWidth / 2) {
-        // If dragged to the right, show work at index - 1
-        const newIndex = currentIndex + (xDir > 0 ? -1 : 1)
-        const clampedNewIndex = clamp(newIndex, 0, works.length - 1)
+  const bind = useDrag(({ swipe: [swipeX], cancel }) => {
+    if (swipeX) {
+      // If dragged to the right, show work at index - 1
+      const newIndex = currentIndex + swipeX
+      const clampedNewIndex = clamp(newIndex, 0, works.length - 1)
 
-        setCurrentIndex(clampedNewIndex)
-        cancel()
-      }
-      setSprings(i => {
-        if (i < currentIndex - 1 || i > currentIndex + 1)
-          return { display: 'none' }
-        const x = (i - currentIndex) * window?.innerWidth + (active ? mx : 0)
-        return { x, display: 'flex' }
-      })
+      setCurrentIndex(clampedNewIndex)
+      cancel()
     }
-  )
+    setSprings(i => {
+      if (i < currentIndex - 1 || i > currentIndex + 1)
+        return { display: 'none' }
+      const x = (i - currentIndex) * window?.innerWidth
+      return { x, display: 'flex' }
+    })
+  })
 
   const workContents = springs.map(({ x, display }, i) => (
     <animated.div
