@@ -54,7 +54,7 @@ const StyledGalleryOverlay = styled.div`
 
   .work-content {
     position: absolute;
-    width: 90%;
+    width: 100%;
     height: 90%;
     display: flex;
     flex-direction: column;
@@ -81,6 +81,9 @@ const StyledGalleryOverlay = styled.div`
   }
 
   @media (min-width: 760px) {
+    .work-content {
+      width: 90%;
+    }
     .prev-button,
     .next-button {
       display: block;
@@ -98,7 +101,7 @@ const GalleryOverlay = ({
   next,
   prev,
 }) => {
-  const [springs, setSprings] = useSprings(works.length, () => ({ config: {} }))
+  const [springs, setSprings] = useSprings(works.length, () => ({}))
   // no animation on mount
   useEffect(() => {
     setSprings(i => {
@@ -115,27 +118,23 @@ const GalleryOverlay = ({
       const x = (i - currentIndex) * window?.innerWidth
       if (i < currentIndex - 1 || i > currentIndex + 1)
         return { to: { x, display: 'none' } }
-      return { to: { x, display: 'flex' } }
+      return {
+        to: { x, display: 'flex' },
+      }
     })
 
     navigate(`/portfolio/#${works[currentIndex].node.frontmatter.slug}`)
   }, [currentIndex])
 
-  const bind = useDrag(({ swipe: [swipeX], cancel }) => {
+  // animate on swipe gesture
+  const bind = useDrag(({ swipe: [swipeX] }) => {
     if (swipeX) {
       // If dragged to the right, show work at index - 1
-      const newIndex = currentIndex + swipeX
-      const clampedNewIndex = clamp(newIndex, 0, works.length - 1)
+      const newIndex = currentIndex - swipeX
+      const clamped = clamp(newIndex, 0, works.length - 1)
 
-      setCurrentIndex(clampedNewIndex)
-      cancel()
+      setCurrentIndex(clamped)
     }
-    setSprings(i => {
-      if (i < currentIndex - 1 || i > currentIndex + 1)
-        return { display: 'none' }
-      const x = (i - currentIndex) * window?.innerWidth
-      return { x, display: 'flex' }
-    })
   })
 
   const workContents = springs.map(({ x, display }, i) => (
