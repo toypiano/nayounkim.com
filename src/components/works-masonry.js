@@ -85,7 +85,7 @@ const WorksMasonry = ({ works, openOverlay, setCurrentIndex }) => {
           key={work.node.frontmatter.slug}
           work={work}
           openOverlay={openOverlay}
-          setCurrentIndex={() => setCurrentIndex(i)}
+          updateCurrentIndex={() => setCurrentIndex(i)}
         />
       ))}
     </StyledMasonry>

@@ -36,7 +36,7 @@ const StyledWork = styled.div`
   }
 `
 
-const Work = ({ work, openOverlay, setCurrentIndex }) => {
+const Work = ({ work, openOverlay, updateCurrentIndex }) => {
   // when changing image name, things can get weird due to the caching.
   // try deleting .cache folder and rebuild
   if (!work.node.frontmatter.featuredImage) {
@@ -45,13 +45,14 @@ const Work = ({ work, openOverlay, setCurrentIndex }) => {
 
   const dispatch = useLayoutDispatch()
 
-  const handleClick = e => {
+  const handleClick = () => {
     dispatch({ type: actionTypes.LOCK_SCROLL })
     openOverlay()
-    setCurrentIndex()
+    updateCurrentIndex()
   }
+
   return (
-    <StyledWork className="image">
+    <StyledWork className="image" id={work.node.frontmatter.slug}>
       <a href={`#${work.node.frontmatter.slug}`} onClick={handleClick}>
         <div className="overlay-text">
           <figcaption>{work.node.frontmatter.title}</figcaption>
@@ -67,7 +68,7 @@ const Work = ({ work, openOverlay, setCurrentIndex }) => {
 }
 
 Work.propTypes = {
-  setCurrentIndex: PropTypes.func.isRequired,
+  updateCurrentIndex: PropTypes.func.isRequired,
   openOverlay: PropTypes.func.isRequired,
   work: shape({
     node: shape({

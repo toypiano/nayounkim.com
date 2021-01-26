@@ -74,7 +74,8 @@ const PortfolioPage = ({ data, location }) => {
   const closeOverlay = () => {
     dispatch({ type: 'OVERLAY_CLOSE' })
     layoutDispatch({ type: 'UNLOCK_SCROLL' })
-    navigate('/portfolio/')
+    // const slug = works[currentIndex].node.frontmatter.slug
+    // navigate(`#${slug}`)
   }
 
   const setCurrentIndex = index => {
@@ -93,12 +94,7 @@ const PortfolioPage = ({ data, location }) => {
     <TransitionFade>
       <SEO title="Home" />
       <StyledPortfolioPage>
-        <WorksMasonry
-          works={works}
-          openOverlay={openOverlay}
-          setCurrentIndex={setCurrentIndex}
-        />
-        {showOverlay && (
+        {showOverlay ? (
           <GalleryOverlay
             show={showOverlay}
             closeOverlay={closeOverlay}
@@ -107,6 +103,12 @@ const PortfolioPage = ({ data, location }) => {
             setCurrentIndex={setCurrentIndex}
             next={next}
             prev={prev}
+          />
+        ) : (
+          <WorksMasonry
+            works={works}
+            openOverlay={openOverlay}
+            setCurrentIndex={setCurrentIndex}
           />
         )}
       </StyledPortfolioPage>

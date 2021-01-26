@@ -70,7 +70,7 @@ export const GlobalStyle = createGlobalStyle`
     -ms-text-size-adjust: 100%;
     -webkit-text-size-adjust: 100%;
     box-sizing: border-box;
-    scroll-behavior: smooth;
+    /* scroll-behavior: smooth; */
     
     /* Fluid font size */
     font-size: 100%;
@@ -107,10 +107,9 @@ export const GlobalStyle = createGlobalStyle`
     -webkit-font-feature-settings: "kern", "liga", "clig", "calt";
     font-feature-settings: "kern", "liga", "clig", "calt";
     background-color: var(--bg);
-
-    
   }
 
+  /* Normalize */
   h1, h2, h3,h4, h5, h6, p {
     margin: 0;
     line-height: 1.6;
@@ -168,6 +167,11 @@ export const GlobalStyle = createGlobalStyle`
     padding: 0;
   }
 
+  figure {
+    margin: 0;
+  }
+
+  /* Classes */
   .sr-only:not(:focus):not(:active) {
       overflow: hidden;
       white-space: nowrap;

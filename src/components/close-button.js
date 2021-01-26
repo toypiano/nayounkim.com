@@ -2,7 +2,7 @@ import React from 'react'
 import { Component } from 'react'
 import styled from 'styled-components'
 
-const StyledCloseButton = styled.button`
+const StyledCloseButton = styled.a`
   --size: 40px;
   margin-left: 2em;
   padding: 8px;
@@ -18,8 +18,13 @@ const StyledCloseButton = styled.button`
   }
 `
 
-const CloseButton = ({ onClick, style, className }) => (
-  <StyledCloseButton className={className} onClick={onClick} style={style}>
+const CloseButton = ({ onClick, style, className, backTo }) => (
+  <StyledCloseButton
+    className={className}
+    onClick={onClick}
+    style={style}
+    href={`#${backTo}`}
+  >
     <span>&#10005;</span>
   </StyledCloseButton>
 )

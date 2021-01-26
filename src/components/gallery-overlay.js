@@ -1,7 +1,7 @@
-import React, { useEffect } from 'react'
+import React, { useEffect, useRef } from 'react'
 import { navigate } from 'gatsby'
 import PropTypes from 'prop-types'
-import { useSprings, animated } from 'react-spring'
+import { useSpring, animated, useTransition } from 'react-spring'
 import { useDrag } from 'react-use-gesture'
 import clamp from 'lodash-es/clamp'
 import styled from 'styled-components'
@@ -12,7 +12,7 @@ import { BsChevronLeft, BsChevronRight } from 'react-icons/bs'
 const StyledGalleryOverlay = styled.div`
   position: fixed;
   z-index: var(--z-gallery-overlay);
-  overflow: hidden;
+  /* overflow: hidden; */
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -22,6 +22,7 @@ const StyledGalleryOverlay = styled.div`
   bottom: 0;
   left: 0;
   background: var(--white);
+  will-change: opacity;
   .close-button {
     position: absolute;
     top: 1rem;
@@ -51,11 +52,15 @@ const StyledGalleryOverlay = styled.div`
   .next-button {
     right: var(--distance);
   }
-
-  .work-content {
-    position: absolute;
-    width: 100%;
+  .work-contents {
     height: 90%;
+    position: absolute;
+    left: 0;
+    display: flex;
+    will-change: transform; // this impacts optimization a lot!
+  }
+  .work-content {
+    height: 100%;
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -101,29 +106,34 @@ const GalleryOverlay = ({
   next,
   prev,
 }) => {
-  const [springs, setSprings] = useSprings(works.length, () => ({}))
+  const isInitialMount = useRef(true)
+
+  const transition = useTransition(show, {
+    from: { opacity: 0 },
+    enter: { opacity: 1 },
+  })
+  const [{ x }, setSpring] = useSpring(() => ({}))
   // no animation on mount
   useEffect(() => {
-    setSprings(i => {
-      const x = (i - currentIndex) * window?.innerWidth
-      if (i < currentIndex - 1 || i > currentIndex + 1)
-        return { to: { x, display: 'none' } }
-      return { to: { x, display: 'flex' }, immediate: true }
+    console.log('overlay mount')
+    setSpring({
+      to: { x: -1 * currentIndex * window?.innerWidth },
+      immediate: true,
     })
   }, [])
 
   // animate on prev / next
   useEffect(() => {
-    setSprings(i => {
-      const x = (i - currentIndex) * window?.innerWidth
-      if (i < currentIndex - 1 || i > currentIndex + 1)
-        return { to: { x, display: 'none' } }
-      return {
-        to: { x, display: 'flex' },
-      }
-    })
+    if (isInitialMount.current) {
+      isInitialMount.current = false
+    } else {
+      console.log('overlay update')
+      setSpring({
+        to: { x: -1 * currentIndex * window?.innerWidth },
+      })
 
-    navigate(`/portfolio/#${works[currentIndex].node.frontmatter.slug}`)
+      navigate(`/portfolio/#${works[currentIndex].node.frontmatter.slug}`)
+    }
   }, [currentIndex])
 
   // animate on swipe gesture
@@ -137,17 +147,16 @@ const GalleryOverlay = ({
     }
   })
 
-  const workContents = springs.map(({ x, display }, i) => (
-    <animated.div
-      {...bind()}
+  const workContents = works.map((work, i) => (
+    <figure
       className="work-content"
       key={i}
-      style={{ display, x }}
+      style={{ width: `${window?.innerWidth}px` }}
     >
       <Img
         className="overlay-img"
-        fluid={works[i].node.frontmatter.featuredImage.childImageSharp.fluid}
-        alt={works[i].node.frontmatter.title}
+        fluid={work.node.frontmatter.featuredImage.childImageSharp.fluid}
+        alt={work.node.frontmatter.title}
         imgStyle={{
           objectFit: 'contain',
           height: '100%',
@@ -159,26 +168,35 @@ const GalleryOverlay = ({
         draggable={false}
       />
       <div className="overlay-caption">
-        <figcaption>{works[i].node.frontmatter.title}</figcaption>
+        <figcaption>{work.node.frontmatter.title}</figcaption>
       </div>
-    </animated.div>
+    </figure>
   ))
 
+  const AnimatedStyledGalleryOverlay = animated(StyledGalleryOverlay)
+
   return (
-    <StyledGalleryOverlay show={show}>
-      <CloseButton
-        className="close-button"
-        onClick={closeOverlay}
-        style={{ color: 'black' }}
-      />
-      {workContents}
-      <button className="prev-button" onClick={prev}>
-        <BsChevronLeft />
-      </button>
-      <button className="next-button" onClick={next}>
-        <BsChevronRight />
-      </button>
-    </StyledGalleryOverlay>
+    <>
+      {transition(({ opacity }, show) => (
+        <AnimatedStyledGalleryOverlay show={show} style={{ opacity }}>
+          <CloseButton
+            className="close-button"
+            onClick={closeOverlay}
+            style={{ color: 'black' }}
+            backTo={works[currentIndex].node.frontmatter.slug}
+          />
+          <animated.div {...bind()} className="work-contents" style={{ x }}>
+            {workContents}
+          </animated.div>
+          <button className="prev-button" onClick={prev}>
+            <BsChevronLeft />
+          </button>
+          <button className="next-button" onClick={next}>
+            <BsChevronRight />
+          </button>
+        </AnimatedStyledGalleryOverlay>
+      ))}
+    </>
   )
 }
 
