@@ -1,4 +1,4 @@
-import React, { useState, useReducer } from 'react'
+import React, { useState, useEffect, useReducer } from 'react'
 import PropTypes, { shape } from 'prop-types'
 import { graphql, navigate } from 'gatsby'
 import SEO from '../components/seo'
@@ -12,29 +12,14 @@ const StyledPortfolioPage = styled.div`
   overflow: hidden;
 `
 
-const portfolioReducer = (state, action) => {
-  switch (action.type) {
-    case 'OVERLAY_OPEN':
-      return {
-        ...state,
-        showOverlay: true,
-      }
-    case 'OVERLAY_CLOSE':
-      return {
-        ...state,
-        showOverlay: false,
-      }
-    case 'SET_CURRENT_INDEX':
-      return {
-        ...state,
-        currentIndex: action.payload ?? state.currentIndex,
-      }
-    default:
-      return state
-  }
-}
-
 const PortfolioPage = ({ data, location }) => {
+  const layoutDispatch = useLayoutDispatch()
+  // on page mount, remove any hash params and make sure the scroll is unlocked
+  useEffect(() => {
+    navigate('/portfolio/', { replace: true }) // history.replace (default: push)
+    layoutDispatch({ type: 'UNLOCK_DISPATCH' })
+  }, [])
+
   const {
     allMarkdownRemark: { edges: works },
   } = data
@@ -45,7 +30,37 @@ const PortfolioPage = ({ data, location }) => {
     prevIndex: 2,
   }
 
-  const layoutDispatch = useLayoutDispatch()
+  const portfolioReducer = (state, action) => {
+    switch (action.type) {
+      case 'OVERLAY_OPEN':
+        return {
+          ...state,
+          showOverlay: true,
+        }
+      case 'OVERLAY_CLOSE':
+        return {
+          ...state,
+          showOverlay: false,
+        }
+      case 'SET_CURRENT_INDEX':
+        return {
+          ...state,
+          currentIndex: action.payload ?? state.currentIndex,
+        }
+      case 'NEXT':
+        return {
+          ...state,
+          currentIndex: (state.currentIndex + 1) % works.length,
+        }
+      case 'PREV':
+        return {
+          ...state,
+          currentIndex: (state.currentIndex - 1 + works.length) % works.length,
+        }
+      default:
+        return state
+    }
+  }
 
   const [{ showOverlay, currentIndex }, dispatch] = useReducer(
     portfolioReducer,
@@ -59,12 +74,20 @@ const PortfolioPage = ({ data, location }) => {
   const closeOverlay = () => {
     dispatch({ type: 'OVERLAY_CLOSE' })
     layoutDispatch({ type: 'UNLOCK_SCROLL' })
-    navigate(-1)
+    navigate('/portfolio/')
   }
 
   const setCurrentIndex = index => {
     console.log({ index })
     dispatch({ type: 'SET_CURRENT_INDEX', payload: index })
+  }
+
+  const next = () => {
+    dispatch({ type: 'NEXT' })
+  }
+
+  const prev = () => {
+    dispatch({ type: 'PREV' })
   }
 
   return (
@@ -76,11 +99,17 @@ const PortfolioPage = ({ data, location }) => {
           openOverlay={openOverlay}
           setCurrentIndex={setCurrentIndex}
         />
-        <GalleryOverlay
-          work={works[currentIndex]}
-          show={showOverlay}
-          closeOverlay={closeOverlay}
-        />
+        {showOverlay && (
+          <GalleryOverlay
+            show={showOverlay}
+            closeOverlay={closeOverlay}
+            currentIndex={currentIndex}
+            works={works}
+            setCurrentIndex={setCurrentIndex}
+            next={next}
+            prev={prev}
+          />
+        )}
       </StyledPortfolioPage>
     </TransitionFade>
   )
