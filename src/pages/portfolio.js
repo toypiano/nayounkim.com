@@ -1,6 +1,7 @@
 import React, { useEffect, useReducer } from 'react'
 import PropTypes, { shape } from 'prop-types'
 import { graphql, navigate } from 'gatsby'
+import { useTransition, animated } from 'react-spring'
 import SEO from '../components/seo'
 import TransitionFade from '../components/transition-fade'
 import styled from 'styled-components'
@@ -90,27 +91,37 @@ const PortfolioPage = ({ data, location }) => {
     dispatch({ type: 'PREV' })
   }
 
+  const transition = useTransition(showOverlay, {
+    from: { opacity: 0 },
+    enter: { opacity: 1 },
+  })
+
+  const AnimatedGalleryOverlay = animated(GalleryOverlay)
+
   return (
     <TransitionFade>
       <SEO title="Home" />
       <StyledPortfolioPage>
-        {showOverlay ? (
-          <GalleryOverlay
-            show={showOverlay}
-            closeOverlay={closeOverlay}
-            currentIndex={currentIndex}
-            works={works}
-            setCurrentIndex={setCurrentIndex}
-            next={next}
-            prev={prev}
-          />
-        ) : (
-          <WorksMasonry
-            works={works}
-            openOverlay={openOverlay}
-            setCurrentIndex={setCurrentIndex}
-          />
+        {transition(
+          ({ opacity }, showOverlay) =>
+            showOverlay && (
+              <AnimatedGalleryOverlay
+                show={showOverlay}
+                closeOverlay={closeOverlay}
+                currentIndex={currentIndex}
+                works={works}
+                setCurrentIndex={setCurrentIndex}
+                next={next}
+                prev={prev}
+                style={{ opacity }}
+              />
+            )
         )}
+        <WorksMasonry
+          works={works}
+          openOverlay={openOverlay}
+          setCurrentIndex={setCurrentIndex}
+        />
       </StyledPortfolioPage>
     </TransitionFade>
   )
@@ -129,7 +140,7 @@ export const query = graphql`
             featuredImage {
               childImageSharp {
                 fluid(maxWidth: 800) {
-                  ...GatsbyImageSharpFluid
+                  ...GatsbyImageSharpFluid_withWebp_noBase64
                 }
               }
             }

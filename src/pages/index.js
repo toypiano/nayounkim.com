@@ -4,7 +4,6 @@ import { mq } from '../styles'
 import mainGif from '../assets/images/main-810-opt.gif'
 import TransitionFade from '../components/transition-fade'
 
-// TODO: reduce gif size to 810px * 810px
 const StyledIndexPage = styled.div`
   height: 100%;
 

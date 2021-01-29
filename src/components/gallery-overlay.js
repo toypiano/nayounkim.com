@@ -1,7 +1,7 @@
-import React, { useEffect, useRef } from 'react'
+import React, { useEffect, useRef, useState } from 'react'
 import { navigate } from 'gatsby'
 import PropTypes from 'prop-types'
-import { useSpring, animated, useTransition } from 'react-spring'
+import { useSpring, animated } from 'react-spring'
 import { useDrag } from 'react-use-gesture'
 import clamp from 'lodash-es/clamp'
 import styled from 'styled-components'
@@ -23,12 +23,18 @@ const StyledGalleryOverlay = styled.div`
   left: 0;
   background: var(--white);
   will-change: opacity;
+  --btn-bg: rgba(255, 255, 255, 0.7);
+  --control-margin: calc(1vh + 3vw);
   .close-button {
     position: absolute;
-    top: 1rem;
-    right: 1rem;
+    top: 1.5rem;
+    right: 1.5rem;
     z-index: 100;
-    background-color: rgba(255, 255, 255, 0.6);
+    background-color: var(--btn-bg);
+
+    span {
+      font-size: 2rem;
+    }
   }
 
   .prev-button,
@@ -36,21 +42,23 @@ const StyledGalleryOverlay = styled.div`
     display: none;
     position: absolute;
     top: 50%;
-    z-index: 100;
-    font-size: 2.25rem;
-    opacity: 0.4;
-    transition: all 250ms ease-in-out;
-    &:hover {
-      opacity: 1;
-      transform: scale(1.1);
+    width: 50px;
+    height: 50px;
+    svg {
+      width: 100%;
+      height: 100%;
     }
+    z-index: 100;
+    background: var(--btn-bg);
+    opacity: ${props => (props.showControls ? 1 : 0)};
+    transition: all 250ms ease-in-out;
   }
-  --distance: calc(0.5vh + 1.2vw);
+
   .prev-button {
-    left: var(--distance);
+    left: var(--control-margin);
   }
   .next-button {
-    right: var(--distance);
+    right: var(--control-margin);
   }
   .work-contents {
     height: 90%;
@@ -96,7 +104,7 @@ const StyledGalleryOverlay = styled.div`
   }
 `
 // TODO: refactor
-// TODO: hide buttons after 1 sec of inactivity. show on mouse move
+
 const GalleryOverlay = ({
   show,
   closeOverlay,
@@ -107,19 +115,25 @@ const GalleryOverlay = ({
   prev,
 }) => {
   const isInitialMount = useRef(true)
+  const hideControlTimeoutRef = useRef(null)
 
-  const transition = useTransition(show, {
-    from: { opacity: 0 },
-    enter: { opacity: 1 },
-  })
+  const [showControls, setShowControls] = useState(false)
+
   const [{ x }, setSpring] = useSpring(() => ({}))
   // no animation on mount
   useEffect(() => {
-    console.log('overlay mount')
     setSpring({
       to: { x: -1 * currentIndex * window?.innerWidth },
       immediate: true,
     })
+  }, [])
+
+  useEffect(() => {
+    return () => {
+      if (hideControlTimeoutRef.current) {
+        window?.clearTimeout(hideControlTimeoutRef.current)
+      }
+    }
   }, [])
 
   // animate on prev / next
@@ -127,7 +141,6 @@ const GalleryOverlay = ({
     if (isInitialMount.current) {
       isInitialMount.current = false
     } else {
-      console.log('overlay update')
       setSpring({
         to: { x: -1 * currentIndex * window?.innerWidth },
       })
@@ -146,6 +159,17 @@ const GalleryOverlay = ({
       setCurrentIndex(clamped)
     }
   })
+
+  const flashControls = () => {
+    if (hideControlTimeoutRef.current !== null) return
+
+    window?.clearTimeout(hideControlTimeoutRef.current)
+    hideControlTimeoutRef.current = window?.setTimeout(() => {
+      setShowControls(false)
+      hideControlTimeoutRef.current = null
+    }, 2000)
+    setShowControls(true)
+  }
 
   const workContents = works.map((work, i) => (
     <figure
@@ -173,30 +197,29 @@ const GalleryOverlay = ({
     </figure>
   ))
 
-  const AnimatedStyledGalleryOverlay = animated(StyledGalleryOverlay)
-
   return (
-    <>
-      {transition(({ opacity }, show) => (
-        <AnimatedStyledGalleryOverlay show={show} style={{ opacity }}>
-          <CloseButton
-            className="close-button"
-            onClick={closeOverlay}
-            style={{ color: 'black' }}
-            backTo={works[currentIndex].node.frontmatter.slug}
-          />
-          <animated.div {...bind()} className="work-contents" style={{ x }}>
-            {workContents}
-          </animated.div>
-          <button className="prev-button" onClick={prev}>
-            <BsChevronLeft />
-          </button>
-          <button className="next-button" onClick={next}>
-            <BsChevronRight />
-          </button>
-        </AnimatedStyledGalleryOverlay>
-      ))}
-    </>
+    <StyledGalleryOverlay
+      show={show}
+      showControls={showControls}
+      onMouseMove={flashControls}
+      onClick={flashControls}
+    >
+      <CloseButton
+        className="close-button"
+        onClick={closeOverlay}
+        style={{ color: 'black' }}
+        backTo={works[currentIndex].node.frontmatter.slug}
+      />
+      <animated.div {...bind()} className="work-contents" style={{ x }}>
+        {workContents}
+      </animated.div>
+      <button className="prev-button" onClick={prev}>
+        <BsChevronLeft />
+      </button>
+      <button className="next-button" onClick={next}>
+        <BsChevronRight />
+      </button>
+    </StyledGalleryOverlay>
   )
 }
 
