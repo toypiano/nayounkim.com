@@ -4,7 +4,7 @@ import { useRef, useEffect } from 'react'
  * Returns saved value from the last render
  * @param value
  */
-export function usePrevious(value) {
+export default function usePrevious(value) {
   const ref = useRef(null)
   useEffect(() => {
     console.log('usePrevious effect')
