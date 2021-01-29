@@ -75,20 +75,23 @@ const StyledMasonry = styled(Masonry)`
 
 const WorksMasonry = ({ works, openOverlay, setCurrentIndex }) => {
   return (
-    <StyledMasonry
-      breakpointCols={breakpointColumnsObj}
-      className="main-masonry-grid"
-      columnClassName="main-masonry-grid_column"
-    >
-      {works.map((work, i) => (
-        <Work
-          key={work.node.frontmatter.slug}
-          work={work}
-          openOverlay={openOverlay}
-          updateCurrentIndex={() => setCurrentIndex(i)}
-        />
-      ))}
-    </StyledMasonry>
+    <div>
+      <StyledMasonry
+        breakpointCols={breakpointColumnsObj}
+        className="main-masonry-grid"
+        columnClassName="main-masonry-grid_column"
+      >
+        {works.map((work, i) => (
+          <Work
+            blur={i === 0}
+            key={work.node.frontmatter.slug}
+            work={work}
+            openOverlay={openOverlay}
+            updateCurrentIndex={() => setCurrentIndex(i)}
+          />
+        ))}
+      </StyledMasonry>
+    </div>
   )
 }
 

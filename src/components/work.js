@@ -42,14 +42,13 @@ const StyledWork = styled.div`
   }
 `
 
-const Work = ({ work, openOverlay, updateCurrentIndex }) => {
+const Work = ({ work, openOverlay, updateCurrentIndex, blur }) => {
   const ref = useRef()
-
-  // fix iphone6 chrome focusing the first work component on page load
   useEffect(() => {
-    ref.current.blur()
-  }, [])
-
+    if (blur) {
+      ref.current.blur()
+    }
+  }, [blur])
   // when changing image name, things can get weird due to the caching.
   // try deleting .cache folder and rebuild
   if (!work.node.frontmatter.featuredImage) {
@@ -65,8 +64,12 @@ const Work = ({ work, openOverlay, updateCurrentIndex }) => {
   }
 
   return (
-    <StyledWork className="image" id={work.node.frontmatter.slug} ref={ref}>
-      <a href={`#${work.node.frontmatter.slug}`} onClick={handleClick}>
+    <StyledWork className="image" id={work.node.frontmatter.slug}>
+      <a
+        href={`#${work.node.frontmatter.slug}`}
+        onClick={handleClick}
+        ref={ref}
+      >
         <div className="overlay-text">
           <figcaption>{work.node.frontmatter.title}</figcaption>
         </div>

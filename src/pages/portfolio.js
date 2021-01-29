@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useReducer } from 'react'
+import React, { useEffect, useReducer } from 'react'
 import PropTypes, { shape } from 'prop-types'
 import { graphql, navigate } from 'gatsby'
 import SEO from '../components/seo'
