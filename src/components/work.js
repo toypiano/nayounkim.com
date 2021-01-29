@@ -43,12 +43,6 @@ const StyledWork = styled.div`
 `
 
 const Work = ({ work, openOverlay, updateCurrentIndex, blur }) => {
-  const ref = useRef()
-  useEffect(() => {
-    if (blur) {
-      ref.current.blur()
-    }
-  }, [blur])
   // when changing image name, things can get weird due to the caching.
   // try deleting .cache folder and rebuild
   if (!work.node.frontmatter.featuredImage) {
@@ -65,11 +59,7 @@ const Work = ({ work, openOverlay, updateCurrentIndex, blur }) => {
 
   return (
     <StyledWork className="image" id={work.node.frontmatter.slug}>
-      <a
-        href={`#${work.node.frontmatter.slug}`}
-        onClick={handleClick}
-        ref={ref}
-      >
+      <a href={`#${work.node.frontmatter.slug}`} onClick={handleClick}>
         <div className="overlay-text">
           <figcaption>{work.node.frontmatter.title}</figcaption>
         </div>

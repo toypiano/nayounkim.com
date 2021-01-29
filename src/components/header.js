@@ -1,6 +1,7 @@
 import PropTypes from 'prop-types'
-import React from 'react'
+import React, { useEffect, useRef } from 'react'
 import { Link } from 'gatsby'
+import { useLocation } from '@reach/router'
 import styled from 'styled-components'
 import logo from '../assets/images/nayounkim-logo.png'
 
@@ -79,6 +80,14 @@ const StyledHeader = styled.header`
 `
 
 const Header = () => {
+  const ref = useRef()
+  const location = useLocation()
+  // prevent first image im portfolio from being auto-focused in iOS
+  useEffect(() => {
+    if (location.pathname === '/portfolio/') {
+      ref.current.focus()
+    }
+  }, [])
   const [isMenuOpen, setIsMenuOpen] = useState(false)
 
   const openMenu = () => setIsMenuOpen(true)
@@ -87,7 +96,7 @@ const Header = () => {
   return (
     <>
       <StyledHeader>
-        <div className="logo">
+        <div className="logo" ref={ref}>
           <Link to="/">
             <img src={logo} alt="logo" />
             {/* <h1>Nayoun Kim</h1> */}
