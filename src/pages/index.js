@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react'
+import React from 'react'
 import styled from 'styled-components'
 import { mq } from '../styles'
 import mainGif from '../assets/images/main-810-opt.gif'
@@ -33,7 +33,6 @@ const StyledIndexPage = styled.div`
 `
 
 const IndexPage = () => {
-  useEffect(() => {})
   return (
     <TransitionFade>
       <StyledIndexPage>

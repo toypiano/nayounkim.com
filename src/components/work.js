@@ -2,8 +2,8 @@ import React, { useEffect, useRef, useState } from 'react'
 import styled from 'styled-components'
 import PropTypes, { shape } from 'prop-types'
 import ImageContainer from './image-container'
-import { useLayoutDispatch, actionTypes } from '../store'
 import Likes from './likes'
+import { useScrollLock } from '../hooks/useScrollLock'
 
 const StyledWork = styled.div`
   position: relative;
@@ -65,10 +65,10 @@ const Work = ({ work, openOverlay, updateCurrentIndex, blur }) => {
     console.log(work.node.frontmatter.title)
   }
 
-  const dispatch = useLayoutDispatch()
+  const { lockScroll } = useScrollLock()
 
   const handleWorkClick = () => {
-    dispatch({ type: actionTypes.LOCK_SCROLL })
+    lockScroll()
     openOverlay()
     updateCurrentIndex()
   }
