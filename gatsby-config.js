@@ -73,5 +73,19 @@ module.exports = {
         },
       },
     },
+    {
+      resolve: 'gatsby-plugin-firebase',
+      options: {
+        credentials: {
+          apiKey: 'AIzaSyCzkljDHvmPSVRtoknLENk2OjP6l6MD2OQ',
+          authDomain: 'nayounkim-likes.firebaseapp.com',
+          projectId: 'nayounkim-likes',
+          storageBucket: 'nayounkim-likes.appspot.com',
+          messagingSenderId: '444459006097',
+          appId: '1:444459006097:web:d18e4127da70220f51e730',
+          measurementId: 'G-W0X88HJS7L',
+        },
+      },
+    },
   ],
 }

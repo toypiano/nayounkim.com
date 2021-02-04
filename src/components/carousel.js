@@ -1,4 +1,5 @@
 import React from 'react'
+import PropTypes from 'prop-types'
 import { animated } from 'react-spring'
 import styled from 'styled-components'
 import Img from 'gatsby-image'
@@ -80,6 +81,12 @@ const Carousel = ({ currentIndex, setCurrentIndex, works }) => {
       {workContents}
     </AnimatedStyledCarousel>
   )
+}
+
+Carousel.propTypes = {
+  currentIndex: PropTypes.number.isRequired,
+  setCurrentIndex: PropTypes.func.isRequired,
+  works: PropTypes.arrayOf(PropTypes.object),
 }
 
 export default Carousel

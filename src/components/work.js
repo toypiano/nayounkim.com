@@ -3,7 +3,7 @@ import styled from 'styled-components'
 import PropTypes, { shape } from 'prop-types'
 import ImageContainer from './image-container'
 import { useLayoutDispatch, actionTypes } from '../store'
-import { BsHeart, BsHeartFill } from 'react-icons/bs'
+import Likes from './likes'
 
 const StyledWork = styled.div`
   position: relative;
@@ -25,20 +25,6 @@ const StyledWork = styled.div`
     color: var(--text-inverse);
     padding: 0.5em 0.75em;
     transition: bottom 200ms ease-in-out;
-    .likes {
-      display: flex;
-      align-items: center;
-    }
-    .like-button {
-      width: 1.5rem;
-      height: 1.5rem;
-      padding: 0.25rem;
-      svg {
-        display: inline-block;
-        width: 100%;
-        height: 100%;
-      }
-    }
   }
   .overlay-bg {
     position: absolute;
@@ -101,16 +87,7 @@ const Work = ({ work, openOverlay, updateCurrentIndex, blur }) => {
       </a>
       <div className="overlay-content">
         <figcaption>{work.node.frontmatter.title}</figcaption>
-        <div className="likes">
-          <button className="like-button" onClick={handleLikeClick}>
-            {liked ? (
-              <BsHeartFill style={{ color: 'red' }} />
-            ) : (
-              <BsHeart style={{ color: 'white' }} />
-            )}
-          </button>
-          <span className="like-count">123</span>
-        </div>
+        <Likes liked={liked} handleLikeClick={handleLikeClick} />
       </div>
       <div className="overlay-bg"></div>
     </StyledWork>
