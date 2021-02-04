@@ -8,6 +8,12 @@ import { BsHeart, BsHeartFill } from 'react-icons/bs'
 const StyledWork = styled.div`
   position: relative;
   overflow: hidden;
+  .work-link {
+    display: block;
+    width: 100%;
+    height: 100%;
+  }
+
   .overlay-content {
     position: absolute;
     z-index: 10;
@@ -36,17 +42,15 @@ const StyledWork = styled.div`
   }
   .overlay-bg {
     position: absolute;
+    top: 0;
+    left: 0;
     width: 101%;
     height: 101%;
     z-index: 7;
     background-color: #000000;
     opacity: 0;
     transition: all 200ms ease-in-out;
-  }
-  a {
-    display: block;
-    width: 100%;
-    height: 100%;
+    pointer-events: none; // allow user to click link through overlay
   }
 
   &:hover,
@@ -91,20 +95,24 @@ const Work = ({ work, openOverlay, updateCurrentIndex, blur }) => {
   }
 
   return (
-    <StyledWork className="image" id={work.node.frontmatter.slug}>
+    <StyledWork className="work" id={work.node.frontmatter.slug}>
+      <a className="work-link" href={`#${slug}`} onClick={handleWorkClick}>
+        <ImageContainer fluid={fluid} alt={title} />
+      </a>
       <div className="overlay-content">
         <figcaption>{work.node.frontmatter.title}</figcaption>
         <div className="likes">
           <button className="like-button" onClick={handleLikeClick}>
-            {liked ? <BsHeartFill style={{ color: 'red' }} /> : <BsHeart />}
+            {liked ? (
+              <BsHeartFill style={{ color: 'red' }} />
+            ) : (
+              <BsHeart style={{ color: 'white' }} />
+            )}
           </button>
           <span className="like-count">123</span>
         </div>
       </div>
       <div className="overlay-bg"></div>
-      <a href={`#${slug}`} onClick={handleWorkClick}>
-        <ImageContainer fluid={fluid} alt={title} />
-      </a>
     </StyledWork>
   )
 }
