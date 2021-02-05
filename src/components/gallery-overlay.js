@@ -74,6 +74,7 @@ const GalleryOverlay = ({
   setCurrentIndex,
   next,
   prev,
+  toggleLike,
 }) => {
   const [showControls, flashControls] = useMotionAppear()
 
@@ -100,6 +101,7 @@ const GalleryOverlay = ({
         currentIndex={currentIndex}
         setCurrentIndex={setCurrentIndex}
         works={works}
+        toggleLike={toggleLike}
       />
     </StyledGalleryOverlay>
   )
@@ -119,6 +121,7 @@ GalleryOverlay.propTypes = {
   setCurrentIndex: PropTypes.func.isRequired,
   next: PropTypes.func.isRequired,
   prev: PropTypes.func.isRequired,
+  toggleLike: PropTypes.func.isRequired,
 }
 
 export default GalleryOverlay

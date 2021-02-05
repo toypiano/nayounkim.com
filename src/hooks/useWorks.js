@@ -9,29 +9,41 @@ export const useWorks = allMarkdownRemark => {
       title: frontmatter.title,
       slug: frontmatter.slug,
       likes: 0,
+      liked:
+        window?.localStorage.getItem('like:' + frontmatter.title) === 'true'
+          ? true
+          : false,
     })
   )
 
   const [works, setWorks] = useState(initialWorks)
 
-  function updateWorks(querySnapshot) {
-    const updatingWorks = works.map(work => ({ ...work })) // deep-copy works
-    // Update works state with existing work from db
+  function updateWorks(querySnapshot, liked, likedTitle) {
+    const newWorks = works.map(work => ({ ...work })) // deep-copy works
+
+    if (likedTitle) {
+      // update liked state of the toggled work
+      const likedWorkIndex = newWorks.findIndex(
+        newWork => newWork.title === likedTitle
+      )
+      newWorks[likedWorkIndex].liked = liked
+    }
+
+    // sync works with the db
     querySnapshot.forEach(doc => {
-      console.log({ id: doc.id, data: doc.data() })
       const { title, likes } = doc.data()
 
-      const matchingWorkIndex = updatingWorks.findIndex(
-        updatingWork => updatingWork.title === title
+      const matchingWorkIndex = newWorks.findIndex(
+        newWork => newWork.title === title
       )
-      // If work exists in db, manually update matching property from works state.
+      // If work exists in db, manually update likes and id from works state.
       if (matchingWorkIndex >= 0) {
-        updatingWorks[matchingWorkIndex].likes = likes
-        updatingWorks[matchingWorkIndex].id = doc.id
+        newWorks[matchingWorkIndex].likes = likes
+        newWorks[matchingWorkIndex].id = doc.id
       }
     })
 
-    setWorks(updatingWorks)
+    setWorks(newWorks)
   }
 
   useEffect(() => {
@@ -57,6 +69,10 @@ export const useWorks = allMarkdownRemark => {
           },
           { merge: true }
         )
+      await db
+        .collection('likes:test')
+        .get()
+        .then(querySnapshot => updateWorks(querySnapshot, false, work.title))
     } else {
       window?.localStorage.setItem(itemKey, 'true')
       await db
@@ -70,9 +86,11 @@ export const useWorks = allMarkdownRemark => {
           },
           { merge: true }
         )
+      await db
+        .collection('likes:test')
+        .get()
+        .then(querySnapshot => updateWorks(querySnapshot, true, work.title))
     }
-
-    await db.collection('likes:test').get().then(updateWorks)
   }
 
   return [works, toggleLike]

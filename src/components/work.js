@@ -52,11 +52,7 @@ const StyledWork = styled.div`
 
 const Work = ({ work, openOverlay, updateCurrentIndex, toggleLike }) => {
   const { fluid, title, slug } = work
-  const likeId = 'like:' + title
-  const initialLiked =
-    window?.localStorage.getItem(likeId) === 'true' ? true : false
 
-  const [liked, setLiked] = useState(initialLiked)
   // when changing image name, things can get weird due to the caching.
   // try deleting .cache folder and rebuild
 
@@ -71,7 +67,6 @@ const Work = ({ work, openOverlay, updateCurrentIndex, toggleLike }) => {
   const handleLikeClick = e => {
     e.stopPropagation() // prevent GalleryOverlay from opening
     toggleLike()
-    setLiked(bool => !bool)
   }
 
   return (
@@ -82,7 +77,7 @@ const Work = ({ work, openOverlay, updateCurrentIndex, toggleLike }) => {
       <div className="overlay-content">
         <figcaption>{work.title}</figcaption>
         <Likes
-          liked={liked}
+          liked={work.liked}
           handleLikeClick={handleLikeClick}
           likes={work.likes}
         />

@@ -1,7 +1,6 @@
 import React, { useEffect } from 'react'
 import PropTypes, { shape } from 'prop-types'
 import { graphql, navigate } from 'gatsby'
-
 import { useTransition, animated } from 'react-spring'
 import SEO from '../components/seo'
 import TransitionFade from '../components/transition-fade'

@@ -30,7 +30,7 @@ const useCarousel = ({ currentIndex, setCurrentIndex, works }) => {
         to: { x: -1 * currentIndex * window?.innerWidth },
       })
 
-      navigate(`/portfolio/#${works[currentIndex].node.frontmatter.slug}`)
+      navigate(`/portfolio/#${works[currentIndex].slug}`)
     }
   }, [currentIndex])
 

@@ -4,6 +4,7 @@ import { animated } from 'react-spring'
 import styled from 'styled-components'
 import Img from 'gatsby-image'
 import { useCarousel } from '../hooks'
+import Likes from './likes'
 
 const StyledCarousel = styled.div`
   height: 90%;
@@ -72,6 +73,7 @@ const Carousel = ({ currentIndex, setCurrentIndex, works }) => {
       />
       <div className="overlay-caption">
         <figcaption>{work.title}</figcaption>
+        <Likes />
       </div>
     </figure>
   ))
@@ -87,6 +89,7 @@ Carousel.propTypes = {
   currentIndex: PropTypes.number.isRequired,
   setCurrentIndex: PropTypes.func.isRequired,
   works: PropTypes.arrayOf(PropTypes.object),
+  toggleLike: PropTypes.func.isRequired,
 }
 
 export default Carousel
