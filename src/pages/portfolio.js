@@ -1,6 +1,7 @@
-import React, { useEffect, useReducer } from 'react'
+import React, { useEffect } from 'react'
 import PropTypes, { shape } from 'prop-types'
 import { graphql, navigate } from 'gatsby'
+
 import { useTransition, animated } from 'react-spring'
 import SEO from '../components/seo'
 import TransitionFade from '../components/transition-fade'
@@ -9,24 +10,24 @@ import WorksMasonry from '../components/works-masonry'
 import GalleryOverlay from '../components/gallery-overlay'
 import { usePortfolio } from '../hooks/usePortfolio'
 import { useScrollLock } from '../hooks/useScrollLock'
+import { useWorks } from '../hooks/useWorks'
 
 const StyledPortfolioPage = styled.div`
   overflow: hidden;
 `
 
 const PortfolioPage = ({ data }) => {
+  const [works, toggleLike] = useWorks(data.allMarkdownRemark)
+
   // disable page scroll when overlay is up
 
-  const { unlockScroll } = useScrollLock()
   // on page mount, remove any hash params and make sure the scroll is unlocked
   useEffect(() => {
     navigate('/portfolio/', { replace: true }) // history.replace (default: push)
     unlockScroll()
   }, [])
 
-  const {
-    allMarkdownRemark: { edges: works },
-  } = data
+  const { unlockScroll } = useScrollLock()
 
   const {
     currentIndex,
@@ -61,6 +62,7 @@ const PortfolioPage = ({ data }) => {
                 next={next}
                 prev={prev}
                 style={{ opacity }}
+                toggleLike={toggleLike}
               />
             )
         )}
@@ -68,6 +70,7 @@ const PortfolioPage = ({ data }) => {
           works={works}
           openOverlay={openOverlay}
           setCurrentIndex={setCurrentIndex}
+          toggleLike={toggleLike}
         />
       </StyledPortfolioPage>
     </TransitionFade>

@@ -88,7 +88,7 @@ const GalleryOverlay = ({
         className="close-button"
         onClick={closeOverlay}
         style={{ color: 'black' }}
-        backTo={works[currentIndex].node.frontmatter.slug}
+        backTo={works[currentIndex].slug}
       />
       <button className="prev-button" onClick={prev}>
         <BsChevronLeft />
@@ -109,17 +109,9 @@ GalleryOverlay.propTypes = {
   currentIndex: PropTypes.number.isRequired,
   works: PropTypes.arrayOf(
     PropTypes.shape({
-      node: PropTypes.shape({
-        frontmatter: PropTypes.shape({
-          slug: PropTypes.string.isRequired,
-          title: PropTypes.string.isRequired,
-          featuredImage: PropTypes.shape({
-            childImageSharp: PropTypes.shape({
-              fluid: PropTypes.object,
-            }),
-          }),
-        }),
-      }),
+      slug: PropTypes.string.isRequired,
+      title: PropTypes.string.isRequired,
+      fluid: PropTypes.object,
     })
   ),
   closeOverlay: PropTypes.func.isRequired,

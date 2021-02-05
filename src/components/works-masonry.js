@@ -73,7 +73,7 @@ const StyledMasonry = styled(Masonry)`
   }
 `
 
-const WorksMasonry = ({ works, openOverlay, setCurrentIndex }) => {
+const WorksMasonry = ({ works, openOverlay, setCurrentIndex, toggleLike }) => {
   return (
     <div>
       <StyledMasonry
@@ -84,10 +84,11 @@ const WorksMasonry = ({ works, openOverlay, setCurrentIndex }) => {
         {works.map((work, i) => (
           <Work
             blur={i === 0}
-            key={work.node.frontmatter.slug}
+            key={work.slug}
             work={work}
             openOverlay={openOverlay}
             updateCurrentIndex={() => setCurrentIndex(i)}
+            toggleLike={() => toggleLike(work)}
           />
         ))}
       </StyledMasonry>
@@ -117,6 +118,7 @@ WorksMasonry.propTypes = {
       }),
     })
   ),
+  toggleLike: PropTypes.func.isRequired,
 }
 
 export default WorksMasonry

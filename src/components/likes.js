@@ -19,7 +19,7 @@ const StyledLikes = styled('div')`
   }
 `
 
-const Likes = ({ liked, handleLikeClick }) => {
+const Likes = ({ liked, handleLikeClick, likes }) => {
   return (
     <StyledLikes>
       <button className="like-button" onClick={handleLikeClick}>
@@ -29,13 +29,14 @@ const Likes = ({ liked, handleLikeClick }) => {
           <BsHeart style={{ color: 'white' }} />
         )}
       </button>
-      <span className="like-count">123</span>
+      <span className="like-count">{likes}</span>
     </StyledLikes>
   )
 }
 
 Likes.propTypes = {
   liked: PropTypes.bool.isRequired,
+  likes: PropTypes.number.isRequired,
   handleLikeClick: PropTypes.func.isRequired,
 }
 

@@ -58,8 +58,8 @@ const Carousel = ({ currentIndex, setCurrentIndex, works }) => {
     >
       <Img
         className="overlay-img"
-        fluid={work.node.frontmatter.featuredImage.childImageSharp.fluid}
-        alt={work.node.frontmatter.title}
+        fluid={work.fluid}
+        alt={work.title}
         imgStyle={{
           objectFit: 'contain',
           height: '100%',
@@ -71,7 +71,7 @@ const Carousel = ({ currentIndex, setCurrentIndex, works }) => {
         draggable={false}
       />
       <div className="overlay-caption">
-        <figcaption>{work.node.frontmatter.title}</figcaption>
+        <figcaption>{work.title}</figcaption>
       </div>
     </figure>
   ))

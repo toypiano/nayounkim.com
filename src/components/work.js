@@ -50,10 +50,8 @@ const StyledWork = styled.div`
   }
 `
 
-const Work = ({ work, openOverlay, updateCurrentIndex, blur }) => {
-  const fluid = work.node.frontmatter.featuredImage?.childImageSharp.fluid
-  const title = work.node.frontmatter.title
-  const slug = work.node.frontmatter.slug
+const Work = ({ work, openOverlay, updateCurrentIndex, toggleLike }) => {
+  const { fluid, title, slug } = work
   const likeId = 'like:' + title
   const initialLiked =
     window?.localStorage.getItem(likeId) === 'true' ? true : false
@@ -61,9 +59,6 @@ const Work = ({ work, openOverlay, updateCurrentIndex, blur }) => {
   const [liked, setLiked] = useState(initialLiked)
   // when changing image name, things can get weird due to the caching.
   // try deleting .cache folder and rebuild
-  if (!work.node.frontmatter.featuredImage) {
-    console.log(work.node.frontmatter.title)
-  }
 
   const { lockScroll } = useScrollLock()
 
@@ -75,19 +70,22 @@ const Work = ({ work, openOverlay, updateCurrentIndex, blur }) => {
 
   const handleLikeClick = e => {
     e.stopPropagation() // prevent GalleryOverlay from opening
+    toggleLike()
     setLiked(bool => !bool)
-    const liked = window?.localStorage.getItem(likeId) === 'true' ? true : false
-    window?.localStorage.setItem(likeId, (!liked).toString())
   }
 
   return (
-    <StyledWork className="work" id={work.node.frontmatter.slug}>
+    <StyledWork className="work" id={work.slug}>
       <a className="work-link" href={`#${slug}`} onClick={handleWorkClick}>
         <ImageContainer fluid={fluid} alt={title} />
       </a>
       <div className="overlay-content">
-        <figcaption>{work.node.frontmatter.title}</figcaption>
-        <Likes liked={liked} handleLikeClick={handleLikeClick} />
+        <figcaption>{work.title}</figcaption>
+        <Likes
+          liked={liked}
+          handleLikeClick={handleLikeClick}
+          likes={work.likes}
+        />
       </div>
       <div className="overlay-bg"></div>
     </StyledWork>
@@ -98,18 +96,11 @@ Work.propTypes = {
   updateCurrentIndex: PropTypes.func.isRequired,
   openOverlay: PropTypes.func.isRequired,
   work: shape({
-    node: shape({
-      frontmatter: shape({
-        slug: PropTypes.string.isRequired,
-        title: PropTypes.string.isRequired,
-        featuredImage: shape({
-          childImageSharp: shape({
-            fluid: PropTypes.object.isRequired,
-          }),
-        }),
-      }),
-    }),
+    slug: PropTypes.string.isRequired,
+    title: PropTypes.string.isRequired,
+    fluid: PropTypes.object.isRequired,
   }),
+  toggleLike: PropTypes.func.isRequired,
 }
 
 export default Work
