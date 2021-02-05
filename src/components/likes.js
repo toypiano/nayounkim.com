@@ -5,7 +5,9 @@ import { BsHeart, BsHeartFill } from 'react-icons/bs'
 
 const StyledLikes = styled('div')`
   display: flex;
+  justify-content: flex-end;
   align-items: center;
+  margin-left: 0.5rem;
 
   .like-button {
     width: 1.5rem;
@@ -17,16 +19,20 @@ const StyledLikes = styled('div')`
       height: 100%;
     }
   }
+  .like-count {
+    font-family: var(--ff-ss);
+    font-style: normal;
+  }
 `
 
-const Likes = ({ liked, handleLikeClick, likes }) => {
+const Likes = ({ liked, handleLikeClick, likes, light, className }) => {
   return (
-    <StyledLikes>
+    <StyledLikes className={className}>
       <button className="like-button" onClick={handleLikeClick}>
         {liked ? (
           <BsHeartFill style={{ color: 'red' }} />
         ) : (
-          <BsHeart style={{ color: 'white' }} />
+          <BsHeart style={{ color: light ? 'gray' : 'white' }} />
         )}
       </button>
       <span className="like-count">{likes}</span>
@@ -38,6 +44,7 @@ Likes.propTypes = {
   liked: PropTypes.bool.isRequired,
   likes: PropTypes.number.isRequired,
   handleLikeClick: PropTypes.func.isRequired,
+  light: PropTypes.bool,
 }
 
 export default Likes

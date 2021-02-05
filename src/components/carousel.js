@@ -14,6 +14,7 @@ const StyledCarousel = styled.div`
   will-change: transform; // this impacts optimization a lot!
 
   .work-content {
+    position: relative;
     height: 100%;
     display: flex;
     flex-direction: column;
@@ -21,34 +22,60 @@ const StyledCarousel = styled.div`
     align-items: center;
     touch-action: none;
   }
-
+  --img-max-width: 800px;
   /* gatsby-image-wrapper container is always styled with position:relative; & overflow:hidden */
   /* and contained image is absolute positioned against the container */
   .overlay-img {
     width: 100%;
-    max-width: 800px;
+    max-width: var(--img-max-width);
     max-height: 90%;
     margin: 1em auto;
     touch-action: none;
   }
   .overlay-caption {
-    padding: 0 2em;
+    width: 100%;
+    max-width: var(--img-max-width);
+    padding: 0 1em;
     text-align: center;
     font-size: 0.75;
     font-style: italic;
     font-family: var(--ff-se);
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    flex-wrap: wrap;
+
+    figcaption {
+      padding-top: 2px;
+    }
+  }
+  .likes {
+    position: absolute;
+    bottom: -1rem;
+    right: 1.5rem;
   }
 
   @media (min-width: 760px) {
     .work-content {
       width: 90%;
     }
+    .overlay-caption {
+      display: flex;
+      figcaption {
+        margin-left: 2rem;
+      }
+    }
+    .likes {
+      margin-left: 2rem;
+      bottom: 0;
+      right: 7vh;
+    }
   }
 `
 
 const AnimatedStyledCarousel = animated(StyledCarousel)
 
-const Carousel = ({ currentIndex, setCurrentIndex, works }) => {
+const Carousel = ({ currentIndex, setCurrentIndex, works, toggleLike }) => {
   const { bind, x } = useCarousel({ currentIndex, setCurrentIndex, works })
 
   const workContents = works.map((work, i) => (
@@ -73,7 +100,13 @@ const Carousel = ({ currentIndex, setCurrentIndex, works }) => {
       />
       <div className="overlay-caption">
         <figcaption>{work.title}</figcaption>
-        <Likes />
+        <Likes
+          className="likes"
+          likes={work.likes}
+          liked={work.liked}
+          handleLikeClick={() => toggleLike(work)}
+          light={true}
+        />
       </div>
     </figure>
   ))
