@@ -5,9 +5,6 @@ import styled from 'styled-components'
 
 const StyledImageContainer = styled('div')``
 
-// TODO: 1 . show likes
-// 2. connect to mongodb, store likes & view data
-
 const ImageContainer = ({ fluid, alt }) => {
   return (
     <StyledImageContainer>

@@ -4,17 +4,23 @@ import firebase from 'gatsby-plugin-firebase'
 
 export const useWorks = allMarkdownRemark => {
   const initialWorks = allMarkdownRemark.edges.map(
-    ({ node: { frontmatter } }) => ({
-      fluid: frontmatter.featuredImage?.childImageSharp.fluid,
-      title: frontmatter.title,
-      slug: frontmatter.slug,
-      likes: 0,
-      liked: window
-        ? window.localStorage.getItem('like:' + frontmatter.title) === 'true'
-          ? true
-          : false
-        : false,
-    })
+    ({ node: { frontmatter } }) => {
+      let initialLiked = false
+      if (window) {
+        initialLiked =
+          window.localStorage.getItem('like:' + frontmatter.title) === 'true'
+            ? true
+            : false
+      }
+
+      return {
+        fluid: frontmatter.featuredImage?.childImageSharp.fluid,
+        title: frontmatter.title,
+        slug: frontmatter.slug,
+        likes: 0,
+        liked: initialLiked,
+      }
+    }
   )
 
   const [works, setWorks] = useState(initialWorks)
