@@ -11,15 +11,6 @@ export const useWorks = allMarkdownRemark => {
    * @param {*} querySnapshot firestore querySnapshot
    */
   function syncWorks(works, querySnapshot) {
-    // init all likes in localStorage to false
-    works.forEach(work => {
-      // getItem returns string (eg. 'false')
-      if (window.localStorage.getItem('like:' + work.title)) {
-        window.localStorage.setItem('like:' + work.title, 'false')
-      }
-    })
-
-    // then we'll only "turn on" likes which can be found in db with likes more than 0
     querySnapshot.forEach(doc => {
       const { title, likes } = doc.data()
       if (!title || typeof likes === 'undefined') return // skip invalid document
@@ -32,8 +23,12 @@ export const useWorks = allMarkdownRemark => {
       if (matchingWorkIndex >= 0) {
         works[matchingWorkIndex].id = doc.id
         works[matchingWorkIndex].likes = likes
-        works[matchingWorkIndex].liked = likes > 0
-        window.localStorage.setItem('like:' + title, likes > 0)
+      }
+
+      // if work doesn't exist in db or it does with likes of 0, sync that to local state(works) and localStorage
+      if (matchingWorkIndex < 0 || likes === 0) {
+        works[matchingWorkIndex].liked = false
+        window.localStorage.setItem('like:' + title, false)
       }
     })
   }
@@ -93,6 +88,7 @@ export const useWorks = allMarkdownRemark => {
 
     if (liked) {
       window?.localStorage.setItem(itemKey, 'false')
+
       await db
         .collection('likes')
         .doc(work.title)
@@ -104,6 +100,7 @@ export const useWorks = allMarkdownRemark => {
           },
           { merge: true }
         )
+
       await db
         .collection('likes')
         .get()
