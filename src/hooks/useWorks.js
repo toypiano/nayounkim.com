@@ -9,10 +9,11 @@ export const useWorks = allMarkdownRemark => {
       title: frontmatter.title,
       slug: frontmatter.slug,
       likes: 0,
-      liked:
-        window?.localStorage.getItem('like:' + frontmatter.title) === 'true'
+      liked: window
+        ? window.localStorage.getItem('like:' + frontmatter.title) === 'true'
           ? true
-          : false,
+          : false
+        : false,
     })
   )
 
@@ -47,7 +48,7 @@ export const useWorks = allMarkdownRemark => {
   }
 
   useEffect(() => {
-    firebase.firestore().collection('likes:test').get().then(updateWorks)
+    firebase.firestore().collection('likes').get().then(updateWorks)
   }, [])
 
   const toggleLike = async work => {
@@ -59,7 +60,7 @@ export const useWorks = allMarkdownRemark => {
     if (liked) {
       window?.localStorage.setItem(itemKey, 'false')
       await db
-        .collection('likes:test')
+        .collection('likes')
         .doc(work.id)
         .set(
           {
@@ -70,13 +71,13 @@ export const useWorks = allMarkdownRemark => {
           { merge: true }
         )
       await db
-        .collection('likes:test')
+        .collection('likes')
         .get()
         .then(querySnapshot => updateWorks(querySnapshot, false, work.title))
     } else {
       window?.localStorage.setItem(itemKey, 'true')
       await db
-        .collection('likes:test')
+        .collection('likes')
         .doc(work.id)
         .set(
           {
@@ -87,7 +88,7 @@ export const useWorks = allMarkdownRemark => {
           { merge: true }
         )
       await db
-        .collection('likes:test')
+        .collection('likes')
         .get()
         .then(querySnapshot => updateWorks(querySnapshot, true, work.title))
     }
