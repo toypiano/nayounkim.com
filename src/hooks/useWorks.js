@@ -11,6 +11,15 @@ export const useWorks = allMarkdownRemark => {
    * @param {*} querySnapshot firestore querySnapshot
    */
   function syncWorks(works, querySnapshot) {
+    // init all likes in localStorage to false
+    works.forEach(work => {
+      // getItem returns string (eg. 'false')
+      if (window.localStorage.getItem('like:' + work.title)) {
+        window.localStorage.setItem('like:' + work.title, 'false')
+      }
+    })
+
+    // then we'll only "turn on" likes which can be found in db with likes more than 0
     querySnapshot.forEach(doc => {
       const { title, likes } = doc.data()
       if (!title || typeof likes === 'undefined') return // skip invalid document
@@ -18,10 +27,13 @@ export const useWorks = allMarkdownRemark => {
       const matchingWorkIndex = works.findIndex(
         newWork => newWork.title === title
       )
+
       // If work exists in db, manually update likes and id from works state.
       if (matchingWorkIndex >= 0) {
-        works[matchingWorkIndex].likes = likes
         works[matchingWorkIndex].id = doc.id
+        works[matchingWorkIndex].likes = likes
+        works[matchingWorkIndex].liked = likes > 0
+        window.localStorage.setItem('like:' + title, likes > 0)
       }
     })
   }
@@ -83,7 +95,7 @@ export const useWorks = allMarkdownRemark => {
       window?.localStorage.setItem(itemKey, 'false')
       await db
         .collection('likes')
-        .doc(work.id)
+        .doc(work.title)
         .set(
           {
             likes: firebase.firestore.FieldValue.increment(-1),
@@ -100,7 +112,7 @@ export const useWorks = allMarkdownRemark => {
       window?.localStorage.setItem(itemKey, 'true')
       await db
         .collection('likes')
-        .doc(work.id)
+        .doc(work.title)
         .set(
           {
             likes: firebase.firestore.FieldValue.increment(1),
