@@ -3,58 +3,74 @@ import 'firebase/firestore'
 import firebase from 'gatsby-plugin-firebase'
 
 export const useWorks = allMarkdownRemark => {
-  const initialWorks = allMarkdownRemark.edges.map(
-    ({ node: { frontmatter } }) => {
-      let initialLiked = false
-      if (window) {
-        initialLiked =
-          window.localStorage.getItem('like:' + frontmatter.title) === 'true'
-            ? true
-            : false
-      }
+  const [works, setWorks] = useState([])
 
-      return {
-        fluid: frontmatter.featuredImage?.childImageSharp.fluid,
-        title: frontmatter.title,
-        slug: frontmatter.slug,
-        likes: 0,
-        liked: initialLiked,
-      }
-    }
-  )
-
-  const [works, setWorks] = useState(initialWorks)
-
-  function updateWorks(querySnapshot, liked, likedTitle) {
-    const newWorks = works.map(work => ({ ...work })) // deep-copy works
-
-    if (likedTitle) {
-      // update liked state of the toggled work
-      const likedWorkIndex = newWorks.findIndex(
-        newWork => newWork.title === likedTitle
-      )
-      newWorks[likedWorkIndex].liked = liked
-    }
-
-    // sync works with the db
+  /**
+   * // sync works with the db in place
+   * @param {*} works works to sync in place
+   * @param {*} querySnapshot firestore querySnapshot
+   */
+  function syncWorks(works, querySnapshot) {
     querySnapshot.forEach(doc => {
       const { title, likes } = doc.data()
+      if (!title || typeof likes === 'undefined') return // skip invalid document
 
-      const matchingWorkIndex = newWorks.findIndex(
+      const matchingWorkIndex = works.findIndex(
         newWork => newWork.title === title
       )
       // If work exists in db, manually update likes and id from works state.
       if (matchingWorkIndex >= 0) {
-        newWorks[matchingWorkIndex].likes = likes
-        newWorks[matchingWorkIndex].id = doc.id
+        works[matchingWorkIndex].likes = likes
+        works[matchingWorkIndex].id = doc.id
       }
     })
+  }
 
+  /**
+   * Initialize works state on mount
+   * @param {*} querySnapshot from fireStore
+   * @param {*} allMarkdownRemark from gatsby graphql
+   */
+  function initWorks(querySnapshot) {
+    const initialWorks = allMarkdownRemark.edges.map(
+      ({ node: { frontmatter } }) => {
+        let initialLiked = false
+        if (window) {
+          initialLiked =
+            window.localStorage.getItem('like:' + frontmatter.title) === 'true'
+              ? true
+              : false
+        }
+
+        return {
+          fluid: frontmatter.featuredImage?.childImageSharp.fluid,
+          title: frontmatter.title,
+          slug: frontmatter.slug,
+          likes: 0,
+          liked: initialLiked,
+        }
+      }
+    )
+
+    syncWorks(initialWorks, querySnapshot)
+    setWorks(initialWorks)
+  }
+
+  function updateWorks(querySnapshot, liked, likedTitle) {
+    const newWorks = works.map(work => ({ ...work })) // deep-copy works
+
+    // update liked state of the toggled work
+    const likedWorkIndex = newWorks.findIndex(
+      newWork => newWork.title === likedTitle
+    )
+    newWorks[likedWorkIndex].liked = liked
+
+    syncWorks(newWorks, querySnapshot)
     setWorks(newWorks)
   }
 
   useEffect(() => {
-    firebase.firestore().collection('likes').get().then(updateWorks)
+    firebase.firestore().collection('likes').get().then(initWorks)
   }, [])
 
   const toggleLike = async work => {
