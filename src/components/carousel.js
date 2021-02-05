@@ -12,6 +12,7 @@ const StyledCarousel = styled.div`
   left: 0;
   display: flex;
   will-change: transform; // this impacts optimization a lot!
+  padding-bottom: 1rem;
 
   .work-content {
     position: relative;
@@ -51,7 +52,7 @@ const StyledCarousel = styled.div`
   }
   .likes {
     position: absolute;
-    bottom: -1rem;
+    bottom: -2rem;
     right: 1.5rem;
   }
 
