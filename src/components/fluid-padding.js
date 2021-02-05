@@ -24,6 +24,8 @@ const FluidPadding = ({ children }) => {
   return <StyledFluidPadding>{children}</StyledFluidPadding>
 }
 
-FluidPadding.propTypes = {}
+FluidPadding.propTypes = {
+  children: PropTypes.node.isRequired,
+}
 
 export default FluidPadding

@@ -1,13 +1,13 @@
 import { useReducer } from 'react'
-import { useScrollLock } from './useScrollLock'
+import useScrollLock from './useScrollLock'
 
-const initialState = {
-  showOverlay: false,
-  currentIndex: 2,
-  prevIndex: 2,
-}
+export default function usePortfolio(works) {
+  const initialState = {
+    showOverlay: false,
+    currentIndex: 2,
+    prevIndex: 2,
+  }
 
-export const usePortfolio = works => {
   const portfolioReducer = (state, action) => {
     switch (action.type) {
       case 'OVERLAY_OPEN':

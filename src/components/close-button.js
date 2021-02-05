@@ -1,5 +1,5 @@
 import React from 'react'
-import { Component } from 'react'
+import PropTypes from 'prop-types'
 import styled from 'styled-components'
 
 const StyledCloseButton = styled.a`
@@ -28,5 +28,12 @@ const CloseButton = ({ onClick, style, className, backTo }) => (
     <span>&#10005;</span>
   </StyledCloseButton>
 )
+
+CloseButton.propTypes = {
+  style: PropTypes.string,
+  className: PropTypes.string,
+  backTo: PropTypes.string,
+  onClick: PropTypes.func.isRequired,
+}
 
 export default CloseButton

@@ -2,7 +2,7 @@ import React from 'react'
 import styled from 'styled-components'
 import BackToTop from '../assets/svgs/back-to-top.svg'
 import { useTransition, a, config } from 'react-spring'
-import { useScrollAppear } from '../hooks'
+import { useScroll } from '../hooks'
 
 const StyledBackToTopButton = styled(a.div)`
   position: fixed;
@@ -31,7 +31,7 @@ const StyledBackToTopButton = styled(a.div)`
 `
 
 const BackToTopButton = () => {
-  const scrolled = useScrollAppear(1500)
+  const scrolled = useScroll(1500)
 
   const transition = useTransition(scrolled, {
     from: {

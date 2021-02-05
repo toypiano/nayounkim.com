@@ -7,9 +7,7 @@ import TransitionFade from '../components/transition-fade'
 import styled from 'styled-components'
 import WorksMasonry from '../components/works-masonry'
 import GalleryOverlay from '../components/gallery-overlay'
-import { usePortfolio } from '../hooks/usePortfolio'
-import { useScrollLock } from '../hooks/useScrollLock'
-import { useWorks } from '../hooks/useWorks'
+import { usePortfolio, useScrollLock, useWorks } from '../hooks'
 
 const StyledPortfolioPage = styled.div`
   overflow: hidden;

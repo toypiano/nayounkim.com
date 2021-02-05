@@ -4,7 +4,7 @@ import { useState, useLayoutEffect, useRef } from 'react'
  * Return true on page scroll and wait given duration to return false
  * @param {number} duration
  */
-export default function useScrollAppear(duration = 3000) {
+export default function useScroll(duration = 3000) {
   const [scrolled, setScrolled] = useState(false)
   const timeoutRef = useRef()
 

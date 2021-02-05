@@ -16,23 +16,6 @@ const ImageContainer = ({ fluid, alt }) => {
   )
 }
 
-// ImageContainer.propTypes = {
-//   image: PropTypes.shape({
-//     node: PropTypes.shape({
-//       base: PropTypes.string.isRequired,
-//       childImageSharp: PropTypes.shape({
-//         fluid: PropTypes.shape({
-//           aspectRatio: PropTypes.number.isRequired,
-//           base64: PropTypes.string.isRequired,
-//           sizes: PropTypes.string.isRequired,
-//           src: PropTypes.string.isRequired,
-//           srcSet: PropTypes.string.isRequired,
-//         }),
-//       }),
-//     }),
-//   }),
-// }
-
 ImageContainer.propTypes = {
   fluid: PropTypes.object.isRequired,
   alt: PropTypes.string.isRequired,

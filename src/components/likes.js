@@ -45,6 +45,7 @@ Likes.propTypes = {
   likes: PropTypes.number.isRequired,
   handleLikeClick: PropTypes.func.isRequired,
   light: PropTypes.bool,
+  className: PropTypes.string,
 }
 
 export default Likes

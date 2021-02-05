@@ -1,6 +1,6 @@
 import { useLayoutDispatch, actionTypes } from '../store'
 
-export const useScrollLock = () => {
+export default function useScrollLock() {
   const dispatch = useLayoutDispatch()
   const lockScroll = () => {
     dispatch({ type: actionTypes.LOCK_SCROLL })

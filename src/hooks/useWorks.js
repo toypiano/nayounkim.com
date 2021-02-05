@@ -2,7 +2,7 @@ import { useState, useEffect } from 'react'
 import 'firebase/firestore'
 import firebase from 'gatsby-plugin-firebase'
 
-export const useWorks = allMarkdownRemark => {
+export default function useWorks(allMarkdownRemark) {
   const [works, setWorks] = useState([])
 
   /**

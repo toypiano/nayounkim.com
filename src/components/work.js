@@ -1,9 +1,9 @@
-import React, { useEffect, useRef, useState } from 'react'
+import React from 'react'
 import styled from 'styled-components'
 import PropTypes, { shape } from 'prop-types'
 import ImageContainer from './image-container'
 import Likes from './likes'
-import { useScrollLock } from '../hooks/useScrollLock'
+import { useScrollLock } from '../hooks'
 
 const StyledWork = styled.div`
   position: relative;
