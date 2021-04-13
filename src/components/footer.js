@@ -140,7 +140,7 @@ const Footer = () => {
           <div className="toypiano">
             <p>
               Website designed &amp; created by{' '}
-              <a href="mailto:sidhlee@gmail.com">Toypiano</a>
+              <a href="mailto:sidhlee@gmail.com">Sid H. Lee</a>
             </p>
           </div>
         </div>
