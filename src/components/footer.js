@@ -6,11 +6,11 @@ import { SiInstagram, SiSociety6, SiFacebook } from 'react-icons/si'
 import { mq } from '../styles'
 
 const StyledFooter = styled('footer')`
-  padding: 1em;
+  padding: 0 1em;
   color: var(--black);
 
   .divider {
-    border-bottom: 1px solid var(--text-placeholder);
+    border-top: 1px solid var(--text-placeholder);
   }
   .content {
     padding: 1em;
@@ -46,12 +46,31 @@ const StyledFooter = styled('footer')`
       span {
         font-size: 2rem;
       }
+      &--instagram {
+        svg * {
+          fill: var(--black);
+        }
+        &:hover svg * {
+          fill: url(#rg);
+        }
+      }
+      &--society6 {
+        &:hover {
+          opacity: 0.6;
+        }
+      }
+      &--facebook {
+        &:hover {
+          color: #4267b2;
+        }
+      }
     }
 
     .credit {
       padding: 0.5em;
-      font-weight: var(--fw-light);
       align-self: center;
+      display: flex;
+      flex-direction: column;
       .nayoun {
         margin-bottom: 0.75em;
         text-transform: uppercase;
@@ -65,6 +84,7 @@ const StyledFooter = styled('footer')`
         }
       }
       .toypiano > p {
+        font-weight: var(--fw-light);
         font-size: 0.8rem;
       }
     }
@@ -72,12 +92,17 @@ const StyledFooter = styled('footer')`
 
   @media (min-width: ${mq.tablet}px) {
     .content {
-      padding: 2em 0;
+      padding: 3em 0;
       display: grid;
       grid-template-columns: repeat(3, 1fr);
       max-width: ${mq.desktop}px;
       text-align: left;
       place-items: center;
+
+      .credit {
+        height: 100%;
+        justify-content: center;
+      }
     }
   }
 `
@@ -101,6 +126,15 @@ const Footer = () => {
         <ul className="social">
           <li>
             <Link to="#" className="social--instagram">
+              <svg width="0" height="0">
+                <radialGradient id="rg" r="150%" cx="30%" cy="107%">
+                  <stop stop-color="#fdf497" offset="0" />
+                  <stop stop-color="#fdf497" offset="0.05" />
+                  <stop stop-color="#fd5949" offset="0.45" />
+                  <stop stop-color="#d6249f" offset="0.6" />
+                  <stop stop-color="#285AEB" offset="0.9" />
+                </radialGradient>
+              </svg>
               <span>
                 <SiInstagram />
               </span>

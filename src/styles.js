@@ -64,6 +64,8 @@ export const GlobalStyle = createGlobalStyle`
     /* Etc */
     --box-shadow: 0 8px 6px -8px rgba(0, 0, 0, 0.2);
 
+    --transition: all 200ms ease-in-out;
+
   }
 
   html {
@@ -155,9 +157,10 @@ export const GlobalStyle = createGlobalStyle`
 
   a {
     color: var(--black);
-    text-decoration: none;
-    
+    text-decoration: none;    
   }
+
+  
 
   button {
     border: none;
