@@ -7,6 +7,7 @@ import Input from '../components/input'
 import Button from '../components/button'
 import Img from 'gatsby-image'
 import { mq } from '../styles'
+import SEO from '../components/seo'
 
 const StyledContactPage = styled('div')`
   .container {
@@ -86,6 +87,7 @@ const inputs = [
 const ContactPage = ({ data }) => {
   return (
     <TransitionFade>
+      <SEO />
       <StyledContactPage>
         <div className="container">
           <div className="contact">

@@ -6,6 +6,7 @@ import Img from 'gatsby-image'
 import TransitionFade from '../components/transition-fade'
 import Button from '../components/button'
 import { mq } from '../styles'
+import SEO from '../components/seo'
 
 const StyledAboutPage = styled.div`           
     .intro {
@@ -159,6 +160,7 @@ const StyledAboutPage = styled.div`
 const AboutPage = ({ data }) => {
   return (
     <TransitionFade>
+      <SEO />
       <StyledAboutPage>
         <div className="intro">
           <Img

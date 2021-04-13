@@ -3,6 +3,7 @@ import styled from 'styled-components'
 import { mq } from '../styles'
 import mainGif from '../assets/images/main-810-opt.gif'
 import TransitionFade from '../components/transition-fade'
+import SEO from '../components/seo'
 
 const StyledIndexPage = styled.div`
   height: 100%;
@@ -35,6 +36,7 @@ const StyledIndexPage = styled.div`
 const IndexPage = () => {
   return (
     <TransitionFade>
+      <SEO />
       <StyledIndexPage>
         <div className="main-image">
           <div className="image-wrapper">
