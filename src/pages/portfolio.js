@@ -45,7 +45,7 @@ const PortfolioPage = ({ data }) => {
 
   return (
     <TransitionFade>
-      <SEO title="Home" />
+      <SEO title="Portfolio" />
       <StyledPortfolioPage>
         {transition(
           ({ opacity }, showOverlay) =>

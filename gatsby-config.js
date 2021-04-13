@@ -1,7 +1,7 @@
 module.exports = {
   siteMetadata: {
     title: `Nayoun Kim Illustrator`,
-    description: `Illustrator Nayoun Kim's Website`,
+    description: `Illustrator Nayoun Kim's Portfolio Website`,
     author: `Sid Hayoun Lee`,
   },
   plugins: [

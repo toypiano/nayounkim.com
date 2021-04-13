@@ -31,7 +31,7 @@ const StyledIndexPage = styled.div`
     }
   }
 `
-
+//TODO: add SEO title
 const IndexPage = () => {
   return (
     <TransitionFade>
