@@ -27,6 +27,7 @@ function SEO({ description, lang, meta, title }) {
 
   const metaDescription = description || site.siteMetadata.description
   const metaTitle = title || site.siteMetadata.title
+  const metaAuthor = site.siteMetadata.author || 'Sid H. Lee'
 
   return (
     <Helmet
@@ -35,6 +36,7 @@ function SEO({ description, lang, meta, title }) {
       }}
       title={metaTitle}
       titleTemplate={`%s | ${site.siteMetadata.title}`}
+      author={metaAuthor}
       meta={[
         {
           name: `description`,
